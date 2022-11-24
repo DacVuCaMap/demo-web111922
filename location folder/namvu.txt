@@ -1,0 +1,5 @@
+* HOME blade
+    \resources\views\home_byNamVu\home.blade.php
+
+* HOME layout 
+    \resources\views\layoutNV\homeLayout.blade.php
