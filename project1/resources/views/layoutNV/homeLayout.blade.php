@@ -15,16 +15,16 @@
         background-size:cover;
         height: 40px;
         width: 200px;
-        
+
     }
     </style>
 </head>
 <body id="body">
-    
+
         <div class="header">
             <div class="hup">
                 <div class="logomenu">
-                    
+
                 </div>
                 <div class="search">
                     <input type="search">
@@ -32,7 +32,7 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
-    
+
                 <div class="deliverlocation">
                     <p style="color: rgb(155, 155, 155)">Deliver to</p>
                     <p><i class="fa-sharp fa-solid fa-location-dot"></i> VietNam</p>
@@ -45,14 +45,14 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span>0</span>
                 </div>
-    
+
             </div>
             <div class="hdown">
                 <div class="all-menu" id="clickatAll"><i class="fa-solid fa-bars"></i> All</div>
                 <div class="downitem">Today's deal</div>
                 <div class="downitem">Suggestions</div>
                 <div class="downitem">Sell</div>
-                <div class="downitem"><a href="{{ route('admin.home') }}">Home</a></div>
+                <div class="downitem"><a href="{{ route('user.home') }}">Home</a></div>
             </div>
         </div>
         <div class="xmark" id="xmark"><i class="fa-solid fa-xmark"></i></div>
@@ -67,8 +67,8 @@
                     <div>Music comming soon</div>
                     <div>Video comming soon</div>
                     <div>Game content</div>
-                    
-                    
+
+
                 </div>
                 <div class="sidechild">
                     <h3>Shop By Department</h3>
@@ -88,22 +88,22 @@
                     <div>Video comming soon</div>
                     <div>Game content</div>
                 </div>
-                
+
             </div>
-            
-    
+
+
         </div>
         <div class="disable-screen" id="disable-screen"></div>
         <div class="content">@yield('content')</div>
         <div class="footer"></div>
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
 </body>
 </html>
 
