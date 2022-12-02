@@ -10,12 +10,13 @@ use App\Http\Controllers\CategoryController;
 
 Route::prefix('/')->name('user.')->group(function(){
     Route::get('home',[HomeController::class,'homepage'])->name('home');
+    Route::get('/login', [AdminController::class, 'login'])->name('login');
+    Route::post('/login', [AdminController::class, 'postlogin']);
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/home', [AdminController::class, 'home'])->name('home');
-    Route::get('/login', [AdminController::class, 'login'])->name('login');
-    Route::post('/login', [AdminController::class, 'postlogin']);
+
 });
 
 Route::prefix('admin/category')->name('category.')->group(function(){
