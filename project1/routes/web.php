@@ -33,6 +33,7 @@ Route::prefix('admin/category')->name('category.')->group(function(){
     Route::post('/add', [CategoryController::class, 'postadd']);
     Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
     Route::post('/edit/{id}', [CategoryController::class, 'postedit']);
+    Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('delete');
 });
 
 Route::prefix('admin/product')->name('product.')->group(function(){
@@ -41,7 +42,8 @@ Route::prefix('admin/product')->name('product.')->group(function(){
     Route::post('/add', [ProductController::class, 'postadd']);
     Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit');
     Route::post('/edit/{id}', [ProductController::class, 'postedit']);
+    Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
 });
 
-Auth::routes();
+
 
