@@ -1,0 +1,13 @@
+I.đĩa mềm
+a)các mẫu địa mềm
+	+ đĩa mềm 8 inch
+	+ đĩa mềm 5,25 inch
+	+ đĩa mềm 3.5 inch
+
+b)description 
+	+ Product Dimensions
+	+ Item Weight
+	+ Item model number
+	+ Date First Available
+	+ Is Discontinued By Manufacturer
+	+ Manufacturer
