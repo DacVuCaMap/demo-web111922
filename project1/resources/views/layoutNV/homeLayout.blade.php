@@ -1,3 +1,5 @@
+{{-- ours layout home --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,102 +9,47 @@
     <title>@yield('tittle')</title>
     <link rel="stylesheet" href="{{ asset('cssbyNamVu/homelayout.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="shortcut icon" href="https://web-dev.`ix.net/image/vS06HQ1YTsbMKSFTIPl2iogUQP73/KAOmqplghJT2PrJlOgZ5.png?auto=format" type="image/x-icon">
+
     <script src="{{ asset('jsByNamVu/homelayout.js') }}"></script>
-    <style>
-        .logomenu{
-        background: url('storage/Namvuphoto/menu/logomenu.png');
-        background-size:cover;
-        height: 40px;
-        width: 200px;
-
-    }
-    </style>
+   {{-- swiper library --}}
+   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 </head>
-<body id="body">
-
+<body>
+    <section>
         <div class="header">
-            <div class="hup">
-                <div class="logomenu">
-
-                </div>
-                <div class="search">
-                    <input type="search">
-                    <div class="searchicon">
+            <div class="up-header">
+                <h1>OCEANGATE</h1>
+                <p>The way to get started</p>
+                <div class="rightsidemenu">
+                    
+                    <div class="sign-in">
+                        <a href="">Sign in</a>
+                        <i class="fa-sharp fa-solid fa-circle-user"></i>
+                    </div>
+                    
+                    <div class="search-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
+                    
                 </div>
-
-                <div class="deliverlocation">
-                    <p style="color: rgb(155, 155, 155)">Deliver to</p>
-                    <p><i class="fa-sharp fa-solid fa-location-dot"></i> VietNam</p>
-                </div>
-                <div class="loginarea">
-                    <p >Hello, sign in</p>
-                    <h4>Account & List</h4>
-                </div>
-                <div class="Cartmenu">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span>0</span>
-                </div>
-
             </div>
-            <div class="hdown">
-                <div class="all-menu" id="clickatAll"><i class="fa-solid fa-bars"></i> All</div>
-                <div class="downitem">Today's deal</div>
-                <div class="downitem">Suggestions</div>
-                <div class="downitem">Sell</div>
-                <div class="downitem"><a href="{{ route('user.home') }}">Home</a></div>
+            <div class="down-header">
+                
+                <a href="" class="menu-link">Collections</a>
+                
+                <a href="" class="menu-link">Shop</a>
+                <a href="" class="menu-link active">Home</a>
+                <a href="" class="menu-link">About us</a>
+                <a href="" class="menu-link">Location</a>
             </div>
         </div>
-        <div class="xmark" id="xmark"><i class="fa-solid fa-xmark"></i></div>
-        <div class="sideAll" id="sideAll">
-            <div class="sidehead">
-                <h2><i class="fa-solid fa-user"></i> Hello, sign in</h2>
-            </div>
-            <div class="scrollside">
-                <div class='spaceside'></div>
-                <div class="sidechild">
-                    <h3>Digital Content & Devices</h3>
-                    <div>Music comming soon</div>
-                    <div>Video comming soon</div>
-                    <div>Game content</div>
-
-
-                </div>
-                <div class="sidechild">
-                    <h3>Shop By Department</h3>
-                    <div>Music comming soon</div>
-                    <div>Video comming soon</div>
-                    <div>Game content</div>
-                </div>
-                <div class="sidechild">
-                    <h3>Programs & Features</h3>
-                    <div>Music comming soon</div>
-                    <div>Video comming soon</div>
-                    <div>Game content</div>
-                </div>
-                <div class="sidechild">
-                    <h3>Help & Settings</h3>
-                    <div>Music comming soon</div>
-                    <div>Video comming soon</div>
-                    <div>Game content</div>
-                </div>
-
-            </div>
-
-
-        </div>
-        <div class="disable-screen" id="disable-screen"></div>
         <div class="content">@yield('content')</div>
-        <div class="footer"></div>
-
-
-
-
-
-
-
+        <div class="footer">
+            <p>adsaskdha@gmaksdjalksjd.com</p>
+        </div>
+    </section>
+    
 
 </body>
 </html>

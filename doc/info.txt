@@ -1,0 +1,11 @@
+disk type:
+1,optical disc
+2,Floppy disk:	+)disk 8"
+		+)disk 5.25"
+		+)disk 3.5"
+3,Hard drive: 	+)SSD drive:
+				+128gb
+				+256gb
+		+)HDD drive:
+				+1TB
+				+
