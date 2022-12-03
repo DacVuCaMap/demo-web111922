@@ -36,5 +36,6 @@ Route::prefix('admin/product')->name('product.')->group(function(){
     Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
 });
 
+Auth::routes();
 
 

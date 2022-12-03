@@ -1,0 +1,42 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+html,body{
+    height: 100%;
+    background: green;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.container{
+    background: white;
+    height: 550px;
+    width: 1200px;
+    position: relative;
+    border-radius: 20px;
+    
+    box-sizing: border-box;
+}
+.leftside{
+    background: red;
+    position: absolute;
+    
+    height: 515px;
+    top: 15px;
+    left: 2%;
+    width: 40%;
+}
+
+.rightside{
+    background: blue;
+    position: absolute;
+    
+    height: 515px;
+    top: 15px;
+
+    right: 2%;
+    width: 55%;
+}

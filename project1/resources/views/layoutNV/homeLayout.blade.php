@@ -9,7 +9,7 @@
     <title>@yield('tittle')</title>
     <link rel="stylesheet" href="{{ asset('cssbyNamVu/homelayout.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
+    <link rel="shortcut icon" href="{{ asset('adminkit/src/img/icons/icon-48x48.png') }}" />
     <script src="{{ asset('jsByNamVu/homelayout.js') }}"></script>
    {{-- swiper library --}}
    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -22,22 +22,22 @@
                 <h1>OCEANGATE</h1>
                 <p>The way to get started</p>
                 <div class="rightsidemenu">
-                    
+
                     <div class="sign-in">
-                        <a href="">Sign in</a>
+                        <a href="{{ route('user.login') }}">Sign in</a>
                         <i class="fa-sharp fa-solid fa-circle-user"></i>
                     </div>
-                    
+
                     <div class="search-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="down-header">
-                
+
                 <a href="" class="menu-link">Collections</a>
-                
+
                 <a href="" class="menu-link">Shop</a>
                 <a href="" class="menu-link active">Home</a>
                 <a href="" class="menu-link">About us</a>
@@ -49,7 +49,7 @@
             <p>adsaskdha@gmaksdjalksjd.com</p>
         </div>
     </section>
-    
+
 
 </body>
 </html>
