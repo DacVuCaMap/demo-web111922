@@ -9,7 +9,7 @@
     <title>@yield('tittle')</title>
     <link rel="stylesheet" href="{{ asset('cssbyNamVu/homelayout.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
+    <link rel="shortcut icon" href="{{ asset('adminkit/src/img/icons/icon-48x48.png') }}" />
     <script src="{{ asset('jsByNamVu/homelayout.js') }}"></script>
    {{-- swiper library --}}
    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -24,7 +24,7 @@
                 <div class="rightsidemenu">
                     
                     <div class="sign-in">
-                        <a href="">Sign in</a>
+                        <a href="{{ route('user.login') }}">Sign in</a>
                         <i class="fa-sharp fa-solid fa-circle-user"></i>
                     </div>
                     
