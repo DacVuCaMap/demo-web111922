@@ -25,9 +25,8 @@
 		</div>
 
 	</div>
-
-	{{-- <script src="{{ asset('adminkit/src/js/app.js') }}"></script> --}}
-
+	<script src="{{ asset('adminkit/src/js/app.js') }}"></script>
+    <script src="{{ asset('adminkit/src/js/modules/bootstrap.js') }}"></script>
 </body>
 
 </html>

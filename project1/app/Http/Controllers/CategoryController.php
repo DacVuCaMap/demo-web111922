@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+
 class CategoryController extends Controller
 {
     private $cat;
@@ -13,11 +14,11 @@ class CategoryController extends Controller
         $this->htmlSelect = '';
     }
 
-    function RecusiveCat($parent_id, $id = 0, $text = ''){
-        $category = $this->cat->getAllCat();
+    function RecusiveCat($parent_id, $id = null, $text = ''){
+        $category = $this->cat->getAll();
             foreach($category as $item){
                 if($item->parent_id == $id){
-                    if(!empty($parent_id) && $item->id == $parent_id){
+                    if(!empty($parent_id) && $parent_id==$item->id){
                         $this->htmlSelect .= "<option value = '$item->id' selected>".$text.$item->name."</option>";
                     }else{
                         $this->htmlSelect .= "<option value = '$item->id'>".$text.$item->name."</option>";
@@ -40,10 +41,13 @@ class CategoryController extends Controller
 
     public function postadd(Request $req){
         $rules = [
-            'cat_name' => 'required'
+            'cat_name' => 'required|unique:category,name'
+            ,'parent_id' => 'regex:/^[0-9]*$/'
         ];
         $message = [
             'cat_name.required' => 'Category Name cannot be left blank!'
+            ,'cat_name.unique' => 'Category already exists!'
+            ,'parent_id.regex'   => 'Category Parent cannot be left blank!'
         ];
         $req->validate($rules, $message);
         $catname = $req->cat_name;
@@ -57,9 +61,39 @@ class CategoryController extends Controller
     }
 
     public function edit($id){
-        $htmlSelect = $this->RecusiveCat($id);
         $cat = $this->cat->getCat($id);
-        // dd($cat[0]->name);
-        return view('category.add', compact('htmlSelect', 'cat'));
+        $htmlSelect = $this->RecusiveCat($cat[0]->parent_id);
+        return view('category.edit', compact('htmlSelect', 'cat'));
+    }
+
+    public function postedit(Request $req){
+        $rules = [
+            'cat_name' => 'required|unique:category,name'
+            ,'parent_id' => 'regex:/^[0-9]*$/'
+        ];
+        $message = [
+            'cat_name.required' => 'Category Name cannot be left blank!'
+            ,'cat_name.unique' => 'Category already exists!'
+            ,'parent_id.regex'   => 'Category Parent cannot be left blank!'
+        ];
+        $req->validate($rules, $message);
+        $id = $req->id;
+        $catname = $req->cat_name;
+        $parent_id = $req->parent_id;
+        $update_at = now();
+        $data = [$catname, $parent_id, $update_at, $id];
+        if(($this->cat->editCat($data))==null){
+            return redirect()->route('category.list')->with('msg', 'Edit successful category!');
+        }else{
+            return redirect()->route('category.list')->with('msg', 'Edit failure category!');
+        }
+    }
+
+    public function delete($id){
+        if(($this->cat->delCat($id))==null){
+            return redirect()->route('category.list')->with('msg', 'Delete successful category!');
+        }else{
+            return redirect()->route('category.list')->with('msg', 'Delete failure category!');
+        }
     }
 }

@@ -1,7 +1,7 @@
 @extends('layoutNV.admin')
 
 @section('title')
-    <title>Home Page</title>
+    <title>Category List</title>
 @endsection
 
 @section('content')
@@ -11,13 +11,12 @@
 <main class="content">
     <div class="container-fluid p-0">
             @if(session('msg'))
-                <div class="col-md-6 alert alert-success">
-                    {{ session('msg') }}
+                <div style="font-size:20px; font-weight:bolder; color: rgb(8, 181, 250)">
+                 {{ session('msg') }}
                 </div>
             @endif
-            <h1 class="h3 mb-3"><strong>Category</strong></h1>
+            <h1 class="h3 mb-3"><strong>Category List</strong></h1>
         <div class="row">
-
             <div class="col-md-12 ">
                 <a href="{{ route('category.add') }}" class="btn btn-success float-end">Add</a>
             </div>
@@ -25,9 +24,9 @@
                 <table class="table table-success table-striped">
                     <thead>
                         <tr>
-                            <th class="d-none d-xl-table-cell">ID</th>
+                            <th class="d-none d-xl-table-cell">Numberical</th>
                             <th class="d-none d-xl-table-cell">Name</th>
-                            <th class="d-none d-xl-table-cell">Parent_id</th>
+                            <th class="d-none d-xl-table-cell">Parent Category</th>
                             <th class="d-none d-xl-table-cell">Create_at</th>
                             <th class="d-none d-md-table-cell">Update_at</th>
                             <th class="d-none d-xl-table-cell" colspan="2">Action</th>
@@ -43,7 +42,7 @@
                                 <td class="d-none d-md-table-cell">{{ $item->create_at }}</td>
                                 <td class="d-none d-md-table-cell">{{ $item->update_at }}</td>
                                 <td><a href="{{ route('category.edit', $item->id) }}" class="badge bg-secondary">Edit</a></td>
-                                <td><a href="#" class="badge bg-danger">Delete</a></td>
+                                <td><a onclick="return confirm('Are you sure delete?')" href="{{ route('category.delete', $item->id) }}" class="badge bg-danger">Delete</a></td>
                             </tr>
                         @endforeach
                         @endif
@@ -53,5 +52,6 @@
         </div>
     </div>
 </main>
+
 @endsection
 
