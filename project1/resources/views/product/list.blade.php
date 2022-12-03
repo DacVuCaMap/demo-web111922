@@ -45,7 +45,7 @@
                             <td class="d-none d-xl-table-cell">{{ $item->create_at }}</td>
                             <td><a href="{{ route('product.edit', $item->id) }}" class="btn btn-secondary">Edit</a></td>
                             <td><a onclick="document.getElementById('id01').style.display='block'"
-                                  class="btn btn-danger">Delete</a></td>
+                                 class="btn btn-danger">Delete</a></td>
                             <td><a href="#" class="btn btn-primary">Read more</a></td>
                         </tr>
                         @endforeach
