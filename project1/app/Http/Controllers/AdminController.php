@@ -13,8 +13,8 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
-    public function login(){
-        return view('admin.login');
+    public function account(){
+        return view('admin.account');
     }
 
     public function postlogin(Request $req){
