@@ -38,12 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'customers',
         ],
 
-        'Admin' => [
+        'admins' => [
             'driver'   => 'session',
-            'provider' => 'Admin',
+            'provider' => 'admins',
         ],
 
         'customers' => [
@@ -70,12 +70,8 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
 
-        'Admin' => [
+        'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
@@ -84,6 +80,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Customers::class,
         ],
+        // 'users' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\User::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -113,6 +113,19 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'customers' => [
+            'provider' => 'customers',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
     ],
 
     /*

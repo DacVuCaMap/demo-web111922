@@ -11,7 +11,7 @@
 	<style>
 		body{
 			background: url('storage/imgNV/bautroidaysao.png');
-			background-size:auto; 
+			background-size:auto;
 		}
 	</style>
 </head>
@@ -28,17 +28,17 @@
 					<div>
 						<p>Your name</p>
 						<input class="typein" type="text" name="userName" placeholder="user name"><br>
-						
+
 					</div>
                     <div>
 						<p>Email</p>
 						<input class="typein" type="text" name="userMail" placeholder="example@email.com"><br>
-						
+
 					</div>
                     <div>
 						<p>Age</p>
 						<input class="typein age" type="date" name="userAge"><br>
-						
+
 					</div>
 					<div>
 						<p>Password</p>
@@ -48,21 +48,21 @@
 						<p>Re-enter Password</p>
 						<input class="typein" type="password" name="userRePass" placeholder="re-enter">
 					</div>
-                    
-					
-					
-					
+
+
+
+
 					<button>Sign up</button>
-					<p class="signup">< Back to <a href="{{ route('user.account') }}">Sign in</a></p> 
+					<p class="signup">< Back to <a href="{{ route('user.login') }}">Sign in</a></p>
 				</div>
-				
-				
+
+
 			</form>
 		</div>
-		
-		
+
+
 	</div>
-	
-	
+
+
 </body>
 </html>
