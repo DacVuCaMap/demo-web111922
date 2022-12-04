@@ -24,7 +24,7 @@
                 <div class="rightsidemenu">
 
                     <div class="sign-in">
-                        <a href="{{ route('user.login') }}">Sign in</a>
+                        <a href="{{ route('user.account') }}">Sign in</a>
                         <i class="fa-sharp fa-solid fa-circle-user"></i>
                     </div>
 
