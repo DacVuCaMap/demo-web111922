@@ -13,6 +13,7 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('/login', [UserController::class, 'login'])->name('login');
     Route::post('/login', [UserController::class, 'postlogin'])->name('postlogin');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('/register',[UserController::class,'register'])->name('register');
 });
 
 Route::prefix('admin')->middleware('admin.login')->name('admin.')->group(function(){

@@ -24,8 +24,12 @@ class UserController extends Controller
     }
 
     public function logout(){
+        
         Auth::guard('admins')->logout();
         Auth::guard('customers')->logout();
         return redirect()->route('user.home');
+    }
+    public function register(){
+        return view('admin.register');
     }
 }
