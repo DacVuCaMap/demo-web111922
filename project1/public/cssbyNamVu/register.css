@@ -27,14 +27,14 @@ body{
 .container:hover{
     box-shadow: rgb(235, 235, 235) 0px 0px 5px 5px;
 }
-.leftside{
-    background: rgb(17, 17, 17);
+.main{
+    
     position: absolute;
     text-align: center;
     padding-top: 20px;
     box-sizing: border-box;
     height: 515px;
-    top: 15px;
+    top: 0px;
     left: 0;
     width: 500px;
     
@@ -52,7 +52,7 @@ body{
     margin-bottom: 30px;
 }
 .typein{
-    height: 30px;
+    height: 25px;
     width: 300px;
     background: none;
     outline: none;
@@ -60,18 +60,16 @@ body{
     border: none;
     border-bottom:1px solid rgb(158, 158, 158);
     font-size: 20px;
-    
-    padding-bottom: 0px;
 }
 ::placeholder { 
     color: rgb(104, 104, 104);
     font-size: 14px;
-  }
+}
 .up>div{
     margin-bottom: 20px ;
 }
 .up{
-    border-bottom: 1px solid rgb(182, 182, 182);
+    
     width: 80%;
     margin: auto;
 }
@@ -80,11 +78,11 @@ body{
     background: white;
     font-size: 16px;
     padding: 10px 120px;
-    margin-bottom: 20px;
-    margin-top: 10px;
+    margin-bottom: 10px;
+    
     border-radius: 10px; 
     border: none;
-   transition: 0.3s;
+    transition: 0.3s;
 }
 .up>button:hover{
     background: rgb(80, 80, 80);
@@ -92,35 +90,7 @@ body{
     color: white;
     
 }
-.down{
-    padding-top: 30px;
-}
-.down>div{
-    height: 30px;
-    border: 1px solid white;
-    display: inline-block;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    padding: 5px 20px;
-    background: black;
-}
-.down>div a{
-    color: rgb(173, 173, 173);
-    line-height: 30px;
-    text-decoration: none;
-    font-size: 16px;
-    
-}
-.down>div:hover{
-    background: rgb(65, 65, 65);
-    
-}
-.icon{
-    font-size: 20px;
-    
-}
 .signup{
-    margin-top: 10px;
     color: rgb(173, 173, 173);
     font-size: 15px;
     
@@ -131,4 +101,13 @@ body{
 .imghome{
     border-radius: 10px;
     border: 1px solid white;
+}
+
+::-webkit-datetime-edit-text {
+    color: rgb(173, 173, 173);
+     padding: 0 0.6em;
+}
+
+::-webkit-calendar-picker-indicator {
+    display: none;
 }

@@ -17,10 +17,10 @@ class UserController extends Controller
         $email    = $req->loginMail;
         $password = $req->loginPass;
         if(Auth::guard('admins')->attempt(['email' => $email, 'password' => $password])){
-            dd(Auth::guard('admins')->user());
             return redirect()->route('admin.home');
+        }else{
+            return redirect()->back()->with('msg', ('This Email or Password not exists!'));
         }
-        // dd(Auth::guard('customers')->attempt(['email' => $email, 'password' => $password]));
     }
 
     public function logout(){
