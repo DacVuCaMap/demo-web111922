@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\UserController;
 
 
 Route::prefix('/')->name('user.')->group(function(){
@@ -17,7 +17,6 @@ Route::prefix('/')->name('user.')->group(function(){
 
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/home', [AdminController::class, 'home'])->name('home');
-
 });
 
 Route::prefix('admin/category')->name('category.')->group(function(){
@@ -37,6 +36,7 @@ Route::prefix('admin/product')->name('product.')->group(function(){
     Route::post('/edit/{id}', [ProductController::class, 'postedit']);
     Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
 });
+
 
 
 

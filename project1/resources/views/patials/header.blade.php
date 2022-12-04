@@ -9,7 +9,7 @@
 
             </li>
             <li class="nav-item dropdown">
-                <a href="{{ route('admin.login') }}" class="btn btn-secondary">Logout</a>
+                <a href="{{ route('user.login') }}" class="btn btn-secondary">Logout</a>
             </li>
         </ul>
     </div>

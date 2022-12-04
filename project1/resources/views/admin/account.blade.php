@@ -56,11 +56,9 @@
 					
 				</div>
 			</form>
-		</div>
-		
-		
+		</div>	
+		<div class="rightside"></div>
 	</div>
-	
 	
 </body>
 </html>

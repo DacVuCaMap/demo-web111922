@@ -22,22 +22,22 @@
                 <h1>OCEANGATE</h1>
                 <p>The way to get started</p>
                 <div class="rightsidemenu">
-                    
+
                     <div class="sign-in">
-                        <a href="{{ route('user.account') }}">Sign in</a>
+                        <a href="{{ route('user.login') }}">Sign in</a>
                         <i class="fa-sharp fa-solid fa-circle-user"></i>
                     </div>
-                    
+
                     <div class="search-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="down-header">
-                
+
                 <a href="" class="menu-link">Collections</a>
-                
+
                 <a href="" class="menu-link">Shop</a>
                 <a href="" class="menu-link active">Home</a>
                 <a href="" class="menu-link">About us</a>
@@ -49,7 +49,7 @@
             <p>adsaskdha@gmaksdjalksjd.com</p>
         </div>
     </section>
-    
+
 
 </body>
 </html>
