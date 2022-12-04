@@ -12,6 +12,7 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('home',[HomeController::class,'homepage'])->name('home');
     Route::get('/account', [AdminController::class, 'account'])->name('account');
     Route::post('/account', [AdminController::class, 'postaccount']);
+    Route::get('register',[AdminController::class,'register'])->name('register');
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){

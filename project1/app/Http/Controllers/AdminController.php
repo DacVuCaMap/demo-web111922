@@ -17,8 +17,11 @@ class AdminController extends Controller
         return view('admin.account');
     }
 
-    public function postlogin(Request $req){
+    public function postaccount(Request $req){
 
+    }
+    public function register(){
+        return view('admin.register');
     }
 
 
