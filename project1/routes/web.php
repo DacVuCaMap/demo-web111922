@@ -14,6 +14,12 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::post('/login', [UserController::class, 'postlogin'])->name('postlogin');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/register',[UserController::class,'register'])->name('register');
+    Route::get('aboutus',[UserController::class,'aboutus'])->name('aboutus');
+});
+
+//--Route shop
+Route::prefix('/shop')->name('shop.')->group(function(){
+    Route::get('/',[HomeController::class,'shop'])->name('cat');
 });
 
 Route::prefix('admin')->middleware('admin.login')->name('admin.')->group(function(){

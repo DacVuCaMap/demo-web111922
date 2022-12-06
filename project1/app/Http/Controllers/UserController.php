@@ -32,4 +32,8 @@ class UserController extends Controller
     public function register(){
         return view('admin.register');
     }
+    // about us
+    public function aboutus(){
+        return view('admin.aboutus');
+    }
 }

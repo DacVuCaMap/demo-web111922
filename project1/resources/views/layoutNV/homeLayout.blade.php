@@ -36,12 +36,12 @@
             </div>
             <div class="down-header">
 
-                <a href="" class="menu-link">Collections</a>
+                <a id="select" href="" class="menu-link">Collections</a>
 
-                <a href="" class="menu-link">Shop</a>
-                <a href="" class="menu-link active">Home</a>
-                <a href="" class="menu-link">About us</a>
-                <a href="" class="menu-link">Location</a>
+                <a id="select" href="{{ route('shop.cat') }}" class="menu-link">Shop</a>
+                <a id="select" href="{{ route('user.home') }}" class="menu-link active">Home</a>
+                <a id="select" href="{{ route('user.aboutus') }}" class="menu-link">About us</a>
+                <a id="select" href="" class="menu-link">Contact</a>
             </div>
         </div>
         <div class="content">@yield('content')</div>
