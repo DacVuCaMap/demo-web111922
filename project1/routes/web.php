@@ -13,7 +13,8 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('/login', [UserController::class, 'login'])->name('login');
     Route::post('/login', [UserController::class, 'postlogin'])->name('postlogin');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::get('/register',[UserController::class,'register'])->name('register');
+    Route::get('/register', [UserController::class, 'register'])->name('register');
+    Route::post('/register', [UserController::class, 'postregis'])->name('register');
     Route::get('aboutus',[UserController::class,'aboutus'])->name('aboutus');
 });
 
@@ -23,11 +24,12 @@ Route::prefix('/shop')->name('shop.')->group(function(){
     Route::get('floppydisk',[HomeController::class,'floppydisk'])->name('floppydisk');
 });
 
+//Route homeadmin
 Route::prefix('admin')->middleware('admin.login')->name('admin.')->group(function(){
     Route::get('/home', [AdminController::class, 'home'])->name('home');
-
 });
 
+// Route category
 Route::prefix('admin/category')->middleware('admin.login')->name('category.')->group(function(){
     Route::get('/list', [CategoryController::class, 'list'])->name('list');
     Route::get('/add', [CategoryController::class, 'add'])->name('add');
@@ -37,6 +39,7 @@ Route::prefix('admin/category')->middleware('admin.login')->name('category.')->g
     Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('delete');
 });
 
+// Route product
 Route::prefix('admin/product')->middleware('admin.login')->name('product.')->group(function(){
     Route::get('/list', [ProductController::class, 'list'])->name('list');
     Route::get('/add', [ProductController::class, 'add'])->name('add');
@@ -45,6 +48,8 @@ Route::prefix('admin/product')->middleware('admin.login')->name('product.')->gro
     Route::post('/edit/{id}', [ProductController::class, 'postedit']);
     Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
 });
+
+
 
 
 

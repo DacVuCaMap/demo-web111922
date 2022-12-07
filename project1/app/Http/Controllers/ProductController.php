@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
+use DB;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
 {
@@ -129,9 +131,11 @@ class ProductController extends Controller
     }
 
     public function list(){
-        $product = $this->pro->getlistpro();
-        return view('product.list', compact('product'));
+        $product  = $this->pro->getlistpro();
+        $paginate = new Paginator($product, 5);
+        return view('product.list', compact('paginate'));
     }
+
 
     public function edit($id){
         $pro = $this->pro->getpro($id);
@@ -140,8 +144,8 @@ class ProductController extends Controller
     }
 
     public function postedit(Request $req){
-        $id   = $req->id;
-        $path = $this->pro->getimgpro($id);
+        $id     = $req->id;
+        $path   = $this->pro->getimgpro($id);
         $path_1 = $path[0]->img_first;
         $path_2 = $path[0]->img_second;
         $path_3 = $path[0]->img_third;
