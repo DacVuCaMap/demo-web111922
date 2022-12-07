@@ -13,12 +13,12 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('/login', [UserController::class, 'login'])->name('login');
     Route::post('/login', [UserController::class, 'postlogin'])->name('postlogin');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::get('/register',[UserController::class,'register'])->name('register');
+    Route::get('/register', [UserController::class, 'register'])->name('register');
+    Route::post('/register', [UserController::class, 'postregis'])->name('register');
 });
 
 Route::prefix('admin')->middleware('admin.login')->name('admin.')->group(function(){
     Route::get('/home', [AdminController::class, 'home'])->name('home');
-
 });
 
 Route::prefix('admin/category')->middleware('admin.login')->name('category.')->group(function(){

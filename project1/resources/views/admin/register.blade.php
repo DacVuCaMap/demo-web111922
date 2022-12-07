@@ -27,26 +27,38 @@
 					<h2>Create your account</h2>
 					<div>
 						<p>Your name</p>
-						<input class="typein" type="text" name="userName" placeholder="user name"><br>
-
+						<input class="typein" type="text" name="userName" placeholder="user name" value="{{ old('userName') }}"><br>
+                        @error('userName')
+                        <small>{{ $message }}</small>
+                        @enderror
 					</div>
                     <div>
 						<p>Email</p>
-						<input class="typein" type="text" name="userMail" placeholder="example@email.com"><br>
-
+						<input class="typein" type="text" name="userMail" placeholder="example@email.com" value="{{ old('userMail') }}"><br>
+                        @error('userMail')
+                        <small>{{ $message }}</small>
+                        @enderror
 					</div>
                     <div>
 						<p>Age</p>
 						<input class="typein age" type="date" name="userAge"><br>
-
+                        @error('userAge')
+                        <small>{{ $message }}</small>
+                        @enderror
 					</div>
 					<div>
 						<p>Password</p>
-						<input class="typein" type="password" name="userPass" placeholder="at least 6 character">
+						<input class="typein" type="password" name="userPass" placeholder="at least 6 character"><br>
+                        @error('userPass')
+                        <small>{{ $message }}</small>
+                        @enderror
 					</div>
                     <div>
 						<p>Re-enter Password</p>
-						<input class="typein" type="password" name="userRePass" placeholder="re-enter">
+						<input class="typein" type="password" name="userRePass" placeholder="re-enter"><br>
+                        @error('userRePass')
+                        <small>{{ $message }}</small>
+                        @enderror
 					</div>
 
 

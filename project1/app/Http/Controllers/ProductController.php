@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
+use DB;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -130,6 +131,8 @@ class ProductController extends Controller
 
     public function list(){
         $product = $this->pro->getlistpro();
+        // $pro = DB::table('product');
+        // dd($pro);
         return view('product.list', compact('product'));
     }
 
