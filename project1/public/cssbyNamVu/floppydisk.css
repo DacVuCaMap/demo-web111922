@@ -28,13 +28,7 @@
     text-decoration: none;
     
 }
-.imga1{
-    position: absolute;
-    z-index: 0;
-    left: -140px;
-    top: -5px;
-    transition: 0.3s;
-}
+
 .titlehead{
     position: absolute;
     z-index: 4;
@@ -44,10 +38,10 @@
     color: white;
     font-size: 45px;
     transform:translate(-50%, 0%); 
-    
 }
 .titlehead>h2{
     text-align: center;
+    
 }
 .headshop>div:hover .imga1{
     height: 450px;
@@ -241,3 +235,13 @@ option{
 .filter>div{
     margin-top: 80px;
 }
+.backall{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 160px;
+    position: absolute;
+    z-index: 1;
+    background: rgb(255, 102, 0);
+}
+

@@ -20,6 +20,7 @@ Route::prefix('/')->name('user.')->group(function(){
 //--Route shop
 Route::prefix('/shop')->name('shop.')->group(function(){
     Route::get('/',[HomeController::class,'shop'])->name('cat');
+    Route::get('floppydisk',[HomeController::class,'floppydisk'])->name('floppydisk');
 });
 
 Route::prefix('admin')->middleware('admin.login')->name('admin.')->group(function(){

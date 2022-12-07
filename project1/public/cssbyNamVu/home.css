@@ -313,6 +313,7 @@
     margin: 20px auto;
     
 }
+
 .headf{
     height: 50px;
     background: black;
@@ -431,4 +432,9 @@
 .upmap>div:nth-child(2){
     text-align: center;
     color: rgb(70, 70, 70);
+}
+@media screen and (max-width:1366px) {
+    .featured{
+        width: 100%;
+    }
 }

@@ -12,4 +12,7 @@ class HomeController extends Controller
     public function shop(){
         return view('home_byNamVu.shop');
     }
+    public function floppydisk(){
+        return view('home_byNamVu.floppydisk');
+    }
 }

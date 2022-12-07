@@ -1,6 +1,6 @@
 use shopbanhang;
 
-create table adminUsers(
+create table admins(
 	id int auto_increment primary key
     ,email varchar(100) not null
     ,password varchar(100) not null
@@ -10,20 +10,21 @@ create table adminUsers(
 create table customers(
 	id int auto_increment primary key
 	,fullname varchar(200)
+    ,email varchar(100)
+    ,password varchar(200)
+    ,remember_token varchar(100)
     ,address varchar(500)
     ,phone char(10)
     ,create_at timestamp
     ,update_at datetime 
 );
 
-create table users(
-	id int auto_increment primary key
-    ,username varchar(100) not null
-    ,password varchar(100) not null
-    ,remember_token varchar(100)
-    ,create_at timestamp
-);
- drop table prodesc;
+insert into customers(email, password)
+values('pminh1996@gmail.com', '$2y$10$4KqLbTtDZzQu4Jcv51R/iOpLvWONJX1aSC7.KoiUEwaNwwgZkRF72');
+
+insert into admins(email, password)
+values('admin1@gmail.com', '$2y$10$4KqLbTtDZzQu4Jcv51R/iOpLvWONJX1aSC7.KoiUEwaNwwgZkRF72');
+ drop table admin;
 create table category(
 	id int auto_increment primary key
     ,name varchar(100) not null
@@ -83,9 +84,12 @@ values('Optical disc')
 
 update category set parent_id = null where id = 1;
 
-select * from product;
-select * from prodesc;
+select * from admins;
+select * from customers;
 select * from proimage;
+
+alter table admins
+add fullname nvarchar(100);
 
 select C.id, C.name, C.parent_id, C.create_at, C.update_at from category C where C.parent_id is null
 union

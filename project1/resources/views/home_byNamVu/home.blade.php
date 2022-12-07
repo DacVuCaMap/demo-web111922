@@ -158,7 +158,7 @@
                     </div>
                     <div class="ch2 c2">
                         <div>
-                            <a href="">
+                            <a href="{{ route('shop.floppydisk') }}">
                                 <img class="imgfeatured" src="{{ asset('storage/imgNV/menu1.jpg') }}" height="320px" alt="anh">
                                 <div class="childc2">
                                     <h4>Floppy disk</h4>

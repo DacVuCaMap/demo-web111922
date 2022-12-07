@@ -71,6 +71,7 @@
                         <p>He still hasn't received his salary</p>
                         <p>He love world cup</p>
                         <p>And he think this year aghentina will be the champion</p>
+                        <p>The about us view look so amazing made by me</p>
                     </div>
                 </div>
                 <div>
@@ -110,6 +111,7 @@
                         <p>He still hasn't received his salary</p>
                         <p>He love world cup</p>
                         <p>And he think this year Brazil will be the champion</p>
+                        
                     </div>
                 </div>
             </div>

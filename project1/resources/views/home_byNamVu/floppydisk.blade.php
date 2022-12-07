@@ -2,23 +2,21 @@
 @section('tittle','Shop')
 @section('content')
 <script src="{{ asset('jsByNamVu/shop.js') }}"></script>
-<link rel="stylesheet" href="{{ asset('cssbyNamVu/shop.css') }}">
+<link rel="stylesheet" href="{{ asset('cssbyNamVu/floppydisk.css') }}">
     <div class="container">
         <div class="headshop">
             <div>              
-                <a href="{{ route('shop.floppydisk') }}">
-                    <div class="bl">                       
-                    </div>
-                    <img class="imga1" src="{{ asset('storage/imgNV/floppydisk/floppydisk2.jpg') }}" alt="anh" height="410px">
+                <a href="{{ route('shop.cat') }}">
+                    <div class="bl"></div> 
+                    <div class="backall"><h2 style="color: white;font-size:60px">All</h2></div>
                     <div class="titleimg">
-                        <h3 >Floppy disk</h3>
+                        <h3 >< Back to all</h3>
                     </div>                    
                 </a>
             </div>
             <div>             
                 <a href="">
-                    <div class="bl">                     
-                    </div>
+                    <div class="bl"></div>
                     <img class="imga2" src="{{ asset('storage/imgNV/opticaldisk/od2.jpg') }}" alt="anh" width="110%">
                     <div class="titleimg">
                         <h3 >Optical disk</h3>
@@ -27,8 +25,7 @@
             </div>
             <div>               
                 <a href="">
-                    <div class="bl">                     
-                    </div>
+                    <div class="bl"></div>
                     <img class="imga3" src="{{ asset('storage/imgNV/ssd/3ssd1.jpg') }}" alt="anh" height="410px">
                     <div class="titleimg">
                         <h3 >SSD hard drive</h3>
@@ -37,15 +34,14 @@
             </div>
             <div> 
                 <a href="">
-                    <div class="bl"> 
-                    </div>
+                    <div class="bl"></div>
                     <img class="imga4" src="{{ asset('storage/imgNV/hdd/hdd2.jpg') }}" alt="anh" height="410px">
                     <div class="titleimg">
                         <h3 >HDD hard drive</h3>
                     </div>                  
                 </a>
             </div>
-            <span class="titlehead"><h2>All products</h2></span>
+            <span class="titlehead"><h2>Floppy disk</h2></span>
             
         </div>
         <div class="bodyshop">
