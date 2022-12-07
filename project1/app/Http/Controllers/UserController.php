@@ -10,8 +10,10 @@ use App\Models\Customers;
 class UserController extends Controller
 {
     private $custom;
+    private $admin;
     public function __construct(){
         $this->custom = new Customers();
+        $this->admin  = new Admin();
     }
 
     public function login(){
@@ -34,7 +36,9 @@ class UserController extends Controller
         $admin          = Auth::guard('admins')->attempt(['email' => $email, 'password' => $password], $remember_token);
         $customer       = Auth::guard('customers')->attempt(['email' => $email, 'password' => $password], $remember_token);
         if($admin==true && $customer==false){
-            dd(Auth::guard('admins')->id());
+            $id   = Auth::guard('admins')->id();
+            $user = $this->admin->getadmin($id);
+            $name = $user[0]->fullname;
             return redirect()->route('admin.home');
         }else if($admin==false && $customer==true){
             return redirect()->route('user.home');
@@ -82,5 +86,11 @@ class UserController extends Controller
         }else{
             return redirect()->route('user.login')->with('msg', 'Register Users fail!');
         }
+
+    // about us
+    }
+
+    public function aboutus(){
+        return view('admin.aboutus');
     }
 }

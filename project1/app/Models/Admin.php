@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use DB;
 
 class Admin extends Authenticatable
 {
@@ -42,5 +43,9 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function getadmin($id){
+        $user = DB::select("SELECT * FROM admins Where id = ?", [$id]);
+        return $user;
+    }
 }
 

@@ -33,8 +33,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if(!empty($product))
-                        @foreach($product as $key=>$item)
+                        @if(!empty($paginate))
+                        @foreach($paginate as $key=>$item)
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td class="d-none d-xl-table-cell">{{ $item->id }}</td>
@@ -53,10 +53,11 @@
                     </tbody>
                 </table>
             </div>
+            <div class="col-md-12">
+                 {{ $paginate->links() }}
+            </div>
         </div>
     </div>
-
-
 
 </main>
 
