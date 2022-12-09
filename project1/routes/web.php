@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Middleware\Adminlogin;
 
 Route::prefix('/')->name('user.')->group(function(){
@@ -24,9 +25,15 @@ Route::prefix('/shop')->name('shop.')->group(function(){
     Route::get('floppydisk',[HomeController::class,'floppydisk'])->name('floppydisk');
 });
 
-//Route homeadmin
+//Route homeadmin, edit, delete, add admin
 Route::prefix('admin')->middleware('admin.login')->name('admin.')->group(function(){
     Route::get('/home', [AdminController::class, 'home'])->name('home');
+    Route::get('/list', [AdminController::class, 'listadmin'])->name('list');
+    Route::get('/add', [AdminController::class, 'add'])->name('add');
+    Route::post('/add', [AdminController::class, 'postadd'])->name('postadd');
+    Route::get('/edit/{id}', [AdminController::class, 'editadmin'])->name('edit');
+    Route::post('/edit/{id}', [AdminController::class, 'posteditadmin'])->name('postedit');
+    Route::get('/delete/{id}', [AdminController::class, 'delete'])->name('delete');
 });
 
 // Route category
@@ -49,8 +56,9 @@ Route::prefix('admin/product')->middleware('admin.login')->name('product.')->gro
     Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
 });
 
-
-
+Route::prefix('admin/order')->middleware('admin.login')->name('order.')->group(function(){
+    Route::get('/list', [OrderController::class, 'list'])->name('list');
+});
 
 
 

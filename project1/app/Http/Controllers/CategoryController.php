@@ -42,12 +42,10 @@ class CategoryController extends Controller
     public function postadd(Request $req){
         $rules = [
             'cat_name' => 'required|unique:category,name'
-            ,'parent_id' => 'regex:/^[0-9]*$/'
         ];
         $message = [
             'cat_name.required' => 'Category Name cannot be left blank!'
             ,'cat_name.unique' => 'Category already exists!'
-            ,'parent_id.regex'   => 'Category Parent cannot be left blank!'
         ];
         $req->validate($rules, $message);
         $catname = $req->cat_name;
@@ -69,18 +67,16 @@ class CategoryController extends Controller
     public function postedit(Request $req){
         $rules = [
             'cat_name' => 'required|unique:category,name'
-            ,'parent_id' => 'regex:/^[0-9]*$/'
         ];
         $message = [
             'cat_name.required' => 'Category Name cannot be left blank!'
             ,'cat_name.unique' => 'Category already exists!'
-            ,'parent_id.regex'   => 'Category Parent cannot be left blank!'
         ];
         $req->validate($rules, $message);
-        $id = $req->id;
-        $catname = $req->cat_name;
-        $parent_id = $req->parent_id;
-        $update_at = now();
+        $id         = $req->id;
+        $catname    = $req->cat_name;
+        $parent_id  = $req->parent_id;
+        $update_at  = now();
         $data = [$catname, $parent_id, $update_at, $id];
         if(($this->cat->editCat($data))==null){
             return redirect()->route('category.list')->with('msg', 'Edit successful category!');

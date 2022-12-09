@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use DB;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductController extends Controller
 {
@@ -131,8 +131,12 @@ class ProductController extends Controller
     }
 
     public function list(){
-        $product  = $this->pro->getlistpro();
-        $paginate = new Paginator($product, 5);
+        $paginate  = $this->pro->getlistpro();
+
+        // dd($pro);
+        // $paginate = new LengthAwarePaginator($product, 8, 5);
+        // dd($paginate);
+        // $paginate->withPath('/admin/product/list');
         return view('product.list', compact('paginate'));
     }
 
@@ -151,8 +155,8 @@ class ProductController extends Controller
         $path_3 = $path[0]->img_third;
 
         $rules = [
-            'pro_id'       => 'required|unique:product,id|max:8'
-            ,'pro_name'    => 'required|max:100'
+            // 'pro_id'       => 'required|unique:product,id|max:8'
+            'pro_name'    => 'required|max:100'
             ,'cat_id'      => 'required'
             ,'pro_price'   => 'required|regex:/^\d*(\.\d+)?$/'
             ,'pro_quantity'=>'required|regex:/^[0-9]*$/'
@@ -167,10 +171,10 @@ class ProductController extends Controller
             ,'description' => 'nullable|max:500'
        ];
        $message = [
-            'pro_id.required'   => 'Product ID must not be left blank!'
-            ,'pro_id.unique'    => 'Product ID already exists!'
-            ,'pro_id.max'       => 'Product ID is no larger than 8 characters!'
-            ,'pro_name.required'=> 'Product name must not be left blank!'
+            // 'pro_id.required'   => 'Product ID must not be left blank!'
+            // ,'pro_id.unique'    => 'Product ID already exists!'
+            // ,'pro_id.max'       => 'Product ID is no larger than 8 characters!'
+            'pro_name.required'=> 'Product name must not be left blank!'
             ,'pro_name.max'     => 'Product ID is no larger than 100 characters!'
             ,'cat_id.required'  => 'Please select Category name!'
             ,'pro_price.required'   => 'Product price must not be left blank!'
@@ -220,9 +224,9 @@ class ProductController extends Controller
         $path_3        = $path = Storage::url($path_3);
        };
 
-       $dataproduct   = [$pro_id, $pro_name, $pro_price, $cat_id, $pro_quantity, $update_at, $id];
-       $dataprodesc   = [$pro_id, $size, $brand, $origin, $type, $dimention, $description, $id];
-       $dataproimage  = [$pro_id, $path_1, $path_2, $path_3, $id];
+       $dataproduct   = [$pro_name, $pro_price, $cat_id, $pro_quantity, $update_at, $id];
+       $dataprodesc   = [$size, $brand, $origin, $type, $dimention, $description, $id];
+       $dataproimage  = [$path_1, $path_2, $path_3, $id];
 
         if(($this->pro->upproduct($dataproduct))==null
            && ($this->pro->upprodesc($dataprodesc))==null
@@ -237,9 +241,9 @@ class ProductController extends Controller
         if(($this->pro->delproduct($id))==null
            && ($this->pro->delprodesc($id))==null
            && ($this->pro->delproimage($id))==null){
-            return redirect()->route('product.list')->with('msg', 'Edit successfully Product!');
+            return redirect()->route('product.list')->with('msg', 'Delete successfully Product!');
         }else{
-            return redirect()->route('product.list')->with('msg', 'Edit fail Product!');
+            return redirect()->route('product.list')->with('msg', 'Delete fail Product!');
         }
     }
 

@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
     public function getAllCat(){
-        $cat = DB::select("SELECT C.id, C.name, C.parent_id, C.create_at, C.update_at from category C where C.parent_id is null
+        $cat = DB::select("SELECT C.id, C.name, C.parent_id, C.create_at, C.update_at from category C where C.parent_id = 0
                 union SELECT B.id, B.name, A.name, B.create_at, B.update_at FROM category A, category B WHERE A.id = B.parent_id");
         return $cat;
     }

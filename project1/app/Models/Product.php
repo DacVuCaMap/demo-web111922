@@ -39,15 +39,15 @@ class Product extends Model
     }
 
     public function upproduct($data){
-        DB::update("UPDATE product SET id=?, pro_name=?, pro_price=?, cat_id=?, pro_quantity=?, update_at=? WHERE id = ?", $data);
+        DB::update("UPDATE product SET pro_name=?, pro_price=?, cat_id=?, pro_quantity=?, update_at=? WHERE id = ?", $data);
     }
 
     public function upprodesc($data){
-        DB::update("UPDATE prodesc SET pro_id=?, size=?, brand=?, origin=?, type=?, diment=?, descrip=? WHERE pro_id = ?", $data);
+        DB::update("UPDATE prodesc SET size=?, brand=?, origin=?, type=?, diment=?, descrip=? WHERE pro_id = ?", $data);
     }
 
     public function upproimage($data){
-        DB::update("UPDATE proimage SET pro_id=?, img_first=?, img_second=?, img_third=? WHERE pro_id = ?", $data);
+        DB::update("UPDATE proimage SET img_first=?, img_second=?, img_third=? WHERE pro_id = ?", $data);
     }
 
     public function delproduct($id){

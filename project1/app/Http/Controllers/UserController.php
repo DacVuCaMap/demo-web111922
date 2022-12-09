@@ -93,4 +93,6 @@ class UserController extends Controller
     public function aboutus(){
         return view('admin.aboutus');
     }
+
+
 }
