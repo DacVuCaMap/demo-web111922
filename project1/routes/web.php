@@ -56,9 +56,18 @@ Route::prefix('admin/product')->middleware('admin.login')->name('product.')->gro
     Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
 });
 
+// Route order
 Route::prefix('admin/order')->middleware('admin.login')->name('order.')->group(function(){
     Route::get('/list', [OrderController::class, 'list'])->name('list');
+    Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
+    Route::get('/complete/{id}', [OrderController::class, 'editcpl'])->name('complete');
+    Route::get('/cancel/{id}', [OrderController::class, 'editcacel'])->name('cancel');
 });
+
+Route::prefix('admin/customer')->middleware('admin.login')->name('customer.')->group(function(){
+    Route::get('/list', [UserController::class, 'listcustomers'])->name('list');
+});
+
 
 
 

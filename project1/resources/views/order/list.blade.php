@@ -9,6 +9,10 @@
    form{
         padding: 5px;
    }
+   .icon{
+        font-size: 1.6rem;
+        padding: 3px;
+   }
 </style>
 <main class="content">
     <div class="col-md-12">
@@ -22,6 +26,11 @@
     </div>
     <div class="col-md-12">
         <div class="container-fluid p-0">
+            @if(session('msg'))
+            <div style="font-size:20px; font-weight:bolder; color: rgb(8, 250, 36); text-align:center">
+             {{ session('msg') }}
+            </div>
+            @endif
             <div class="row">
                 <table class="table table-success table-striped">
                     <thead>
@@ -32,6 +41,7 @@
                             <th class="d-none d-xl-table-cell">Date</th>
                             <th class="d-none d-md-table-cell">Status</th>
                             <th class="d-none d-xl-table-cell">View</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -43,13 +53,15 @@
                                 <td class="d-none d-md-table-cell">{{ $item->cus_id}}</td>
                                 <td class="d-none d-md-table-cell">{{ $item->ord_date }}</td>
                                 @if($item->ord_status=='pending')
-                                <td ><span class="btn btn-secondary">{{ $item->ord_status }}</span></td>
+                                <td ><span class="btn btn-secondary">{{ $item->ord_status }}</span>
+                                <a href="{{route('order.complete', $item->id)}}" style="color: rgb(0, 255, 4)"><i class="icon fa-solid fa-circle-check"></i></a>
+                                <a href="{{route('order.cancel', $item->id)}}" style="color: rgb(255, 179, 0)"><i class="icon fa-solid fa-trash"></i></a></td>
                                 @elseif($item->ord_status=='complete')
                                 <td ><span class="btn btn-success">{{ $item->ord_status }}</span></td>
                                 @elseif($item->ord_status=='cancel')
                                 <td ><span class="btn btn-warning">{{ $item->ord_status }}</span></td>
                                 @endif
-                                <td><a href="#" class="badge bg-primary">Detail</a></td>
+                                <td><a href="{{ route('order.detail', $item->id) }}" class="badge bg-primary">Detail</a></td>
                             </tr>
                         @endforeach
                         @endif

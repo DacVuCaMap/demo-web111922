@@ -40,9 +40,9 @@
                         @enderror
 					</div>
                     <div>
-						<p>Age</p>
-						<input class="typein age" type="date" name="userAge"><br>
-                        @error('userAge')
+						<p>Phone</p>
+						<input class="typein" type="text" placeholder="+84" name="userphone"><br>
+                        @error('userphone')
                         <small>{{ $message }}</small>
                         @enderror
 					</div>

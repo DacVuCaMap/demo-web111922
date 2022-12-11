@@ -46,7 +46,7 @@
             </li>
 
             <li class="sidebar-item active">
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="{{ route('customer.list') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Customers</span>
                 </a>
             </li>
@@ -55,9 +55,26 @@
             <li class="sidebar-header">
                 Statistic
             </li>
-
-
-
+            <li class="sidebar-item active">
+                <a class="sidebar-link" href="#">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Selling products</span>
+                </a>
+            </li>
+            <li class="sidebar-item active">
+                <a class="sidebar-link" href="#">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Product revenue</span>
+                </a>
+            </li>
+            <li class="sidebar-item active">
+                <a class="sidebar-link" href="#">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Best seller list</span>
+                </a>
+            </li>
+            <li class="sidebar-item active">
+                <a class="sidebar-link" href="#">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Revenue</span>
+                </a>
+            </li>
         </ul>
 
 
