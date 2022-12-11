@@ -77,42 +77,45 @@
             </div>
             {{-- list here --}}
             <div class="list">
-                
-                <div class="card"> 
-                    
-                    {{-- img product --}}
-                    <a href="">
-                        <img src="{{ asset('storage/imgNV/product/samsung1ssd1.jpg') }}" alt="anh" height="200px">
-                    </a>
-                    
-                    {{-- name product --}}
-                    <h4>SSD Samsung 870 EVO</h4>
-                    
-                    {{-- description --}}
-                    <div class="des-menu">
-                        <div>
-                            <p>Brand:</p>
-                            <p>Dimensions:</p>
-                            <p>Size:</p>
+                @foreach ($data as $item)
+                    <div class="card"> 
+                        {{-- img product --}}
+                        <a href="{{ route('shop.getpro',['id'=>$item->pro_id]) }}">
+                            <img src="{{ asset($item->img_first) }}" alt="anh" height="200px">
+                        </a>
+                        
+                        {{-- name product --}}
+                        <h4>{{ $item->pro_name }}</h4>
+                        
+                        {{-- description --}}
+                        <div class="des-menu">
+                            <div>
+                                <p>Brand:</p>
+                                <p>Dimensions:</p>
+                                <p>Size:</p>
+                            </div>
+                            <div>
+                                <p>{{ $item->brand }}</p>
+                                <p>{{ $item->diment }}</p>
+                                <p>{{ $item->size }}</p>
+                            </div>
                         </div>
-                        <div>
-                            <p>Samsung</p>
-                            <p>2.5 Inch</p>
-                            <p>500gb</p>
-                        </div>
+                        <span class="review">***** 5</span>
+                        <p>Price: {{ $item->pro_price }}$</p>
+                        <br>
+                        <a class="btn" href="{{ route('shop.getpro',['id'=>$item->pro_id]) }}" class="learn-more">Learn more</a>
+                        <a class="compare" href=""><i class="fa-solid fa-circle-plus"></i> Compare</a>
                     </div>
-                    <span class="review">***** 5</span>
-                    <p>Price: 199$</p>
-                    <a class="compare" href=""><i class="fa-solid fa-circle-plus"></i> Compare</a>
-                    <br>
-                    <button class="btn" role="button">Add to cart</button>
-                    <a href="" class="learn-more">Learn more></a>
-                </div>
+                @endforeach
+                
                 <div class="card"></div>
                 <div class="card"></div>
                 <div class="card"></div>
+                
+
                 
             </div>
+            
         </div>
     </div>
 @endsection

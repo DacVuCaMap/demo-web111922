@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('cssbyNamVu/homelayout.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="shortcut icon" href="{{ asset('adminkit/src/img/icons/icon-48x48.png') }}" />
-    <script src="{{ asset('jsByNamVu/homelayout.js') }}"></script>
+    
    {{-- swiper library --}}
    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -39,7 +39,7 @@
                 <a id="select" href="" class="menu-link">Collections</a>
 
                 <a id="select" href="{{ route('shop.cat') }}" class="menu-link">Shop</a>
-                <a id="select" href="{{ route('user.home') }}" class="menu-link active">Home</a>
+                <a id="select" href="{{ route('user.home') }}" class="menu-link">Home</a>
                 <a id="select" href="{{ route('user.aboutus') }}" class="menu-link">About us</a>
                 <a id="select" href="" class="menu-link">Contact</a>
             </div>
