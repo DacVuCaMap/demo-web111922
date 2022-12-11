@@ -62,4 +62,13 @@ class Product extends Model
         DB::delete("DELETE FROM proimage WHERE id = ?", [$id]);
     }
 
+
+    // phan nam lam
+    public function getAll(){
+        $data = DB::select("SELECT * FROM product pr INNER JOIN proimage pm on pr.id=pm.pro_id inner join prodesc pd on pd.pro_id=pr.id");
+        return $data;
+    }
+    public function getP($id){
+        return DB::select("SELECT * FROM product pr INNER JOIN proimage pm on pr.id=pm.pro_id inner join prodesc pd on pd.pro_id=pr.id inner join category ca on ca.id=pr.cat_id where pr.id=?",[$id]);
+    }
 }

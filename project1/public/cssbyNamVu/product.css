@@ -1,0 +1,236 @@
+.container{
+    
+    background: white;
+    width: 1366px;
+    margin: auto;
+    padding: 0px 20px 20px 20px;
+    box-sizing: border-box;
+}
+@media screen and (max-width:1366px) {
+    .container{
+        width: 100%;
+    }
+}
+ul{
+    list-style: none;
+}
+/* head css */
+.headpr{
+    height: 40px;
+    
+}
+.headpr>a{
+    color: blue;
+    text-decoration: none;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.headpr>p{
+    display: inline-block;
+    line-height: 40px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* body css */
+.bodypr{
+    height: 750px;
+    display: flex;
+    margin:auto;
+    background: rgb(226, 226, 226);
+    padding: 30px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+.imgpr{
+    
+    height: 700px;
+    width: 500px;
+}
+.mainimg{
+    height: 500px;
+    width: 500px;
+    background: gray;
+}
+.childimg{
+    height: 150px;
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-around;
+}
+
+.childimg>div{
+    height: 150px;
+    width: 150px;
+    background: gray; 
+    border-radius: 4px;
+    cursor: pointer;
+}
+.childimg>div:hover{
+    outline: 4px solid black;
+}
+.actimg{
+    outline: 4px solid black;
+    
+}
+.propertise{
+    
+    width: 700px;
+    height: 81%;
+    
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.propertise>div:first-child{
+    background: rgb(139, 139, 139);
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+.status{
+    
+    background: green;
+    margin: 10px;
+    width: 70px;
+    text-align: center;
+    color: white;
+    border-radius: 4px;
+}
+.propertise>div:nth-child(2){
+    
+    position: relative;
+    height: 450px;
+}
+.propertise>div:nth-child(2)>p{
+
+    display: inline-block;
+    margin-left: 10px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.rev{
+    color: orangered;
+    font-size: 18px;
+}
+.price{
+   
+    color: rgb(202, 0, 0);
+    margin-left: 10px;
+    margin-top: 20px;
+    font-size: 30px;
+}
+.detail{
+    background: rgb(156, 156, 156);
+    
+    margin-left: 10px;
+    width: 300px;
+}
+.detail p{
+    color: rgb(26, 26, 26);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.detail>div{
+    border-bottom: 1px solid rgb(218, 218, 218);
+}
+.detail>div>p:first-child{
+    display: inline-block;
+    
+    width: 100px;
+    line-height: 30px;
+    margin: 10px;
+}
+.detail>div>p:nth-child(2){
+    
+    display: inline-block;
+    
+}
+.rightside{
+    position: absolute;
+    
+    width: 350px;
+    background: black;
+    top: 105px;
+    right: 20px;
+    text-align: center;
+}
+.rightside>h3{
+    background: gray;
+    padding: 5px;
+}
+.rightside li{
+    font-weight: bolder;
+    border-bottom: 1px solid white;
+    color: rgb(221, 221, 221);
+    line-height: 40px;
+}
+
+
+/* CSS button */
+.btn {
+  appearance: button;
+  background-color: #000;
+  background-image: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-left: 15px;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.btn:focus {
+  text-decoration: none;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn:active {
+  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+  outline: 0;
+}
+
+.btn:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .btn {
+    padding: 12px 50px;
+  }
+}
+/* description css */
+.despr{
+    margin-top: 20px;
+    min-height: 100px;
+    background: rgb(226, 226, 226);
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.despr>h2{
+    background: gray;
+    line-height: 50px;
+    padding-left: 20px;
+}
+.despr>p{
+    
+    font-size: 18px;
+    padding:10px 20px 10px 20px
+}
+.comment-box{
+    height: 400px;
+    background: red; 
+}

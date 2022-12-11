@@ -17,12 +17,16 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('/register', [UserController::class, 'register'])->name('register');
     Route::post('/register', [UserController::class, 'postregis'])->name('register');
     Route::get('aboutus',[UserController::class,'aboutus'])->name('aboutus');
+    //test area
+    Route::get('/test',[HomeController::class,'test']);
 });
 
 //--Route shop
 Route::prefix('/shop')->name('shop.')->group(function(){
     Route::get('/',[HomeController::class,'shop'])->name('cat');
     Route::get('floppydisk',[HomeController::class,'floppydisk'])->name('floppydisk');
+    //get propertise san pham
+    Route::get('product_{id}',[HomeController::class,'getProduct'])->name('getpro');
 });
 
 //Route homeadmin, edit, delete, add admin

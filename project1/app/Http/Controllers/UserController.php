@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
 use App\Models\Customers;
+
 class UserController extends Controller
 {
     private $custom;
@@ -50,8 +51,14 @@ class UserController extends Controller
             $id   = Auth::guard('admins')->id();
             $user = $this->admin->getadmin($id);
             $name = $user[0]->fullname;
+            //--muc put cac session by NAMVU
+            Session::put('cart',[]);
+            //end
             return redirect()->route('admin.home');
         }else if($admin==false && $customer==true){
+            //--st
+            Session::put('cart',[]);
+            //en
             return redirect()->route('user.home');
         }else{
             return redirect()->back()->with('msg', ('This Account not exists!'));
@@ -61,6 +68,10 @@ class UserController extends Controller
     public function logout(){
         Auth::guard('admins')->logout();
         Auth::guard('customers')->logout();
+
+        //--muc xoa cac session by NAMVU
+        Session::flush();
+        //--end
         return redirect()->route('user.home');
     }
 
