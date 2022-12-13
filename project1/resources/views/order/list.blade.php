@@ -17,12 +17,27 @@
 <main class="content">
     <div class="col-md-12">
         <h1 class="h3 mb-3"><strong>Orders List</strong></h1>
+        <div class="row">
             <div class="col-md-4">
-                <form class="d-flex" method="POST">
-                    <input class="form-control me-2" type="search" aria-label="Search" name="key_order">
+                <form class="d-flex" method="GET">
+                    <input class="form-control me-2" type="search" aria-label="Search" name="key_id" placeholder="Order ID">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
+            <div class="col-md-4">
+                <form class="d-flex" method="GET">
+                    <input class="form-control me-2" type="search" aria-label="Search" name="key_cus" placeholder="Customer ID">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form class="d-flex" method="GET">
+                    <input class="form-control me-2" type="search" aria-label="Search" name="key_sta" placeholder="Order status">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
     </div>
     <div class="col-md-12">
         <div class="container-fluid p-0">

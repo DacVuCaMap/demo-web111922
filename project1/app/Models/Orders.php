@@ -8,8 +8,24 @@ use DB;
 class Orders extends Model
 {
     use HasFactory;
-    public function getorders(){
-        $orders = DB::select("SELECT * FROM orders");
+    public function getorders($key_id, $key_cus, $key_sta){
+        $condition = "1=1";
+        if($key_id != null){
+            $newkey     = str_replace(' ', '%', $key_id);
+            $condition .= " AND id LIKE '%{$newkey}%'";
+        }
+
+        if($key_cus != null){
+            $newkey     = str_replace(' ', '%', $key_cus);
+            $condition .= " AND cus_id LIKE '%{$newkey}%'";
+        }
+
+        if($key_sta != null){
+            $newkey     = str_replace(' ', '%', $key_sta);
+            $condition .= " AND ord_status LIKE '%{$newkey}%'";
+        }
+
+        $orders = DB::select("SELECT * FROM orders WHERE $condition");
         return $orders;
     }
 

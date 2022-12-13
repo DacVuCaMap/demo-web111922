@@ -9,8 +9,8 @@
     <div class="row">
         <h1 class="h3 mb-3"><strong>Product List</strong></h1>
             <div class="col-md-4">
-                <form class="d-flex" method="POST">
-                    <input class="form-control me-2" type="search" placeholder="Product ID, Product name, Category" aria-label="Search">
+                <form class="d-flex" method="GET">
+                    <input class="form-control me-2" type="search" name="keyword" placeholder="Product ID, Product name, Category" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>

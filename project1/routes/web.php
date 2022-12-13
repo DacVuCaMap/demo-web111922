@@ -7,7 +7,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\StatisticController;
 use App\Http\Middleware\Adminlogin;
+
 
 Route::prefix('/')->name('user.')->group(function(){
     Route::get('home',[HomeController::class,'homepage'])->name('home');
@@ -67,9 +69,13 @@ Route::prefix('admin/order')->middleware('admin.login')->name('order.')->group(f
     Route::get('/complete/{id}', [OrderController::class, 'editcpl'])->name('complete');
     Route::get('/cancel/{id}', [OrderController::class, 'editcacel'])->name('cancel');
 });
-
+// Route list cutomers
 Route::prefix('admin/customer')->middleware('admin.login')->name('customer.')->group(function(){
     Route::get('/list', [UserController::class, 'listcustomers'])->name('list');
+});
+// Route thống kê doanh số
+Route::prefix('admin/statistic')->middleware('admin.login')->name('statistic.')->group(function(){
+    Route::get('/list', [StatisticController::class, 'list'])->name('sales');
 });
 
 

@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     public function addproduct($data){
-        DB::insert("INSERT INTO product(id, pro_name, pro_price, cat_id, pro_quantity) values(?, ?, ?, ?, ?)", $data);
+        DB::insert("INSERT INTO product(id, pro_name, pro_price, cat_id, pro_quantity, create_at) values(?, ?, ?, ?, ?, ?)", $data);
     }
 
     public function addprodesc($data){
@@ -20,9 +20,14 @@ class Product extends Model
         DB::insert("INSERT INTO proimage(pro_id, img_first, img_second, img_third) values(?,?,?,?)", $data);
     }
 
-    public function getlistpro(){
+    public function getlistpro($keyword){
+        $condition = "1=1";
+        if($keyword != null){
+            $newkey    = str_replace(' ', '%', $keyword);
+            $condition .= " AND (P.pro_name or P.id or C.name like '%{$newkey}%')";
+        }
         $pro = DB::select("SELECT P.id, P.pro_name, C.name, P.pro_price, P.pro_quantity, P.create_at from product P
-        inner join category C on C.id = P.cat_id");
+        inner join category C on C.id = P.cat_id WHERE $condition");
         return $pro;
     }
 
@@ -39,7 +44,7 @@ class Product extends Model
     }
 
     public function upproduct($data){
-        DB::update("UPDATE product SET pro_name=?, pro_price=?, cat_id=?, pro_quantity=?, update_at=? WHERE id = ?", $data);
+        DB::update("UPDATE product SET pro_name=?, pro_price=?, cat_id=?, pro_quantity=? WHERE id = ?", $data);
     }
 
     public function upprodesc($data){

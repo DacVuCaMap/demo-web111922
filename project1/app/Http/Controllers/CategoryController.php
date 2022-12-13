@@ -29,8 +29,9 @@ class CategoryController extends Controller
         return $this->htmlSelect;
     }
 
-    public function list(){
-        $category = $this->cat->getAllCat();
+    public function list(Request $req){
+        $keyword  = $req->keyword;
+        $category = $this->cat->getAllCat($keyword);
         return view('category.list', compact('category'));
     }
 
@@ -48,9 +49,10 @@ class CategoryController extends Controller
             ,'cat_name.unique' => 'Category already exists!'
         ];
         $req->validate($rules, $message);
-        $catname = $req->cat_name;
+        $catname   = $req->cat_name;
         $parent_id = $req->parent_id;
-        $data = [$catname, $parent_id];
+        $create_at = now();
+        $data = [$catname, $parent_id, $create_at];
         if(($this->cat->addCat($data))==null){
             return redirect()->route('category.list')->with('msg', 'Add successful category!');
         }else{
@@ -76,8 +78,7 @@ class CategoryController extends Controller
         $id         = $req->id;
         $catname    = $req->cat_name;
         $parent_id  = $req->parent_id;
-        $update_at  = now();
-        $data = [$catname, $parent_id, $update_at, $id];
+        $data = [$catname, $parent_id, $id];
         if(($this->cat->editCat($data))==null){
             return redirect()->route('category.list')->with('msg', 'Edit successful category!');
         }else{

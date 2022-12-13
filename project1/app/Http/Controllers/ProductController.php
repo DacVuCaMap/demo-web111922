@@ -116,8 +116,8 @@ class ProductController extends Controller
         $path_3        = $file_3->storeAs('public/fileUpload', $fileName_3);
         $path_3        = $path = Storage::url($path_3);
        };
-
-       $dataproduct   = [$pro_id, $pro_name, $pro_price, $cat_id, $pro_quantity];
+       $create_at     = now();
+       $dataproduct   = [$pro_id, $pro_name, $pro_price, $cat_id, $pro_quantity, $create_at];
        $dataprodesc   = [$pro_id, $size, $brand, $origin, $type, $dimention, $description ];
        $dataproimage  = [$pro_id, $path_1, $path_2, $path_3];
 
@@ -130,8 +130,9 @@ class ProductController extends Controller
        }
     }
 
-    public function list(){
-        $paginate  = $this->pro->getlistpro();
+    public function list(Request $req){
+        $keyword   = $req->keyword;
+        $paginate  = $this->pro->getlistpro($keyword);
 
         // dd($pro);
         // $paginate = new LengthAwarePaginator($product, 8, 5);
@@ -201,7 +202,7 @@ class ProductController extends Controller
        $type        = $req->type;
        $dimention   = $req->dimention;
        $description = $req->description;
-       $update_at   = now();
+
 
        if($req->hasFile('img_1')){
         $file_1        = $req->file('img_1');
@@ -224,7 +225,7 @@ class ProductController extends Controller
         $path_3        = $path = Storage::url($path_3);
        };
 
-       $dataproduct   = [$pro_name, $pro_price, $cat_id, $pro_quantity, $update_at, $id];
+       $dataproduct   = [$pro_name, $pro_price, $cat_id, $pro_quantity, $id];
        $dataprodesc   = [$size, $brand, $origin, $type, $dimention, $description, $id];
        $dataproimage  = [$path_1, $path_2, $path_3, $id];
 

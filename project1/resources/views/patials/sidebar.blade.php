@@ -71,7 +71,7 @@
                 </a>
             </li>
             <li class="sidebar-item active">
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="{{ route('statistic.sales') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Revenue</span>
                 </a>
             </li>
