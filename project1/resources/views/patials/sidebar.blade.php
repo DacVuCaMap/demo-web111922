@@ -56,22 +56,12 @@
                 Statistic
             </li>
             <li class="sidebar-item active">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Selling products</span>
+                <a class="sidebar-link" href="{{ route('statistic.proselling') }}">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Selling</span>
                 </a>
             </li>
             <li class="sidebar-item active">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Product revenue</span>
-                </a>
-            </li>
-            <li class="sidebar-item active">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Best seller list</span>
-                </a>
-            </li>
-            <li class="sidebar-item active">
-                <a class="sidebar-link" href="{{ route('statistic.sales') }}">
+                <a class="sidebar-link" href="{{ route('statistic.saleday') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Revenue</span>
                 </a>
             </li>
