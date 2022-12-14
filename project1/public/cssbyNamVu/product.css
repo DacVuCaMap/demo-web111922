@@ -5,6 +5,7 @@
     margin: auto;
     padding: 0px 20px 20px 20px;
     box-sizing: border-box;
+    position: relative;
 }
 @media screen and (max-width:1366px) {
     .container{
@@ -32,6 +33,7 @@ ul{
 
 /* body css */
 .bodypr{
+    position: relative;
     height: 750px;
     display: flex;
     margin:auto;
@@ -72,7 +74,7 @@ ul{
     
 }
 .propertise{
-    
+    position: relative;
     width: 700px;
     height: 81%;
     
@@ -233,4 +235,47 @@ ul{
 .comment-box{
     height: 400px;
     background: red; 
+}
+
+/* display cart */
+.display{
+    opacity: 0;
+    visibility: hidden;
+    height: 400px;
+    border-radius: 30px;
+    background: white;
+    width: 700px;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding-top: 120px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    z-index: 4;
+}
+.display>h1{
+    color: black;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+.checkicon{
+    color: black;
+    
+    padding: 5px 15px;
+    font-size: 45px;
+    border-radius: 50%;
+    border: 5px solid black;
+}
+#cover{
+    background: black;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    display: none;
 }
