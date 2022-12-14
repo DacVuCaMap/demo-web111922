@@ -29,9 +29,8 @@ Route::prefix('/shop')->name('shop.')->group(function(){
     Route::get('floppydisk',[HomeController::class,'floppydisk'])->name('floppydisk');
     //get propertise san pham
     Route::get('/product/{id}',[HomeController::class,'getProduct'])->name('getpro');
-    
-});
 
+});
 
 
 
@@ -74,13 +73,19 @@ Route::prefix('admin/order')->middleware('admin.login')->name('order.')->group(f
     Route::get('/complete/{id}', [OrderController::class, 'editcpl'])->name('complete');
     Route::get('/cancel/{id}', [OrderController::class, 'editcacel'])->name('cancel');
 });
+
 // Route list cutomers
 Route::prefix('admin/customer')->middleware('admin.login')->name('customer.')->group(function(){
     Route::get('/list', [UserController::class, 'listcustomers'])->name('list');
 });
-// Route thống kê doanh số
+
+// Route thống kê
 Route::prefix('admin/statistic')->middleware('admin.login')->name('statistic.')->group(function(){
-    Route::get('/list', [StatisticController::class, 'list'])->name('sales');
+    Route::get('/list/product/selling', [StatisticController::class, 'listproselling'])->name('proselling');
+    Route::get('/list/product/revenue', [StatisticController::class, 'listprorevenue'])->name('prorevenue');
+    Route::get('/list/customers/revenue', [StatisticController::class, 'listcusprevenue'])->name('cusrevenue');
+    Route::get('/list/orderday', [StatisticController::class, 'listday'])->name('saleday');
+    Route::get('/list/ordermonth', [StatisticController::class, 'listmonth'])->name('salemonth');
 });
 
 

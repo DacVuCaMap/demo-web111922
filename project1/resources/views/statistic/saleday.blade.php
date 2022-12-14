@@ -8,16 +8,23 @@
 
 
 <main class="content">
+<a href="{{ route('statistic.saleday') }}" class="badge bg-success">Revenue by day</a>
+<a href="{{ route('statistic.salemonth') }}" style="margin: 0 10px" class="badge bg-secondary">Revenue by month</a>
 <style>
 .khung{
     margin: 10px;
+    padding: 10px;
+    border: 1px solid rgb(13, 255, 0);
+    border-radius: 7px;
+}
+h3{
+    text-align: right;
 }
 </style>
-
     <div class="row khung">
-
+            <div class="col-md-3">
                 <h3><strong style="color: rgb(252, 120, 4); text-align:right; font-size:18px">Revenue by day: </strong></h3>
-
+            </div>
             <div class="col-md-4">
                 <input class="form-control me-2" type="text" aria-label="Search" value="{{ $subtotalday[0]->subtotal }}$" disabled>
             </div>
@@ -70,6 +77,5 @@
         </div>
     </div>
 </main>
-
 @endsection
 

@@ -70,7 +70,6 @@
                     </tbody>
                    </table>
                    </div>
-                   <a href="{{ route('order.list') }}" class="btn btn-secondary float-end">Back</a>
                 </div>
 
             </div>
