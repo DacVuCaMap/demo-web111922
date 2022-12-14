@@ -37,9 +37,6 @@ Route::prefix('/shop')->name('shop.')->group(function(){
 
 
 //Route homeadmin
-=======
-//Route homeadmin, edit, delete, add admin
->>>>>>> d3f1939a32626d25888db290c9f4379bc824afef
 Route::prefix('admin')->middleware('admin.login')->name('admin.')->group(function(){
     Route::get('/home', [AdminController::class, 'home'])->name('home');
     Route::get('/list', [AdminController::class, 'listadmin'])->name('list');
