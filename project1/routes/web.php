@@ -32,7 +32,7 @@ Route::prefix('/shop')->name('shop.')->group(function(){
     
 });
 
-<<<<<<< HEAD
+
 
 
 
