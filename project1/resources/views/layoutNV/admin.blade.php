@@ -11,6 +11,8 @@
 	<link rel="shortcut icon" href="{{ asset('adminkit/src/img/icons/icon-48x48.png') }}" />
 	<link href="{{ asset('adminkit/static/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('adminkit/static/css/app.css.map') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('adminkit/fontawesome/css/all.css') }}">
+    {{-- <link href="{{ asset('adminkit/static/css/bootstrap.css') }}" rel="stylesheet"> --}}
     @yield('title')
 </head>
 
@@ -26,7 +28,7 @@
 
 	</div>
 	<script src="{{ asset('adminkit/src/js/app.js') }}"></script>
-    <script src="{{ asset('adminkit/src/js/modules/bootstrap.js') }}"></script>
+    <script src="{{ asset('adminkit/src/js/bootstrap.js') }}"></script>
 </body>
 
 </html>

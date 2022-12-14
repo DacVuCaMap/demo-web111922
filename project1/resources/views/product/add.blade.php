@@ -5,30 +5,37 @@
 @endsection
 
 @section('content')
+<style>
+    .form-label{
+        color: rgb(5, 17, 241);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+    }
+</style>
 <main class="content">
     <div class="container-fluid p-0">
-            <span style="font-size: 20px; font-weight:500; color:rgb(46, 16, 239)">You need to fill in the information about the product's ID, name, price, category and quantity. Other fields may be added later.</span>
             <h1 class="h3 mb-3"><strong>Add Product</strong></h1>
             <div class="row">
                 <form class="row" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="col-md-6">
                     <div class="mb-3">
-                      <label class="form-label">ID</label>
+                      <label class="form-label">ID(This field is requied)</label>
                       <input type="text" class="form-control" name="pro_id" value="{{ old('pro_id') }}">
                       @error('pro_id')
                           <small style="color: red">{{ $message }}</small>
                       @enderror
                     </div>
                     <div class="mb-3">
-                      <label class="form-label">Name</label>
+                      <label class="form-label">Name(This field is required)</label>
                       <input type="text" class="form-control" name="pro_name" value="{{ old('pro_name') }}">
                       @error('pro_name')
                           <small style="color: red">{{ $message }}</small>
                       @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Category</label>
+                        <label class="form-label">Category(This field is required)</label>
                         <select class="form-control" name="cat_id">
                             <option value="">Please select category</option>
                             {!! $htmlSelect !!}
@@ -38,14 +45,14 @@
                         @enderror
                       </div>
                       <div class="mb-3">
-                        <label class="form-label">Price</label>
+                        <label class="form-label">Price(This field is required)</label>
                         <input type="text" class="form-control" name="pro_price" value="{{ old('pro_price') }}">
                         @error('pro_price')
                         <small style="color: red">{{ $message }}</small>
                         @enderror
                       </div>
                       <div class="mb-3">
-                        <label class="form-label">Quantity</label>
+                        <label class="form-label">Quantity(This field is required)</label>
                         <input type="text" class="form-control" name="pro_quantity" value="{{ old('pro_quantity') }}">
                         @error('pro_quantity')
                         <small style="color: red">{{ $message }}</small>

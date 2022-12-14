@@ -5,17 +5,24 @@
 @endsection
 
 @section('content')
+<style>
+    .form-label{
+        color: rgb(5, 17, 241);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+    }
+</style>
 <main class="content">
     <div class="container-fluid p-0">
-            <span style="font-size: 20px; font-weight:500; color:rgb(46, 16, 239)">You need to fill in the information about the product's ID, name, price, category and quantity. Other fields may be added later.</span>
             <h1 class="h3 mb-3"><strong>Edit Product</strong></h1>
             <div class="row">
                 <form class="row" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="col-md-6">
                     <div class="mb-3">
-                      <label class="form-label">ID</label>
-                      <input type="text" class="form-control" name="pro_id" value="{{ $pro[0]->id }}">
+                      <label class="form-label">ID(This field cannot edit!)</label>
+                      <input type="text" class="form-control" name="pro_id" value="{{ $pro[0]->id }}" disabled>
                       @error('pro_id')
                           <small style="color: red">{{ $message }}</small>
                       @enderror

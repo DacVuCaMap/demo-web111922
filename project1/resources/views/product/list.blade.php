@@ -6,14 +6,21 @@
 
 @section('content')
 <main class="content">
+    <div class="row">
+        <h1 class="h3 mb-3"><strong>Product List</strong></h1>
+            <div class="col-md-4">
+                <form class="d-flex" method="GET">
+                    <input class="form-control me-2" type="search" name="keyword" placeholder="Product ID, Product name, Category" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
     <div class="container-fluid p-0">
         @if(session('msg'))
-        <div style="font-size:20px; font-weight:bolder; color: rgb(8, 181, 250)">
+        <div style="font-size:20px; font-weight:bolder; color: rgb(8, 181, 250); text-align:center">
          {{ session('msg') }}
         </div>
         @endif
-            <h1 class="h3 mb-3"><strong>Product List</strong></h1>
-
         <div class="row">
             <div class="col-md-12">
                 <a href="{{ route('product.add') }}" class="btn btn-success float-end">Add</a>
@@ -37,16 +44,16 @@
                         @foreach($paginate as $key=>$item)
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td class="d-none d-xl-table-cell">{{ $item->id }}</td>
+                            <td><button class="badge bg-dark">{{ $item->id }}</button></td>
                             <td class="d-none d-xl-table-cell">{{ $item->pro_name }}</td>
-                            <td><span class="badge bg-success">{{ $item->name }}</span></td>
+                            <td class="d-none d-xl-table-cell">{{ $item->name }}</td>
                             <td class="d-none d-md-table-cell">{{ $item->pro_price }}</td>
                             <td class="d-none d-xl-table-cell">{{ $item->pro_quantity }}</td>
                             <td class="d-none d-xl-table-cell">{{ $item->create_at }}</td>
-                            <td><a href="{{ route('product.edit', $item->id) }}" class="btn btn-secondary">Edit</a></td>
+                            <td><a href="{{ route('product.edit', $item->id) }}" class="badge bg-warning"><i>Edit</i></a></td>
                             <td><a onclick= "return confirm('Are you sure? If you delete, infomation products was lost!')"
-                                href="{{ route('product.delete', $item->id) }}" class="btn btn-danger">Delete</a></td>
-                            <td><a href="#" class="btn btn-primary">Read more</a></td>
+                                href="{{ route('product.delete', $item->id) }}" class="badge bg-danger"><i>Delete</i> </a></td>
+                            <td><a href="#" class="badge bg-primary"><i>Read more</i></a></td>
                         </tr>
                         @endforeach
                         @endif
@@ -54,8 +61,9 @@
                 </table>
             </div>
             <div class="col-md-12">
-                 {{ $paginate->links() }}
+                {{-- {{ $paginate->onEachSide(5)->links('vendor.pagination.bootstrap-5') }} --}}
             </div>
+
         </div>
     </div>
 

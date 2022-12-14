@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Session;
 use App\Models\Admin;
 use App\Models\Customers;
@@ -12,13 +13,25 @@ class UserController extends Controller
 {
     private $custom;
     private $admin;
+    private $string;
     public function __construct(){
         $this->custom = new Customers();
         $this->admin  = new Admin();
+        $this->string = "";
     }
 
     public function login(){
         return view('admin.account');
+    }
+
+    //tạo mã khách hàng
+    function random($length){
+        $char = "ABCD0340250123123456789";
+        $size = strlen($char);
+        for($i=0; $i<$length; $i++){
+            $this->string .= $char[rand(0, $size-1)];
+        }
+        return $this->string;
     }
 
     public function postlogin(Request $req){
@@ -69,11 +82,13 @@ class UserController extends Controller
     }
 
     public function postregis(Request $req){
+
         $rules = [
             'userName'   => 'required|regex:/[^!@#$%^&*()]*$/'
             ,'userMail'  => 'required|email|unique:customers,email'
             ,'userPass'  => 'required|min:6'
             ,'userRePass'=> 'required|same:userPass'
+            ,'userphone' => 'required|regex:/^[0-9]{10,15}$/'
         ];
         $mesage = [
             'required'           => 'This field is required!'
@@ -82,14 +97,18 @@ class UserController extends Controller
             ,'userMail.unique'   => 'This email already exists!'
             ,'userPass.min'      => 'Password must be more than 6 characters!'
             ,'userRePass'        => 'Password not the same!'
+            ,'userphone.regex'   => 'Number phone incorrect!'
         ];
         $req->validate($rules, $mesage);
-
+        $string   = $this->random(5);
+        $id       = 'KH'.$string;
         $fullname = $req->userName;
         $email    = $req->userMail;
+        $phone    = $req->userphone;
         $pass     = $req->userPass;
         $password = bcrypt($pass);
-        $data = [$fullname, $email, $password];
+        $create_at= now();
+        $data = [$id, $fullname, $email, $password, $phone, $create_at];
 
 
         if(($this->custom->regist($data))==null){
@@ -103,5 +122,10 @@ class UserController extends Controller
 
     public function aboutus(){
         return view('admin.aboutus');
+    }
+    //customer list trong admin
+    public function listcustomers(){
+        $customers = DB::select("SELECT * from customers");
+        return view('customer.list', compact('customers'));
     }
 }

@@ -23,6 +23,9 @@ class Admin extends Authenticatable
         'email',
         'password',
         'remember_token',
+        'fullname',
+        'phone',
+        'create_at',
     ];
 
     /**
@@ -46,6 +49,23 @@ class Admin extends Authenticatable
     public function getadmin($id){
         $user = DB::select("SELECT * FROM admins Where id = ?", [$id]);
         return $user;
+    }
+
+    public function editAdmin($data){
+        DB::update("UPDATE admins SET  password=? WHERE id = ?", $data);
+    }
+
+    public function getlistAdmin(){
+        $admins = DB::select("SELECT * FROM admins");
+        return $admins;
+    }
+
+    public function addAdmin($data){
+        DB::insert("INSERT INTO admins(fullname, email, password, phone) values(?,?,?,?)", $data);
+    }
+
+    public function delAdmin($id){
+        DB::delete("DELETE FROM admins WHERE id = ?", [$id]);
     }
 }
 

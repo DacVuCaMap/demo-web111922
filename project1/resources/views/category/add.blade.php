@@ -22,7 +22,7 @@
                     <div class="mb-3">
                         <label class="form-label">Parents Category</label>
                         <select class="form-control" name="parent_id">
-                            <option value="null">Please select parent category</option>
+                            <option value="0">Please select parent category(If you don't select parent category, Category is biggest!)</option>
                             {!! $htmlSelect !!}
                         </select>
                         @error('parent_id')

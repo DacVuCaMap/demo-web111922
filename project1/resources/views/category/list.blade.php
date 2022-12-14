@@ -5,17 +5,25 @@
 @endsection
 
 @section('content')
-<style>
 
-</style>
+
 <main class="content">
+    <div class="col-md-12">
+        <h1 class="h3 mb-3"><strong>Category List</strong></h1>
+            <div class="col-md-4">
+                <form class="d-flex" method="GET">
+                    <input class="form-control me-2" name="keyword" type="search" placeholder="Category Name" aria-label="Search" value="{{ old('keyword') }}">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
     <div class="container-fluid p-0">
             @if(session('msg'))
-                <div style="font-size:20px; font-weight:bolder; color: rgb(8, 181, 250)">
+                <div style="font-size:20px; font-weight:bolder; color: rgb(8, 181, 250); text-align:center">
                  {{ session('msg') }}
                 </div>
             @endif
-            <h1 class="h3 mb-3"><strong>Category List</strong></h1>
+
         <div class="row">
             <div class="col-md-12 ">
                 <a href="{{ route('category.add') }}" class="btn btn-success float-end">Add</a>
@@ -38,7 +46,11 @@
                            <tr>
                                 <td class="d-none d-xl-table-cell">{{ $key+1 }}</td>
                                 <td class="d-none d-xl-table-cell">{{ $item->name }}</td>
+                                @if($item->parent_id==0)
+                                <td ><span class="badge bg-warning">Largest Category</span></td>
+                                @else
                                 <td class="d-none d-xl-table-cell">{{ $item->parent_id }}</td>
+                                @endif
                                 <td class="d-none d-md-table-cell">{{ $item->create_at }}</td>
                                 <td class="d-none d-md-table-cell">{{ $item->update_at }}</td>
                                 <td><a href="{{ route('category.edit', $item->id) }}" class="badge bg-secondary">Edit</a></td>
