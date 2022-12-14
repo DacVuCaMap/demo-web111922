@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="shortcut icon" href="{{ asset('adminkit/src/img/icons/icon-48x48.png') }}" />
     
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
    {{-- swiper library --}}
    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -48,6 +50,17 @@
         <div class="footer">
             <p>adsaskdha@gmaksdjalksjd.com</p>
         </div>
+        @if (session('cart'))
+        <a href="{{ route('user.cart') }}">
+            <div class="cartarea">
+                
+                    <div  class="nbrcart"><h3 id="nbrcart">{{ session('cart') }}</h3></div>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                
+            </div>
+        </a>
+        @endif
+        
     </section>
 
 </body>

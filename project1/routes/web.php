@@ -21,17 +21,22 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('aboutus',[UserController::class,'aboutus'])->name('aboutus');
     //test area
     Route::get('/test',[HomeController::class,'test']);
+    Route::get('/cart',[HomeController::class,'cart'])->name('cart');
 });
-
 //--Route shop
 Route::prefix('/shop')->name('shop.')->group(function(){
     Route::get('/',[HomeController::class,'shop'])->name('cat');
     Route::get('floppydisk',[HomeController::class,'floppydisk'])->name('floppydisk');
     //get propertise san pham
-    Route::get('product_{id}',[HomeController::class,'getProduct'])->name('getpro');
+    Route::get('/product/{id}',[HomeController::class,'getProduct'])->name('getpro');
+    
 });
 
-//Route homeadmin, edit, delete, add admin
+<<<<<<< HEAD
+
+
+
+//Route homeadmin
 Route::prefix('admin')->middleware('admin.login')->name('admin.')->group(function(){
     Route::get('/home', [AdminController::class, 'home'])->name('home');
     Route::get('/list', [AdminController::class, 'listadmin'])->name('list');

@@ -84,6 +84,7 @@ body{
 }
 section{
     overflow: hidden;
+    position: relative;
 }
 .footer{
     height: 100px;
@@ -91,4 +92,40 @@ section{
     text-align: center;
     color: white;
     line-height: 100px;
+}
+/* cart area */
+.cartarea{
+    position: fixed;
+    z-index: 20;
+    bottom: 30px;
+    left: 30px;
+    border: 5px solid white;
+    height: 70px;
+    width: 70px;
+    background: black;
+    border-radius: 50%;
+    text-align: center;
+}
+.cartarea i{
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 70px;
+    
+}
+.nbrcart{
+    position: fixed;
+    background: red;
+    bottom: 80px;
+    left: 80px;
+    height: 30px;
+    width: 30px;
+    z-index: 99;
+    border-radius: 50%;
+    padding: 2px;
+    text-align: center;
+}
+.nbrcart h3{
+    color: white;
+    line-height: 30px;
 }

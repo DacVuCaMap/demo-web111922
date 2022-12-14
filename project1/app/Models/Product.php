@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Illuminate\Support\Facades\Session;
+
+
 class Product extends Model
 {
     use HasFactory;
@@ -75,5 +78,23 @@ class Product extends Model
     }
     public function getP($id){
         return DB::select("SELECT * FROM product pr INNER JOIN proimage pm on pr.id=pm.pro_id inner join prodesc pd on pd.pro_id=pr.id inner join category ca on ca.id=pr.cat_id where pr.id=?",[$id]);
+    }
+    public function addtoCart($id){
+        
+        $all=DB::select("SELECT * FROM tblcart where 1=1");
+        $total=DB::select("SELECT SUM(quan) as tot from tblcart where 1=1");
+        
+        for ($i=0; $i < count($all); $i++) { 
+            if ($id==$all[$i]->pro_id) {
+                $data=[
+                    $all[$i]->quan + 1
+                    ,$id
+                ];
+                DB::update("UPDATE tblcart set quan=? where pro_id=?",$data);
+                return $total[0]->tot+1;               
+            }
+        }
+        DB::insert("INSERT INTO tblcart(pro_id,quan) values (?,1)",[$id]);
+        return $total[0]->tot+1;
     }
 }

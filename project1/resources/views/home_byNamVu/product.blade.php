@@ -70,9 +70,19 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="addtocart">
-                        <a href="" class="btn">Add to card</a>
+                    <div class="addtocart">   
+                        
+                            <input type="hidden" id="prod" name="prod" value="{{ $data->pro_id }}">
+                            <button id="btn" class="btn">Add to card</button>         
                     </div>
+                    
+                </div>
+                <div id="cover"></div>
+                <div id="display" class="display">
+                    <h1>Successfully added to cart</h1>
+                    <span class="checkicon">
+                        <i class="fa-sharp fa-solid fa-check"></i>
+                    </span>
                 </div>
                 
         </div>
@@ -81,5 +91,10 @@
             <p>{{ $data->descrip }}</p>
         </div>
         <div class="comment-box"></div>
+
+        
     </div>
+
+    {{-- jquery library --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 @endsection

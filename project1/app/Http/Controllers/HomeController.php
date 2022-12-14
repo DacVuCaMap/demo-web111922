@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class HomeController extends Controller
 {   
@@ -12,9 +14,11 @@ class HomeController extends Controller
         $this->pro=new Product();
     }
     public function homepage(){
+        
         return view('home_byNamVu.home');
     }
     public function shop(){
+        
         $data=$this->pro->getAll();
         
 
@@ -26,12 +30,25 @@ class HomeController extends Controller
     public function test(){
         return view('home_byNamVu.test');
     }
-    public function getProduct($id){
+    public function getProduct($id,Request $req){
+        
         $data=$this->pro->getP($id);
         $data=$data[0];
-        // dd($data);
-
+        if($req->ajax()){
+            $rs=$this->pro->addtoCart($req->prod);
+            session()->put('cart',$rs);
+            return response()->json($rs);
+        }
+       
         return view('home_byNamVu.product',compact('data'));
         
     }
+   public function cart(){
+    
+    dd(session()->all());
+    return view('home_byNamVu.cart');
+   }
+
+    
+   
 }
