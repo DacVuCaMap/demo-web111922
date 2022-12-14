@@ -29,10 +29,9 @@ Route::prefix('/shop')->name('shop.')->group(function(){
     Route::get('floppydisk',[HomeController::class,'floppydisk'])->name('floppydisk');
     //get propertise san pham
     Route::get('/product/{id}',[HomeController::class,'getProduct'])->name('getpro');
-    
+
 });
 
-<<<<<<< HEAD
 
 
 
