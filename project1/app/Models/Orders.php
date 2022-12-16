@@ -39,7 +39,7 @@ class Orders extends Model
     }
 
     public function getorder($id){
-        $orders = DB::select("SELECT O.id, C.fullname, O.ord_date, O.ord_status from orders O
+        $orders = DB::select("SELECT O.id, C.fullname, C.phone, C.address, C.email, O.ord_date, O.ord_status from orders O
         inner join customers C on O.cus_id = C.id  WHERE O.id =?", [$id]);
         return $orders;
     }

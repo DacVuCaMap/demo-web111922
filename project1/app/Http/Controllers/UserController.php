@@ -50,17 +50,8 @@ class UserController extends Controller
         $admin          = Auth::guard('admins')->attempt(['email' => $email, 'password' => $password], $remember_token);
         $customer       = Auth::guard('customers')->attempt(['email' => $email, 'password' => $password], $remember_token);
         if($admin==true && $customer==false){
-            $id   = Auth::guard('admins')->id();
-            $user = $this->admin->getadmin($id);
-            $name = $user[0]->fullname;
-            //--muc put cac session by NAMVU
-            // Session::put('cart','nam');
-            //end
             return redirect()->route('admin.home');
         }else if($admin==false && $customer==true){
-            //--st
-            // Session::put('cart','nam');
-            //end
             return redirect()->route('user.home');
         }else{
             return redirect()->back()->with('msg', ('This Account not exists!'));

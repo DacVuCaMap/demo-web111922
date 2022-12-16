@@ -13,7 +13,7 @@ class Statistic extends Model
         inner join orderDetail Od on P.id = Od.pro_id
         inner join category C on P.cat_id = C.id
         inner join orders O on Od.ord_id = O.id
-        where O.ord_status = 1 group by P.id asc");
+        where O.ord_status = 1 group by P.id order by(totalquantity) desc");
         return  $listprosell;
     }
 
@@ -22,7 +22,7 @@ class Statistic extends Model
         inner join orderDetail Od on P.id = Od.pro_id
         inner join category C on P.cat_id = C.id
         inner join orders O on Od.ord_id = O.id
-         where O.ord_status = 1 group by P.id asc");
+         where O.ord_status = 1 group by P.id  order by(Doanhthu) desc");
         return $listprorevenue;
     }
 
@@ -30,7 +30,7 @@ class Statistic extends Model
         $listcusrevenue = DB::select("SELECT C.id, C.fullname, C.email, C.phone, sum(Od.pro_price*Od.quantity) as Doanhthu from customers C
         inner join orders O on O.cus_id = C.id
         inner join orderDetail Od on Od.ord_id = O.id
-        where O.ord_status = 1 group by C.id asc");
+        where O.ord_status = 1 group by C.id order by(Doanhthu) desc");
         return $listcusrevenue;
     }
 

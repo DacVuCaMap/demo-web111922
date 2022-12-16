@@ -70,6 +70,7 @@ Route::prefix('admin/product')->middleware('admin.login')->name('product.')->gro
 Route::prefix('admin/order')->middleware('admin.login')->name('order.')->group(function(){
     Route::get('/list', [OrderController::class, 'list'])->name('list');
     Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
+    Route::get('/detail/export/{id}', [OrderController::class, 'exportPDF'])->name('exportPDF');
     Route::get('/complete/{id}', [OrderController::class, 'editcpl'])->name('complete');
     Route::get('/cancel/{id}', [OrderController::class, 'editcacel'])->name('cancel');
 });

@@ -8,7 +8,7 @@
 
 <style>
     i{
-        text-shadow: 2px 4px 6px rgb(255, 85, 0);
+        /* text-shadow: 2px 4px 6px rgb(255, 85, 0); */
         color: rgb(251, 75, 6);
         margin: 10px;
     }
