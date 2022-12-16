@@ -44,9 +44,9 @@ class HomeController extends Controller
         
     }
    public function cart(){
+    $data=$this->pro->cartdata();
     
-    dd(session()->all());
-    return view('home_byNamVu.cart');
+    return view('home_byNamVu.cart',compact('data'));
    }
 
     

@@ -3,6 +3,7 @@
 @section('content')
 <script src="{{ asset('jsByNamVu/shop.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('cssbyNamVu/shop.css') }}">
+<div class="backgrshop">
     <div class="container">
         <div class="headshop">
             <div>              
@@ -118,4 +119,5 @@
             
         </div>
     </div>
+</div>
 @endsection

@@ -51,7 +51,7 @@
             <p>adsaskdha@gmaksdjalksjd.com</p>
         </div>
         @if (session('cart'))
-        <a href="{{ route('user.cart') }}">
+        <a class="carta" href="{{ route('user.cart') }}">
             <div class="cartarea">
                 
                     <div  class="nbrcart"><h3 id="nbrcart">{{ session('cart') }}</h3></div>

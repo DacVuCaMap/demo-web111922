@@ -38,6 +38,11 @@ window.onload=()=>{
                 type: "get",
                 url: "/shop/product/"+value,
                 data: {'prod':value},
+                // beforeSend: function(){
+                //     setTimeout(function(){
+                //         $('#nbrcart').html('//cho gif loading zo')
+                //     },2000)
+                // },
                 success: function (data) {
                      
                      $('#nbrcart').html(data);

@@ -97,4 +97,11 @@ class Product extends Model
         DB::insert("INSERT INTO tblcart(pro_id,quan) values (?,1)",[$id]);
         return $total[0]->tot+1;
     }
+    public function cartdata(){
+        return DB::select('SELECT pr.id,pr.pro_name,pi.img_first,pr.pro_price,ca.quan,ct.name from tblcart ca
+        inner join product pr on ca.pro_id=pr.id
+        inner join proimage pi on ca.pro_id=pi.pro_id
+        inner join category ct on pr.cat_id=ct.id');
+        
+    }
 }

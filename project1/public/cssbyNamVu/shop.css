@@ -9,6 +9,9 @@
         width: 100%;
     }
 }
+.backgrshop{
+    background: white;
+}
 .headshop{
     background: black;
     height: 400px;

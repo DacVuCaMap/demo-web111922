@@ -3,6 +3,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('cssbyNamVu/product.css') }}">
     <script src="{{ asset('jsbyNamVu/product.js') }}"></script>
+<div class="backgrpro">
     <div class="container">
         <div class="headpr">
             <a href="{{ route('shop.cat') }}">Shop</a> > <a href="">{{ $data->name }}</a> > <p>{{ $data->pro_name }}</p>
@@ -94,7 +95,7 @@
 
         
     </div>
-
+</div>
     {{-- jquery library --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 @endsection
