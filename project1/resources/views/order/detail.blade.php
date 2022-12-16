@@ -25,19 +25,23 @@
     <div class="col-md-12">
         <div class="container-fluid p-0">
             <div class="row">
-                <div class="col-md-8 order">
-                @if(!empty($order))
+                <div class="col-md-12 order">
+                {{-- @if(!empty($order)) --}}
                 <div class="row">
-                    <div class="col-md-6">
-                       <h4>Order ID: {{ $order[0]->id }}</h4>
-                       <h4>Custommer: {{ $order[0]->fullname }}</h4>
+                    <div class="col-md-2">
+                       <h4>Order ID:</h4>
+                       <h4>Customer: </h4>
+                       <h4>Date: </h4>
+                       <h4>Status: </h4>
                     </div>
-                    <div class="col-md-6">
-                       <h4>Date: {{ $order[0]->ord_date }}</h4>
-                       <h4>Status: {{ $order[0]->ord_status }}</h4>
+                    <div class="col-md-3">
+                       <h4>{{ $order[0]->id }}</h4>
+                        <h4>{{ $order[0]->fullname }}</h4>
+                       <h4>{{ $order[0]->ord_date }}</h4>
+                        <h4>{{ $order[0]->ord_status }}</h4>
                     </div>
                 </div>
-                @endif
+                {{-- @endif --}}
                     <div class="col-md-12">
                    <table class="table table-warning">
                     <thead>
@@ -59,6 +63,7 @@
                                 <td class="d-none d-md-table-cell">{{ $item->quantity}}</td>
                                 <td class="d-none d-md-table-cell">{{ $item->total}}$</td>
                             </tr>
+
                         @endforeach
                         @endif
                         @if(!empty($total))
@@ -69,12 +74,15 @@
                         @endif
                     </tbody>
                    </table>
+                    <a target="blank" href="{{ route('order.exportPDF',$order[0]->id )}}" class="btn btn-secondary float-end">ExportPDF</a>
                    </div>
                 </div>
 
             </div>
+
         </div>
     </div>
+
 </main>
 
 @endsection

@@ -8,7 +8,7 @@
 <main class="content">
     <a href="{{ route('statistic.proselling') }}" class="badge bg-warning">Product Selling</a>
     <a href="{{ route('statistic.prorevenue') }}" class="badge bg-success">Product Revenue</a>
-    <a href="{{ route('statistic.cusrevenue') }}" class="badge bg-warning">Product Selling</a>
+    <a href="{{ route('statistic.cusrevenue') }}" class="badge bg-warning">Customer by revenue</a>
         <h1 class="h3 mb-3" style="margin: 10px"><strong>Product List by Revenue</strong></h1>
     <div class="container-fluid p-0">
         <div class="row">

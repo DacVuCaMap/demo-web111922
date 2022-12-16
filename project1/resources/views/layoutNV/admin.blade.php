@@ -12,7 +12,7 @@
 	<link href="{{ asset('adminkit/static/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('adminkit/static/css/app.css.map') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('adminkit/fontawesome/css/all.css') }}">
-    {{-- <link href="{{ asset('adminkit/static/css/bootstrap.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('adminkit/static/css/bootstrap.css') }}" rel="stylesheet">
     @yield('title')
 </head>
 

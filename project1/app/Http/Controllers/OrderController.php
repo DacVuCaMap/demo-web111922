@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Orders;
+use PDF;
 class OrderController extends Controller
 {
     private $order;
@@ -17,6 +17,7 @@ class OrderController extends Controller
         $key_cus = $req->key_cus;
         $key_sta = $req->key_sta;
         $orders = $this->order->getorders($key_id, $key_cus, $key_sta);
+        // dd( $orders);
         return view('order.list', compact('orders'));
     }
     // tạo order chi tiết
@@ -45,4 +46,19 @@ class OrderController extends Controller
             return redirect()->route('order.list')->with('msg', 'Update Order failed!');
         };
     }
+
+    public function print_order_convert($id){
+        $orderdetail = $this->order->getdetail($id);
+        $order       = $this->order->getorder($id);
+        $total       = $this->order->totalorder($id);
+        return view('order.detailPDF', compact('orderdetail', 'order','total'));
+    }
+
+    public function exportPDF($id){
+       $pdf = \App::make('dompdf.wrapper');
+       $pdf->loadHTML($this->print_order_convert($id));
+       return $pdf->stream();
+    }
+
+
 }
