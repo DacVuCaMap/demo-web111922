@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Admin;
+use DB;
+use App\Models\Orders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -10,12 +12,18 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     private $admin;
+    private $order;
     public function __construct(){
         $this->admin  = new Admin();
+        $this->order  = new Orders();
     }
 
     public function home(){
-        return view('admin.home');
+        $tongcus   = DB::select("SELECT count(id) as tong from customers");
+        $tongorder = DB::select("SELECT count(id) as tong from orders");
+        $tongpro   = DB::select("SELECT count(id) as tong from product");
+        $ordertoday= $this->order->orderstoday();
+        return view('admin.home', compact('tongcus', 'tongorder', 'tongpro', 'ordertoday'));
     }
 
 

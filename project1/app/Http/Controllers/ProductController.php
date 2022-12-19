@@ -70,9 +70,8 @@ class ProductController extends Controller
             ,'pro_price.regex'      => 'Product price must be float!'
             ,'pro_quantity.regex'   => 'Product quantity must be integer!'
             ,'pro_quantity.required'=> 'Product quantity must not be left blank!'
-            ,'img_1.image'          => 'Product image must be image file!'
-            ,'img_2.image'          => 'Product image must be image file!'
-            ,'img_3.image'          => 'Product image must be image file!'
+            ,'image'                => 'Product image must be image file!'
+            ,'mimes'                => 'Product image must be image file!'
             ,'img_1.max'            => 'Product image file no lagger than 5MB!'
             ,'img_2.max'            => 'Product image file no lagger than 5MB!'
             ,'img_3.max'            => 'Product image file no lagger than 5MB!'
@@ -182,9 +181,8 @@ class ProductController extends Controller
             ,'pro_price.regex'      => 'Product price must be float!'
             ,'pro_quantity.regex'   => 'Product quantity must be integer!'
             ,'pro_quantity.required'=> 'Product quantity must not be left blank!'
-            ,'img_1.image'          => 'Product image must be image file!'
-            ,'img_2.image'          => 'Product image must be image file!'
-            ,'img_3.image'          => 'Product image must be image file!'
+            ,'image'                => 'Product image must be image file!'
+            ,'mimes'                => 'Product image must be image file!'
             ,'img_1.max'            => 'Product image file no lagger than 5MB!'
             ,'img_2.max'            => 'Product image file no lagger than 5MB!'
             ,'img_3.max'            => 'Product image file no lagger than 5MB!'
@@ -246,6 +244,12 @@ class ProductController extends Controller
         }else{
             return redirect()->route('product.list')->with('msg', 'Delete fail Product!');
         }
+    }
+
+    public function detail($id){
+        $product  = $this->pro->getpro($id);
+        $proimage = $this->pro->getimgpro($id);
+        return view('product.detail', compact('product', 'proimage'));
     }
 
 }

@@ -47,13 +47,13 @@
                             <td><button class="badge bg-dark">{{ $item->id }}</button></td>
                             <td class="d-none d-xl-table-cell">{{ $item->pro_name }}</td>
                             <td class="d-none d-xl-table-cell">{{ $item->name }}</td>
-                            <td class="d-none d-md-table-cell">{{ $item->pro_price }}</td>
+                            <td class="d-none d-md-table-cell">{{ $item->pro_price }}$</td>
                             <td class="d-none d-xl-table-cell">{{ $item->pro_quantity }}</td>
                             <td class="d-none d-xl-table-cell">{{ $item->create_at }}</td>
                             <td><a href="{{ route('product.edit', $item->id) }}" class="badge bg-warning"><i>Edit</i></a></td>
                             <td><a onclick= "return confirm('Are you sure? If you delete, infomation products was lost!')"
                                 href="{{ route('product.delete', $item->id) }}" class="badge bg-danger"><i>Delete</i> </a></td>
-                            <td><a href="#" class="badge bg-primary"><i>Read more</i></a></td>
+                            <td><a href="{{ route('product.detail', $item->id) }}" class="badge bg-primary"><i>Read more</i></a></td>
                         </tr>
                         @endforeach
                         @endif

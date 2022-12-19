@@ -8,20 +8,20 @@ use DB;
 class Orders extends Model
 {
     use HasFactory;
-    public function getorders($key_id, $key_cus, $key_sta){
+    public function getorders($key_select, $key_word){
         $condition = "1=1";
-        if($key_id != null){
-            $newkey     = str_replace(' ', '%', $key_id);
+        if($key_word != null && $key_select = 1){
+            $newkey     = str_replace(' ', '%', $key_word);
             $condition .= " AND id LIKE '%{$newkey}%'";
         }
 
-        if($key_cus != null){
-            $newkey     = str_replace(' ', '%', $key_cus);
+        if($key_word != null && $key_select = 2){
+            $newkey     = str_replace(' ', '%', $key_word);
             $condition .= " AND cus_id LIKE '%{$newkey}%'";
         }
 
-        if($key_sta != null){
-            $newkey     = str_replace(' ', '%', $key_sta);
+        if($key_word != null && $key_select = 3){
+            $newkey     = str_replace(' ', '%', $key_word);
             $condition .= " AND ord_status LIKE '%{$newkey}%'";
         }
 
@@ -56,4 +56,9 @@ class Orders extends Model
         DB::update("UPDATE orders SET ord_status = ? Where id =?", $data);
     }
 
+    public function orderstoday(){
+        $today = date_format(now(), 'Y-m-d');
+        $ordertoday = DB::select("SELECT * from orders WHERE date_format(ord_date,'%Y-%m-%d') = $today");
+        return $ordertoday;
+    }
 }

@@ -13,7 +13,6 @@
         .container {
             width: 100%;
            position: fixed;
-
             position: relative;
 
             /* border: 1px solid #333; */

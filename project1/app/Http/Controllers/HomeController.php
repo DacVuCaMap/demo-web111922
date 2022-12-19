@@ -7,20 +7,20 @@ use Illuminate\Support\Facades\Session;
 
 
 class HomeController extends Controller
-{   
+{
     private $pro;
     public function __construct()
     {
         $this->pro=new Product();
     }
     public function homepage(){
-        
+
         return view('home_byNamVu.home');
     }
     public function shop(){
-        
+
         $data=$this->pro->getAll();
-        
+
 
         return view('home_byNamVu.shop',compact('data'));
     }
@@ -31,7 +31,7 @@ class HomeController extends Controller
         return view('home_byNamVu.test');
     }
     public function getProduct($id,Request $req){
-        
+
         $data=$this->pro->getP($id);
         $data=$data[0];
         if($req->ajax()){
@@ -39,16 +39,16 @@ class HomeController extends Controller
             session()->put('cart',$rs);
             return response()->json($rs);
         }
-       
+       //
         return view('home_byNamVu.product',compact('data'));
-        
+
     }
    public function cart(){
     $data=$this->pro->cartdata();
-    
+
     return view('home_byNamVu.cart',compact('data'));
    }
 
-    
-   
+
+
 }

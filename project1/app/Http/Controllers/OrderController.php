@@ -13,10 +13,9 @@ class OrderController extends Controller
 
     // tạo danh sách order
     public function list(Request $req){
-        $key_id  = $req->key_id;
-        $key_cus = $req->key_cus;
-        $key_sta = $req->key_sta;
-        $orders = $this->order->getorders($key_id, $key_cus, $key_sta);
+        $key_select  = $req->key_select;
+        $key_word = $req->key_word;
+        $orders = $this->order->getorders($key_select, $key_word);
         // dd( $orders);
         return view('order.list', compact('orders'));
     }
@@ -60,5 +59,9 @@ class OrderController extends Controller
        return $pdf->stream();
     }
 
+    // insert vào orders và orderDatil
+    // public function insertORders(){
+    //     $tblcsrt = DB::seldcy(ỵyrjyj)
+    // }
 
 }

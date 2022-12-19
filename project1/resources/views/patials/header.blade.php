@@ -1,8 +1,9 @@
 <?php
     if(Auth::guard('admins')->check()){
         $id   = Auth::guard('admins')->id();
-        $user = DB::table('admins')->select()->get($id);
+        $user = DB::select("SELECT * FROM admins WHERE id = ?", [$id]);
         $name = $user[0]->fullname;
+
     }
 ?>
 <nav class="navbar navbar-expand navbar-light navbar-bg">

@@ -28,25 +28,25 @@
                 <div class="cartrow tick">
                     <input type="checkbox" name="" id="">
                 </div>
-                
+
             </div>
             {{-- // items --}}
             @foreach ($data as $i=>$item)
             <div class="cartitem bd">
                 <div class="row1 it1">
-                    <div> 
+                    <div>
                         <h4>{{ $i+1 }}</h4>
                     </div>
                     <a href="">
                         <img src="{{ asset($item->img_first) }}" alt="" height="130px">
                     </a>
-                    
+
                     <div>
                         {{-- product name --}}
                         <a href="">
                             <h3>{{ $item->pro_name }}</h3>
                         </a>
-                        
+
                         {{-- product detail : cat and product ID --}}
                         <p>Type: {{ $item->name }}</p>
                         <p>Product ID: {{ $item->id }}</p>
@@ -61,7 +61,7 @@
                         <p id="quan">{{ $item->quan }}</p>
                         <button id="btn">+</button>
                     </div>
-                    
+
                 </div>
                 <div class="cartrow it2">
                     <p><span id="total"></span>$</p>
@@ -72,12 +72,11 @@
                 <div class="cartrow tick it2 tick2">
                     <input type="checkbox" name="" id="tick">
                 </div>
-                
+
             </div>
             @endforeach
-           
-            
-            
+
+
 
             {{-- foot add to cart --}}
             <div class="footcart">
@@ -89,5 +88,5 @@
             </div>
         </div>
     </div>
-    
+
 @endsection

@@ -64,6 +64,7 @@ Route::prefix('admin/product')->middleware('admin.login')->name('product.')->gro
     Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit');
     Route::post('/edit/{id}', [ProductController::class, 'postedit']);
     Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
+    Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
 });
 
 // Route order

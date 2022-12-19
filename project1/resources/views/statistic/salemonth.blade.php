@@ -26,7 +26,7 @@ h3{
                 <h3><strong style="color: rgb(252, 120, 4); text-align:right; font-size:18px">Revenue by month: </strong></h3>
             </div>
             <div class="col-md-4">
-                <input class="form-control me-2" type="text" aria-label="Search" value="{{$subtotalmonth[0]->subtotal}}$" disabled>
+                <h2 style="color: red">{{$subtotalmonth[0]->subtotal}}$</h2>
             </div>
             <div class="col-md-4">
                 <form class="d-flex" method="GET">
