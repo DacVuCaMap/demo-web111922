@@ -237,10 +237,8 @@ class ProductController extends Controller
     }
 
     public function delete($id){
-        if(($this->pro->delproduct($id))==null
-           && ($this->pro->delprodesc($id))==null
-           && ($this->pro->delproimage($id))==null){
-            return redirect()->route('product.list')->with('msg', 'Delete successfully Product!');
+        if(($this->pro->delprodesc($id))==null && ($this->pro->delproimage($id))==null && ($this->pro->delproduct($id))==null  ){
+        return redirect()->route('product.list')->with('msg', 'Delete successfully Product!');
         }else{
             return redirect()->route('product.list')->with('msg', 'Delete fail Product!');
         }

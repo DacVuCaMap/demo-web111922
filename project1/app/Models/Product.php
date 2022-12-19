@@ -63,11 +63,11 @@ class Product extends Model
     }
 
     public function delprodesc($id){
-        DB::delete("DELETE FROM prodesc WHERE id = ?", [$id]);
+        DB::delete("DELETE FROM prodesc WHERE pro_id = ?", [$id]);
     }
 
     public function delproimage($id){
-        DB::delete("DELETE FROM proimage WHERE id = ?", [$id]);
+        DB::delete("DELETE FROM proimage WHERE pro_id = ?", [$id]);
     }
 
 
