@@ -19,13 +19,13 @@
                    <div class="col-md-4">
                     <div class="col-md-12">
                         <div class="card">
-                            <img src="{{ asset($proimage[0]->img_first) }}" height="300px" alt="">
+                            <img src="{{ asset($proimage[0]->img_first) }}" height="300px" alt="{{ $proimage[0]->img_first }}">
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="card ">
-                            <img src="{{ asset($proimage[0]->img_second) }}" height="300px" alt="">
+                            <img src="{{ asset($proimage[0]->img_second) }}" height="300px" alt="{{ asset($proimage[0]->img_second) }}">
                        </div>
                    </div>
                 </div>

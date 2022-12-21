@@ -25,14 +25,14 @@ class UserController extends Controller
     }
 
     //tạo mã khách hàng
-    function random($length){
-        $char = "ABCD0340250123123456789";
-        $size = strlen($char);
-        for($i=0; $i<$length; $i++){
-            $this->string .= $char[rand(0, $size-1)];
-        }
-        return $this->string;
-    }
+    // function random($length){
+    //     $char = "ABCD0340250123123456789";
+    //     $size = strlen($char);
+    //     for($i=0; $i<$length; $i++){
+    //         $this->string .= $char[rand(0, $size-1)];
+    //     }
+    //     return $this->string;
+    // }
 
     public function postlogin(Request $req){
         $rules = [
@@ -91,15 +91,15 @@ class UserController extends Controller
             ,'userphone.regex'   => 'Number phone incorrect!'
         ];
         $req->validate($rules, $mesage);
-        $string   = $this->random(5);
-        $id       = 'KH'.$string;
+        // $string   = $this->random(5);
+        // $id       = 'KH'.$string;
         $fullname = $req->userName;
         $email    = $req->userMail;
         $phone    = $req->userphone;
         $pass     = $req->userPass;
         $password = bcrypt($pass);
         $create_at= now();
-        $data = [$id, $fullname, $email, $password, $phone, $create_at];
+        $data = [$fullname, $email, $password, $phone, $create_at];
 
 
         if(($this->custom->regist($data))==null){

@@ -74,6 +74,7 @@
                     <div class="addtocart">   
                         
                             <input type="hidden" id="prod" name="prod" value="{{ $data->pro_id }}">
+                            <input type="hidden" id="userid" name="userid" value="1">
                             <button id="btn" class="btn">Add to card</button>         
                     </div>
                     
@@ -96,6 +97,13 @@
         
     </div>
 </div>
+<a id="carta" style="display:none" class="carta" href="{{ route('user.cart') }}">
+    <div class="cartarea">
+        <div  class="nbrcart"><h3 id="nbrcart2">{{ session('cart') }}</h3></div>
+        <i class="fa-solid fa-cart-shopping"></i>
+        
+    </div>
+</a>
     {{-- jquery library --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 @endsection
