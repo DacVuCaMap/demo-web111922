@@ -6,10 +6,12 @@
 
 @section('content')
 <style>
-    h4{
+    .inforders{
         color: rgb(12, 1, 11);
         font-weight: 600;
-        font-family: 'Times New Roman', Times, serif;
+        font-size: 16px;
+        min-width: 100px;
+        height: 20px;
     }
     .order{
         border: 1px solid rgb(255, 191, 0);
@@ -28,18 +30,26 @@
                 <div class="col-md-12 order">
                 {{-- @if(!empty($order)) --}}
                 <div class="row">
-                    <div class="col-md-2">
-                       <h4>Order ID:</h4>
-                       <h4>Customer: </h4>
-                       <h4>Date: </h4>
-                       <h4>Status: </h4>
-                    </div>
-                    <div class="col-md-3">
-                       <h4>{{ $order[0]->id }}</h4>
-                        <h4>{{ $order[0]->fullname }}</h4>
-                       <h4>{{ $order[0]->ord_date }}</h4>
-                        <h4>{{ $order[0]->ord_status }}</h4>
-                    </div>
+                    <table class="table" style="width:400px; height:70px">
+                        <tbody>
+                           <tr>
+                                <td class="inforders">Order ID:</td>
+                                <td class="inforders">{{ $order[0]->id }}</td>
+                            </tr>
+                            <tr>
+                                <td class="inforders">Customer: </td>
+                                <td class="inforders">{{ $order[0]->fullname }}</td>
+                            </tr>
+                            <tr>
+                                <td class="inforders">Date: </td>
+                                <td class="inforders">{{ $order[0]->ord_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="inforders">Status:</td>
+                                <td class="inforders">{{ $order[0]->ord_status }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 {{-- @endif --}}
                     <div class="col-md-12">
@@ -47,7 +57,7 @@
                     <thead>
                         <tr>
                             <th class="d-none d-xl-table-cell">NBR</th>
-                            <th class="d-none d-xl-table-cell">Product ID</th>
+                            <th class="d-none d-xl-table-cell">Product name</th>
                             <th class="d-none d-xl-table-cell">Product price</th>
                             <th class="d-none d-xl-table-cell">Quantity</th>
                             <th class="d-none d-md-table-cell">Total</th>
@@ -58,7 +68,7 @@
                         @foreach ($orderdetail as $key=>$item)
                            <tr>
                                 <td class="d-none d-xl-table-cell">{{ $key+1 }}</td>
-                                <td class="d-none d-xl-table-cell">{{ $item->pro_id}}</td>
+                                <td class="d-none d-xl-table-cell">{{ $item->pro_name}}</td>
                                 <td class="d-none d-md-table-cell">{{ $item->pro_price}}$</td>
                                 <td class="d-none d-md-table-cell">{{ $item->quantity}}</td>
                                 <td class="d-none d-md-table-cell">{{ $item->total}}$</td>

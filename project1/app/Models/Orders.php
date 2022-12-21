@@ -10,17 +10,17 @@ class Orders extends Model
     use HasFactory;
     public function getorders($key_select, $key_word){
         $condition = "1=1";
-        if($key_word != null && $key_select = 1){
+        if($key_select == 1 &&  $key_word != null ){
             $newkey     = str_replace(' ', '%', $key_word);
             $condition .= " AND id LIKE '%{$newkey}%'";
         }
 
-        if($key_word != null && $key_select = 2){
+        if($key_word != null && $key_select == 2){
             $newkey     = str_replace(' ', '%', $key_word);
             $condition .= " AND cus_id LIKE '%{$newkey}%'";
         }
 
-        if($key_word != null && $key_select = 3){
+        if($key_word != null && $key_select == 3){
             $newkey     = str_replace(' ', '%', $key_word);
             $condition .= " AND ord_status LIKE '%{$newkey}%'";
         }
@@ -30,16 +30,16 @@ class Orders extends Model
     }
 
     public function getdetail($id){
-        $ordetail = DB::select("SELECT Od.pro_id, Od.pro_price, Od.quantity, (Od.pro_price*Od.quantity) as total
+        $ordetail = DB::select("SELECT P.pro_name, Od.pro_price, Od.quantity, (Od.pro_price*Od.quantity) as total
         from orderDetail Od
         inner join orders O on O.id = Od.ord_id
-        inner join customers C on C.id = O.cus_id
+        inner join product P on P.id = Od.pro_id
         where O.id = ?", [$id]);
         return $ordetail;
     }
 
     public function getorder($id){
-        $orders = DB::select("SELECT O.id, C.fullname, C.phone, C.address, C.email, O.ord_date, O.ord_status from orders O
+        $orders = DB::select("SELECT O.id, C.fullname, C.phone, C.email, O.ord_date, O.ord_status from orders O
         inner join customers C on O.cus_id = C.id  WHERE O.id =?", [$id]);
         return $orders;
     }

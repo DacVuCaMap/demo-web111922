@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Session;
 use App\Models\Admin;
 use App\Models\Customers;
@@ -25,14 +26,14 @@ class UserController extends Controller
     }
 
     //tạo mã khách hàng
-    function random($length){
-        $char = "ABCD0340250123123456789";
-        $size = strlen($char);
-        for($i=0; $i<$length; $i++){
-            $this->string .= $char[rand(0, $size-1)];
-        }
-        return $this->string;
-    }
+    // function random($length){
+    //     $char = "00112233445566778899";
+    //     $size = strlen($char);
+    //     for($i=0; $i<$length; $i++){
+    //         $this->string .= $char[rand(0, $size-1)];
+    //     }
+    //     return $this->string;
+    // }
 
     public function postlogin(Request $req){
         $rules = [
@@ -91,16 +92,15 @@ class UserController extends Controller
             ,'userphone.regex'   => 'Number phone incorrect!'
         ];
         $req->validate($rules, $mesage);
-        $string   = $this->random(5);
-        $id       = 'KH'.$string;
+        // $string   = $this->random(4);
+        // $id       = Str::uuid()->toString(7);
         $fullname = $req->userName;
         $email    = $req->userMail;
         $phone    = $req->userphone;
         $pass     = $req->userPass;
         $password = bcrypt($pass);
         $create_at= now();
-        $data = [$id, $fullname, $email, $password, $phone, $create_at];
-
+        $data = [$fullname, $email, $password, $phone, $create_at];
 
         if(($this->custom->regist($data))==null){
             return redirect()->route('user.login')->with('msg', 'Register Users successfully!');
@@ -117,6 +117,12 @@ class UserController extends Controller
     //customer list trong admin
     public function listcustomers(){
         $customers = DB::select("SELECT * from customers");
+
+        // dd(Auth::guard('customers')->check());
+        //     $user = Auth::guard('customers')->user();
+        //     dd($user);
+        // }
+
         return view('customer.list', compact('customers'));
     }
 }

@@ -16,7 +16,6 @@ class OrderController extends Controller
         $key_select  = $req->key_select;
         $key_word = $req->key_word;
         $orders = $this->order->getorders($key_select, $key_word);
-        // dd( $orders);
         return view('order.list', compact('orders'));
     }
     // tạo order chi tiết
@@ -24,6 +23,7 @@ class OrderController extends Controller
         $orderdetail = $this->order->getdetail($id);
         $order       = $this->order->getorder($id);
         $total       = $this->order->totalorder($id);
+        // dd($order);
         return view('order.detail', compact('orderdetail', 'order','total'));
     }
 

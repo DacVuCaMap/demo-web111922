@@ -24,7 +24,9 @@ class Customers extends Authenticatable
         'password',
         'address',
         'phone',
-        'remember_token'
+        'remember_token',
+        'create_at',
+        'update_at',
     ];
 
     /**
@@ -47,6 +49,6 @@ class Customers extends Authenticatable
     ];
 
     public function regist($data){
-        DB::insert("INSERT INTO customers(id, fullname, email, password, phone, create_at) values(?,?,?,?,?,?)", $data);
+        DB::insert("INSERT INTO customers(fullname, email, password, phone, create_at) values(?,?,?,?,?)", $data);
     }
 }
