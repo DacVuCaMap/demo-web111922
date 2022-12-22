@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Session;
 use App\Models\Admin;
 use App\Models\Customers;
@@ -29,6 +30,7 @@ class UserController extends Controller
 
     //tạo mã khách hàng
     // function random($length){
+    //     $char = "00112233445566778899";
     //     $char = "ABCD0340250123123456789";
     //     $size = strlen($char);
     //     for($i=0; $i<$length; $i++){
@@ -104,8 +106,7 @@ class UserController extends Controller
             ,'userphone.regex'   => 'Number phone incorrect!'
         ];
         $req->validate($rules, $mesage);
-        // $string   = $this->random(5);
-        // $id       = 'KH'.$string;
+
         $fullname = $req->userName;
         $email    = $req->userMail;
         $phone    = $req->userphone;
@@ -114,19 +115,18 @@ class UserController extends Controller
         $create_at= now();
         $data = [$fullname, $email, $password, $phone, $create_at];
 
-
         if(($this->custom->regist($data))==null){
             return redirect()->route('user.login')->with('msg', 'Register Users successfully!');
         }else{
             return redirect()->route('user.login')->with('msg', 'Register Users fail!');
         }
-
-    // about us
     }
 
+    // about us
     public function aboutus(){
         return view('admin.aboutus');
     }
+
     //customer list trong admin
     public function listcustomers(){
         $customers = DB::select("SELECT * from customers");

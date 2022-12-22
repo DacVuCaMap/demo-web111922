@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Orders;
 use PDF;
+use DB;
 class OrderController extends Controller
 {
     private $order;
@@ -16,7 +17,6 @@ class OrderController extends Controller
         $key_select  = $req->key_select;
         $key_word = $req->key_word;
         $orders = $this->order->getorders($key_select, $key_word);
-        // dd( $orders);
         return view('order.list', compact('orders'));
     }
     // tạo order chi tiết
@@ -59,9 +59,29 @@ class OrderController extends Controller
        return $pdf->stream();
     }
 
-    // insert vào orders và orderDatil
-    // public function insertORders(){
-    //     $tblcsrt = DB::seldcy(ỵyrjyj)
-    // }
+    public function createorder(Request $req){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $cus_id      = $req->user_id;
+        $orderID     = 'OD'.date('ymdHis', time()).'KH'.$cus_id;
+        $ord_date    = now();
+        $ord_status  = 2;
+        $address     = $req->address;
+        $methodpay   = $req->methodpay;
+        $data        = [$orderID, $cus_id ,$ord_date, $ord_status,  $address, $methodpay];
+        // insert vào orders
+        $this->order->createorders($data);
+        //insert orders Detail
+        $Detail = DB::select("SELECT * from tblcart WHERE cus_id = ?", [$cus_id]);
+        foreach ($Detail as $item){
+            $pro_id    = $item->pro_id;
+            $pro_price = $item->pro_price;
+            $quantity  = $item->quantity;
+            $data = [$orderID, $pro_id,$pro_price,$quantity];
+            $this->order->createorderDetail($data);
+        }
+        //xóa tblcart
+        $this->order->delcart($cus_id);
+        return view('home_byNamVu.orderinfo');
+    }
 
 }

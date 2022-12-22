@@ -12,7 +12,7 @@ window.onload=()=>{
     //button click add or none
     for (let i = 0; i < add.length; i++) {
         add[i].addEventListener('click',function(){
-            
+
             quan[i].innerHTML=Number(quan[i].innerHTML)+1;
             total[i].innerHTML=Number(price[i].innerHTML*quan[i].innerHTML);
             costt(total);
@@ -42,7 +42,7 @@ costt=(total)=>{
     
     cost.innerHTML=0;
     for (let j = 0; j < total.length; j++) {
-        
+
         cost.innerHTML=Number(cost.innerHTML)+Number(total[j].innerHTML)
     }
     return true;

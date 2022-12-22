@@ -237,16 +237,21 @@ class ProductController extends Controller
     }
 
     public function delete($id){
-        if(($this->pro->delprodesc($id))==null && ($this->pro->delproimage($id))==null && ($this->pro->delproduct($id))==null  ){
-        return redirect()->route('product.list')->with('msg', 'Delete successfully Product!');
+        $sales = DB::select("SELECT ord_id from orderDetail WHERE pro_id = ?", [$id]);
+        if($sales != null){
+            return redirect()->back()->with('msg', 'Delete fail because this product is sale!');
         }else{
-            return redirect()->route('product.list')->with('msg', 'Delete fail Product!');
+            $this->pro->delprodesc($id);
+            $this->pro->delproimage($id);
+            $this->pro->delproduct($id);
+            return redirect()->route('product.list')->with('msg', 'Delete successfully Product!');
         }
     }
 
     public function detail($id){
         $product  = $this->pro->getpro($id);
         $proimage = $this->pro->getimgpro($id);
+        // dd($product);
         return view('product.detail', compact('product', 'proimage'));
     }
 

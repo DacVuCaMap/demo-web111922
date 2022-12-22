@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-
+use DB;
 class CategoryController extends Controller
 {
     private $cat;
@@ -87,10 +87,12 @@ class CategoryController extends Controller
     }
 
     public function delete($id){
-        if(($this->cat->delCat($id))==null){
-            return redirect()->route('category.list')->with('msg', 'Delete successful category!');
+        $productID = DB::select("SELECT id from product WHERE cat_id = ?", [$id]);
+        if($productID != null){
+             return redirect()->route('category.list')->with('msg', 'Delete failure category because this categoty already included products!');
         }else{
-            return redirect()->route('category.list')->with('msg', 'Delete failure category!');
+            $this->cat->delCat($id);
+            return redirect()->route('category.list')->with('msg', 'Delete successful category!');
         }
     }
 }

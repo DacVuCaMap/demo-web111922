@@ -25,7 +25,7 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('/delcart_{pro_id}_{cus_id}',[HomeController::class,'delcart'])->name('delcart');
     //test area
     Route::get('/test',[HomeController::class,'test']);
-    
+
 });
 //--Route shop
 Route::prefix('/shop')->name('shop.')->group(function(){
@@ -73,6 +73,7 @@ Route::prefix('admin/product')->middleware('admin.login')->name('product.')->gro
 
 // Route order
 Route::prefix('admin/order')->middleware('admin.login')->name('order.')->group(function(){
+    Route::post('/create', [OrderController::class, 'createorder'])->name('create');
     Route::get('/list', [OrderController::class, 'list'])->name('list');
     Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
     Route::get('/detail/export/{id}', [OrderController::class, 'exportPDF'])->name('exportPDF');

@@ -30,7 +30,7 @@
                 </div> --}}
 
             </div>
-            <form action="" method="post">
+            <form action="{{ route('order.create') }}" method="post">
                 @csrf
                 @if (!empty($data))
                 <input type="hidden" name="user_id" value="{{ $data[0]->cus_id }}">
@@ -84,7 +84,11 @@
                 </div>
                 @endforeach
 
-
+                <input type="text" name="address" id="">
+                <select name="methodpay" id="">
+                    <option value="1">Chuyen khoan</option>
+                    <option value="2">Thanh toan bang tien mat</option>
+                </select>
 
                 {{-- foot add to cart --}}
                 <div class="footcart">
@@ -96,7 +100,7 @@
                 </div>
             </form>
             {{-- // items --}}
-            
+
         </div>
     </div>
 
