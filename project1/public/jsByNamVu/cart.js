@@ -8,11 +8,11 @@ window.onload=()=>{
 
     var cost=document.getElementById('cost');
 
-    
+
     //button click add or none
     for (let i = 0; i < add.length; i++) {
         add[i].addEventListener('click',function(){
-            
+
             quan[i].innerHTML=Number(quan[i].innerHTML)+1;
             tot(i);
             costt();
@@ -32,20 +32,20 @@ window.onload=()=>{
         tot(i);
     }
     costt();
-    
-    
-    
+
+
+
 }
 tot=(i)=>{
-    
-    
+
+
     total[i].innerHTML=Number(price[i].innerHTML*quan[i].innerHTML);
     return true;
 }
 costt=()=>{
     cost.innerHTML=0;
     for (let j = 0; j < total.length; j++) {
-        
+
         cost.innerHTML=Number(cost.innerHTML)+Number(total[j].innerHTML)
     }
     return true;

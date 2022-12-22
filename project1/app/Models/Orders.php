@@ -39,7 +39,7 @@ class Orders extends Model
     }
 
     public function getorder($id){
-        $orders = DB::select("SELECT O.id, C.fullname, C.phone, C.email, O.ord_date, O.ord_status from orders O
+        $orders = DB::select("SELECT O.id, C.fullname, C.phone, C.email, O.ord_date, O.ord_status, O.address, O.methodpay from orders O
         inner join customers C on O.cus_id = C.id  WHERE O.id =?", [$id]);
         return $orders;
     }
@@ -60,5 +60,17 @@ class Orders extends Model
         $today = date_format(now(), 'Y-m-d');
         $ordertoday = DB::select("SELECT * from orders WHERE date_format(ord_date,'%Y-%m-%d') = $today");
         return $ordertoday;
+    }
+
+    public function createorders($data){
+        DB::insert("INSERT orders(id, cus_id, ord_date, ord_status, address, methodpay) values (?,?,?,?,?,?)", $data);
+    }
+
+    public function createorderDetail($data){
+        DB::insert("INSERT into orderDetail(ord_id, pro_id, pro_price, quantity) values(?,?,?,?)", $data);
+    }
+
+    public function delcart($cus_id){
+        DB::delete("DELETE from tblcart where cus_id = ?", [$cus_id]);
     }
 }

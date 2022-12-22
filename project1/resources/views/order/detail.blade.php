@@ -30,7 +30,7 @@
                 <div class="col-md-12 order">
                 {{-- @if(!empty($order)) --}}
                 <div class="row">
-                    <table class="table" style="width:400px; height:70px">
+                    <table class="table" style="width:600px; height:70px">
                         <tbody>
                            <tr>
                                 <td class="inforders">Order ID:</td>
@@ -43,6 +43,14 @@
                             <tr>
                                 <td class="inforders">Date: </td>
                                 <td class="inforders">{{ $order[0]->ord_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="inforders">Address Shipping:</td>
+                                <td class="inforders">{{ $order[0]->address }}</td>
+                            </tr>
+                            <tr>
+                                <td class="inforders">Method Payment:</td>
+                                <td class="inforders">{{ $order[0]->methodpay }}</td>
                             </tr>
                             <tr>
                                 <td class="inforders">Status:</td>

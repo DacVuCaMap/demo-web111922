@@ -18,7 +18,6 @@
 
         .container {
             width: 100%;
-
         }
 
         .head {
@@ -55,6 +54,7 @@
         }
         .head_left div{
             font-size: 40px;
+            font-weight: 600;
         }
 
         .head_right div{
@@ -93,7 +93,7 @@
                 <span>Oceangate.org.vn</span>
             </div>
             <div class="head_right">
-                <div>#{{ $order[0]->id }}</div>
+                <div style="font-size: 16px; color:rgb(255, 110, 6); font-weight:700">#{{ $order[0]->id }}</div>
                 <span>Date: {{ $order[0]->ord_date }}</span>
             </div>
 
@@ -114,11 +114,19 @@
                         <td>Email:</td>
                         <td>{{ $order[0]->email }}</td>
                     </tr>
+                    <tr>
+                        <td>Address Shipping:</td>
+                        <td>{{ $order[0]->address }}</td>
+                    </tr>
+                    <tr>
+                        <td>Method Payment:</td>
+                        <td>{{ $order[0]->methodpay }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
         <div class="table">
-            <table>
+            <table >
                 <thead>
                     <tr>
                         <th class="d-none d-xl-table-cell">NBR</th>

@@ -24,7 +24,6 @@ class OrderController extends Controller
         $orderdetail = $this->order->getdetail($id);
         $order       = $this->order->getorder($id);
         $total       = $this->order->totalorder($id);
-        // dd($order);
         return view('order.detail', compact('orderdetail', 'order','total'));
     }
 
@@ -66,10 +65,23 @@ class OrderController extends Controller
         $orderID     = 'OD'.date('ymdHis', time()).'KH'.$cus_id;
         $ord_date    = now();
         $ord_status  = 2;
-        $all = DB::insert('INSERT into orders(id, cus_id, ord_date, ord_status) values (?, ?,?,?)', [$orderID, $cus_id ,$ord_date , $ord_status]);
-        // $update = DB::update('UPDATE  set ord_id = ? where cus_id = ?', [$orderID, $id]);
-        // $cart = DB::select("SELECT * from tblcart WHERE cus_id = ?", [$id]);
-        dd($all);
+        $address     = $req->address;
+        $methodpay   = $req->methodpay;
+        $data        = [$orderID, $cus_id ,$ord_date, $ord_status,  $address, $methodpay];
+        // insert vào orders
+        $this->order->createorders($data);
+        //insert orders Detail
+        $Detail = DB::select("SELECT * from tblcart WHERE cus_id = ?", [$cus_id]);
+        foreach ($Detail as $item){
+            $pro_id    = $item->pro_id;
+            $pro_price = $item->pro_price;
+            $quantity  = $item->quantity;
+            $data = [$orderID, $pro_id,$pro_price,$quantity];
+            $this->order->createorderDetail($data);
+        }
+        //xóa tblcart
+        $this->order->delcart($cus_id);
+        return view('home_byNamVu.orderinfo');
     }
 
 }
