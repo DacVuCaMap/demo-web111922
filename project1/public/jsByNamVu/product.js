@@ -1,7 +1,7 @@
 window.onload=()=>{
     var child=document.querySelectorAll('#childimg');
     var main=document.getElementById('mainimg');
-    
+    var checklogin=document.getElementById('checklogin');
     for (let i = 0; i < child.length; i++) {
         child[i].addEventListener('click',function(){
             for (let j = 0; j < child.length; j++) {
@@ -22,6 +22,10 @@ window.onload=()=>{
     });
     $(document).ready(function () {
         $('#btn').on('click',function(){
+            if (checklogin.value==1) {
+                window.location.href='http://127.0.0.1:8000/login';
+                return false;
+            }
             var prod=$('#prod');
             var userid=$('#userid');
             var idvalue=userid.val();

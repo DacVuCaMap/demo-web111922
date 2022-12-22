@@ -32,7 +32,10 @@
             </div>
             <form action="" method="post">
                 @csrf
+                @if (!empty($data))
                 <input type="hidden" name="user_id" value="{{ $data[0]->cus_id }}">
+                @endif
+                
                 @foreach ($data as $i=>$item)
                 <input type="hidden" name="p{{ $i }}" value="{{ $item->pro_id }}">
                 <div class="cartitem bd">

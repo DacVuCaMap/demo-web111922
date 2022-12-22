@@ -67,7 +67,7 @@
                     <div class="col-md-4">
                         <div class="card orders">
                             <i class="fa fa-shopping-basket icon" aria-hidden="true"></i>
-                            <h1>ORSERS</h1>
+                            <h1>ORDERS</h1>
                             <h2>{{ $tongorder[0]->tong }}</h2>
                             <span class="more_info"><a href="{{ route('order.list') }}" class="more_info">More Info</a></span>
                         </div>

@@ -83,18 +83,18 @@ class Product extends Model
 
         $all=DB::select("SELECT * FROM tblcart where 1=1");//select all data in tblcart
         $total=DB::select("SELECT SUM(quantity) as tot from tblcart where 1=1"); // total quantity
-         
         //check id in tblcart if have then add more quantity
         for ($i=0; $i < count($all); $i++) {
             
-            if ($pro_id==$all[$i]->pro_id) {
+            if ($pro_id==$all[$i]->pro_id && $user_id==$all[$i]->cus_id) {
                 
                 $data=[
                     $all[$i]->quantity + 1
                     ,$pro_id
+                    ,$user_id
                 ];
-                DB::update("UPDATE tblcart set quantity=? where pro_id=?",$data);
-                return $total[0]->tot+1;
+                DB::update("UPDATE tblcart set quantity=? where pro_id=? and cus_id=?",$data);
+                return true;
             }
         }
         // add to tblcart
@@ -108,13 +108,19 @@ class Product extends Model
         
         DB::insert("INSERT INTO tblcart(cus_id,pro_id,pro_price,quantity) values (?,?,?,1)",$data);
         
-        return $total[0]->tot+1;
+        return true;
     }
-    public function cartdata(){
+    // number in cart icon
+    public function nbrcart($cus_id){
+        $total=DB::select("SELECT SUM(quantity) as tot from tblcart where cus_id=?",[$cus_id]);
+        return $total[0]->tot;
+    }
+    public function cartdata($id){
+        
         return DB::select("SELECT pi.img_first,pr.pro_name,ct.name,ca.pro_id,ca.pro_price,ca.quantity,ca.cus_id from tblcart ca
         inner join proimage pi on pi.pro_id=ca.pro_id
         inner join product pr on pr.id=ca.pro_id
-        inner join category ct on ct.id=pr.cat_id");
+        inner join category ct on ct.id=pr.cat_id where ca.cus_id=?",[$id]);
 
     }
     public function upcartdata($updata,$pro_id,$user_id){

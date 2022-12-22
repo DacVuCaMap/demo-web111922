@@ -14,10 +14,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('tittle')</title>
     <link rel="stylesheet" href="{{ asset('cssbyNamVu/homelayout.css') }}">
+    <script src="{{ asset('jsbyNamVu/homelayout.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="shortcut icon" href="{{ asset('adminkit/src/img/icons/icon-48x48.png') }}" />
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     
    {{-- swiper library --}}
    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -34,15 +36,17 @@
                     <div class="sign-in">
                         @if (Auth::guard('customers')->check()==true)
 
-                        <a href="#">{{ $name }}</a>
+                        <a href="#">{{ $name }}</a> 
+                        <a href="{{ route('user.logout') }}" style="font-size: 20px"><i class="fa-solid fa-right-from-bracket"></i></a> 
                         @else
                         <a href="{{ route('user.login') }}">Sign in</a>
                         @endif
                         
                         <i class="fa-sharp fa-solid fa-circle-user"></i>
+                        
                     </div>
 
-                    <div class="search-icon">
+                    <div onclick="searchclick()" id="search" class="search-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
 
@@ -70,7 +74,15 @@
             </div>
         </a>
         @endif
-        
+        <div class="layoutdisable">
+        </div>
+        <div class="searchdisplay">
+            <div class="upsearch">
+                <input type="text" placeholder="Looking for something?">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            
+        </div>
     </section>
 
 </body>

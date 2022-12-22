@@ -71,10 +71,14 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="addtocart">   
+                    <div class="addtocart">
+                        @if (Auth::guard('customers')->check()==true)
+                            <input type="hidden" id="checklogin" value="0">
+                        @else
+                            <input type="hidden" id="checklogin" value="1">
+                        @endif 
                         
                             <input type="hidden" id="prod" name="prod" value="{{ $data->pro_id }}">
-                            <input type="hidden" id="userid" name="userid" value="1">
                             <button id="btn" class="btn">Add to card</button>         
                     </div>
                     
