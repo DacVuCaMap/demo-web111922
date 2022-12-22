@@ -17,7 +17,7 @@
         </div>
     <div class="container-fluid p-0">
         @if(session('msg'))
-        <div style="font-size:20px; font-weight:bolder; color: rgb(8, 181, 250); text-align:center">
+        <div style="font-size:20px; font-weight:bolder; color: rgb(253, 5, 5); text-align:center">
          {{ session('msg') }}
         </div>
         @endif

@@ -129,10 +129,17 @@
     display: inline-block;
     margin-top: 38px;
 }
-.quan button{
-    padding: 0 5px;
+.quan a{
+    cursor: pointer;
+    padding: 0 7px;
     font-size: 15px;
-    
+    background: black;
+    color: white;
+   user-select: none;
+}
+.quan a:active{
+    background: gray;
+    color: black;
 }
 .ac2{
     width: 180px;
@@ -179,27 +186,30 @@
     height: 50px;
 }
 .footcart h3{
+    
     display: inline-block;
-    margin-left: 40px;
+    margin-left: 60px;
     line-height: 50px;
-    margin-right: 40px;
+    margin-right: 20px;
     
 }
 .footcart h2{
+    
     display: inline-block;
     font-size: 25px;
-    width: 150px;
+    width: 130px;
 }
-.footcart a{
-    text-decoration: none;
+.footcart button{
+    cursor: pointer;
     background: white;
     font-size: 20px;
     font-weight: bold;
     color: black;
     padding: 5px 10px;
-    transition: 0.2s ease-in;     
+    transition: 0.2s ease-in;
+         
 }
-.footcart a:hover{
+.footcart button:hover{
     background: gray;
 
 }

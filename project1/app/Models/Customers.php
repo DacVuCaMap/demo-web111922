@@ -25,7 +25,7 @@ class Customers extends Authenticatable
         'address',
         'phone',
         'remember_token',
-        'create_at',
+        'creat_at',
         'update_at',
     ];
 

@@ -1,5 +1,11 @@
 {{-- ours layout home --}}
-
+<?php
+    if (Auth::guard('customers')->check()==true) {
+        $id=Auth::guard('customers')->id();
+        $name=DB::select('SELECT fullname from customers where id=?',[$id]);
+        $name=$name[0]->fullname;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +32,13 @@
                 <div class="rightsidemenu">
 
                     <div class="sign-in">
+                        @if (Auth::guard('customers')->check()==true)
+
+                        <a href="#">{{ $name }}</a>
+                        @else
                         <a href="{{ route('user.login') }}">Sign in</a>
+                        @endif
+                        
                         <i class="fa-sharp fa-solid fa-circle-user"></i>
                     </div>
 
@@ -53,10 +65,8 @@
         @if (session('cart'))
         <a class="carta" href="{{ route('user.cart') }}">
             <div class="cartarea">
-                
-                    <div  class="nbrcart"><h3 id="nbrcart">{{ session('cart') }}</h3></div>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                
+                <div  class="nbrcart"><h3 id="nbrcart">{{ session('cart') }}</h3></div>
+                <i class="fa-solid fa-cart-shopping"></i>
             </div>
         </a>
         @endif

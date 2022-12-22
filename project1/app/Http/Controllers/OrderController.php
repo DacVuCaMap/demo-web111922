@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Orders;
 use PDF;
+use DB;
 class OrderController extends Controller
 {
     private $order;
@@ -59,9 +60,16 @@ class OrderController extends Controller
        return $pdf->stream();
     }
 
-    // insert vào orders và orderDatil
-    // public function insertORders(){
-    //     $tblcsrt = DB::seldcy(ỵyrjyj)
-    // }
+    public function createorder(Request $req){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $cus_id      = $req->user_id;
+        $orderID     = 'OD'.date('ymdHis', time()).'KH'.$cus_id;
+        $ord_date    = now();
+        $ord_status  = 2;
+        $all = DB::insert('INSERT into orders(id, cus_id, ord_date, ord_status) values (?, ?,?,?)', [$orderID, $cus_id ,$ord_date , $ord_status]);
+        // $update = DB::update('UPDATE  set ord_id = ? where cus_id = ?', [$orderID, $id]);
+        // $cart = DB::select("SELECT * from tblcart WHERE cus_id = ?", [$id]);
+        dd($all);
+    }
 
 }

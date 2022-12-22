@@ -25,67 +25,79 @@
                 <div class="cartrow ac">
                     <p>Action</p>
                 </div>
-                <div class="cartrow tick">
+                {{-- <div class="cartrow tick">
                     <input type="checkbox" name="" id="">
-                </div>
+                </div> --}}
 
             </div>
-            {{-- // items --}}
-            @foreach ($data as $i=>$item)
-            <div class="cartitem bd">
-                <div class="row1 it1">
-                    <div>
-                        <h4>{{ $i+1 }}</h4>
-                    </div>
-                    <a href="">
-                        <img src="{{ asset($item->img_first) }}" alt="" height="130px">
-                    </a>
-
-                    <div>
-                        {{-- product name --}}
+            <form action="{{ route('order.create') }}" method="post">
+                @csrf
+                <input type="hidden" name="user_id" value="{{ $data[0]->cus_id }}">
+                @foreach ($data as $i=>$item)
+                <input type="hidden" name="p{{ $i }}" value="{{ $item->pro_id }}">
+                <div class="cartitem bd">
+                    <div class="row1 it1">
+                        <div>
+                            <h4>{{ $i+1 }}</h4>
+                        </div>
+                        {{-- img product --}}
                         <a href="">
-                            <h3>{{ $item->pro_name }}</h3>
+                            <img src="{{ asset($item->img_first) }}" alt="" height="130px">
                         </a>
 
-                        {{-- product detail : cat and product ID --}}
-                        <p>Type: {{ $item->name }}</p>
-                        <p>Product ID: {{ $item->id }}</p>
+                        <div>
+                            {{-- product name --}}
+                            <a href="">
+                                <h3>{{ $item->pro_name }}</h3>
+                            </a>
+
+                            {{-- product detail : cat and product ID --}}
+                            <p>Category: {{ $item->name }}</p>
+                            <p>Product ID: {{ $item->pro_id }}</p>
+                        </div>
                     </div>
+                    <div class="cartrow it2">
+                        <p ><span id="price">{{ $item->pro_price }}</span>$</p>
+                    </div>
+                    <div class="cartrow it2 quan">
+                        <div>
+                            <a id="btn1" class="btn btn-primary">-</a>
+                            <input type="hidden" id="inp" name="{{ $i }}" value="{{ $item->quantity }}">
+                            <p id="quan">{{ $item->quantity }}</p>
+                            <a id="btn2" class="btn btn-primary">+</a>
+                        </div>
+
+                    </div>
+                    <div class="cartrow it2">
+                        <p><span id="total"></span>$</p>
+                    </div>
+                    <div class="cartrow it2 ac2">
+                        <a href="{{ route('user.delcart',['pro_id'=>$item->pro_id,'cus_id'=>$item->cus_id]) }}">Delete <i class="fa-solid fa-trash"></i></a>
+                    </div>
+                    {{-- <div class="cartrow tick it2 tick2">
+                        <input type="checkbox" name="" id="tick">
+                    </div> --}}
+
                 </div>
-                <div class="cartrow it2">
-                    <p ><span id="price">{{ $item->pro_price }}</span>$</p>
-                </div>
-                <div class="cartrow it2 quan">
+                @endforeach
+
+                <input type="text" name="address" id="">
+                <select name="methodpay" id="">
+                    <option value="1">Chuyen khoan</option>
+                    <option value="2">Thanh toan bang tien mat</option>
+                </select>
+
+                {{-- foot add to cart --}}
+                <div class="footcart">
                     <div>
-                        <button id="btn">-</button>
-                        <p id="quan">{{ $item->quan }}</p>
-                        <button id="btn">+</button>
+                        <h3>Total cost:</h3>
+                        <h2> <span id="cost">0</span>$</h2>
+                        <button>Payment ></button>
                     </div>
-
                 </div>
-                <div class="cartrow it2">
-                    <p><span id="total"></span>$</p>
-                </div>
-                <div class="cartrow it2 ac2">
-                    <a href="">Delete <i class="fa-solid fa-trash"></i></a>
-                </div>
-                <div class="cartrow tick it2 tick2">
-                    <input type="checkbox" name="" id="tick">
-                </div>
+            </form>
+            {{-- // items --}}
 
-            </div>
-            @endforeach
-
-
-
-            {{-- foot add to cart --}}
-            <div class="footcart">
-                <div>
-                    <h3>Total cost:</h3>
-                    <h2> <span id="cost">20000</span>$</h2>
-                    <a href="">Payment ></a>
-                </div>
-            </div>
         </div>
     </div>
 

@@ -79,30 +79,60 @@ class Product extends Model
     public function getP($id){
         return DB::select("SELECT * FROM product pr INNER JOIN proimage pm on pr.id=pm.pro_id inner join prodesc pd on pd.pro_id=pr.id inner join category ca on ca.id=pr.cat_id where pr.id=?",[$id]);
     }
-    public function addtoCart($id){
+    public function addtoCart($pro_id,$user_id){
 
-        $all=DB::select("SELECT * FROM tblcart where 1=1");
-        $total=DB::select("SELECT SUM(quan) as tot from tblcart where 1=1");
-
+        $all=DB::select("SELECT * FROM tblcart where 1=1");//select all data in tblcart
+        $total=DB::select("SELECT SUM(quantity) as tot from tblcart where 1=1"); // total quantity
+         
+        //check id in tblcart if have then add more quantity
         for ($i=0; $i < count($all); $i++) {
-            if ($id==$all[$i]->pro_id) {
+            
+            if ($pro_id==$all[$i]->pro_id) {
+                
                 $data=[
-                    $all[$i]->quan + 1
-                    ,$id
+                    $all[$i]->quantity + 1
+                    ,$pro_id
                 ];
-                DB::update("UPDATE tblcart set quan=? where pro_id=?",$data);
+                DB::update("UPDATE tblcart set quantity=? where pro_id=?",$data);
                 return $total[0]->tot+1;
             }
         }
-        DB::insert("INSERT INTO tblcart(pro_id,quan) values (?,1)",[$id]);
+        // add to tblcart
+        $price=DB::select("SELECT pro_price FROM product where id=?",[$pro_id]);
+        
+        $data=[
+            $user_id,
+            $pro_id,
+            $price[0]->pro_price,
+        ];
+        
+        DB::insert("INSERT INTO tblcart(cus_id,pro_id,pro_price,quantity) values (?,?,?,1)",$data);
+        
         return $total[0]->tot+1;
     }
     public function cartdata(){
-        return DB::select('SELECT pr.id,pr.pro_name,pi.img_first,pr.pro_price,ca.quan,ct.name from tblcart ca
-        inner join product pr on ca.pro_id=pr.id
-        inner join proimage pi on ca.pro_id=pi.pro_id
-        inner join category ct on pr.cat_id=ct.id');
+        return DB::select("SELECT pi.img_first,pr.pro_name,ct.name,ca.pro_id,ca.pro_price,ca.quantity,ca.cus_id from tblcart ca
+        inner join proimage pi on pi.pro_id=ca.pro_id
+        inner join product pr on pr.id=ca.pro_id
+        inner join category ct on ct.id=pr.cat_id");
 
+    }
+    public function upcartdata($updata,$pro_id,$user_id){
+        
+        for ($i=0; $i < count($updata) ; $i++) { 
+            $data=[
+                $updata[$i],
+                $pro_id[$i],
+                $user_id
+            ];
+            DB::update('UPDATE tblcart set quantity=? where pro_id=? and cus_id=?',$data);
+        }
+    }
+    public function deletecart($proid,$cusid){
+        $data=[
+            $proid,$cusid
+        ];
+        DB::delete('DELETE FROM tblcart WHERE pro_id=? and cus_id=?',$data);
     }
 
 

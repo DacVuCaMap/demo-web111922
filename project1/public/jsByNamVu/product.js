@@ -23,9 +23,12 @@ window.onload=()=>{
     $(document).ready(function () {
         $('#btn').on('click',function(){
             var prod=$('#prod');
-            var value=prod.val();
+            var userid=$('#userid');
+            var idvalue=userid.val();
+            var prodvalue=prod.val();
             var dissc=document.getElementById('display');
-            
+            var carta=document.getElementById('carta');
+            carta.style='display:block';
             dissc.style='opacity:1;visibility: visible';
             $('#cover').fadeIn(100);
             window.setTimeout(function(){
@@ -36,16 +39,17 @@ window.onload=()=>{
             
             $.ajax({
                 type: "get",
-                url: "/shop/product/"+value,
-                data: {'prod':value},
+                url: "/shop/product/"+prodvalue,
+                data: {'prod':prodvalue,'userid':idvalue},
                 // beforeSend: function(){
                 //     setTimeout(function(){
                 //         $('#nbrcart').html('//cho gif loading zo')
                 //     },2000)
                 // },
                 success: function (data) {
-                     
+                     console.log(data);
                      $('#nbrcart').html(data);
+                     $('#nbrcart2').html(data);
                 }
             });
             
