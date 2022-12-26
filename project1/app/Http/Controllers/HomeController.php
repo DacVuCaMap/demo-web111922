@@ -81,10 +81,16 @@ class HomeController extends Controller
         return redirect()->back();
    }
    //order
-   public function order($cus_id){
-        $orders = DB::select("SELECT * from orders Where cus_id = ?", [$cus_id]);
+   public function order(){
+        if(Auth::guard('customers')->check()){
+            $cus_id = Auth::guard('customers')->id();
+            $orders = DB::select("SELECT * from orders Where cus_id = ?", [$cus_id]);
+            // dd($orders);
+            return view('home_byNamVu.orderinfo', compact('orders'));
+        }
+
         // dd($orders);
-        return view('home_byNamVu.orderinfo', compact('orders'));
+
    }
 
    //search

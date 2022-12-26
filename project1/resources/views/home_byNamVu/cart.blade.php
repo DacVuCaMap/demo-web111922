@@ -83,7 +83,9 @@
 
                 </div>
                 @endforeach
-
+                @if (session('msg'))
+                    {{ session('msg') }}
+                @endif
                 <input type="text" name="address" id="">
                 <select name="methodpay" id="">
                     <option value="1">Chuyen khoan</option>
@@ -95,7 +97,7 @@
                     <div>
                         <h3>Total cost:</h3>
                         <h2> <span id="cost">0</span>$</h2>
-                        <button>CHECKOUT></button>
+                        <button id="btn-checkout">CHECKOUT></button>
                     </div>
                 </div>
             </form>

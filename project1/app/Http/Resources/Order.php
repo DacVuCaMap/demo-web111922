@@ -19,7 +19,8 @@ class Order extends JsonResource
             'Customer'   => $this->cus_id,
             'Date'       => $this->ord_date,
             'Status'     => $this->ord_status,
-            ''
+            'Address'    => $this->address,
+            'Method Payment'=> $this->methodpay,
         ];
     }
 }

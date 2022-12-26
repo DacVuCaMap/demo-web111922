@@ -22,7 +22,7 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::post('/create', [OrderController::class, 'createorder'])->middleware('customer.login')->name('createorder');
     Route::get('/cart',[HomeController::class,'cart'])->middleware('customer.login')->name('cart');
     Route::post('/cart',[HomeController::class,'postcart'])->middleware('customer.login');
-    Route::get('/order-info/{cus_id}',[HomeController::class,'order'])->middleware('customer.login')->name('orderinfo');
+    Route::get('/order-info',[HomeController::class,'order'])->middleware('customer.login')->name('orderinfo');
     Route::get('/delcart_{pro_id}_{cus_id}',[HomeController::class,'delcart'])->middleware('customer.login')->name('delcart');
     //test area
     Route::get('/test',[HomeController::class,'test']);
@@ -101,5 +101,5 @@ Route::prefix('admin/statistic')->middleware('admin.login')->name('statistic.')-
 });
 
 
-
+Route::get('/listpro/{id}', [OrderController::class, 'getpro']);
 
