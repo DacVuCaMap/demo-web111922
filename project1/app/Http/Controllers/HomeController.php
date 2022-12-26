@@ -84,5 +84,35 @@ class HomeController extends Controller
         return view('home_byNamVu.orderinfo');
    }
 
-
+   //search
+   public function search(Request $req){
+        
+        if ($req->ajax()) {
+            $key=$req->search;
+            if (strlen($key)>1) {
+                $rs=$this->pro->search_pro($key);
+                $output='';
+                
+                for ($i=0; $i <count($rs) ; $i++) { 
+                    $output .='<a style="text-decoration: none" href="/shop/product/'.$rs[$i]->id.'">
+                    <div class="cardsearch">
+                    <div>
+                        <img src="'.$rs[$i]->img_first.'" alt="" height="100px">
+                        </div>
+                        <div class="propertisesearch">
+                            <h2>'.$rs[$i]->pro_name.'</h2>
+                            <p>Category: '.$rs[$i]->name.'</p>
+                            <p>Price: '.$rs[$i]->pro_price.'$</p>
+                        </div>
+                    </div>
+                    </a>';
+                }
+                if ($output=='') {
+                    return false;
+                }
+                return response()->json($output);
+            }
+            
+        }
+   }
 }

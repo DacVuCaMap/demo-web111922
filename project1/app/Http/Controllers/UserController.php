@@ -57,16 +57,19 @@ class UserController extends Controller
         if($admin==true && $customer==false){
             return redirect()->route('admin.home');
         }else if($admin==false && $customer==true){
-            // phan if session link de get back ve link mua ban
-            if (session('link')) {
-                return redirect(session('link'));
-            }
+            
             //check nbr cart to show in icon
             $cusid=Auth::guard('customers')->id();
             $tot=$this->pro->nbrcart($cusid);
+            // phan if session link de get back ve link mua ban
             if ($tot>0) {
                 session()->put('cart',$tot);
             }
+            if (session('link')) {
+                return redirect(session('link'));
+            }
+            
+            
             return redirect()->route('user.home');
         }else{
             return redirect()->back()->with('msg', ('This Account not exists!'));

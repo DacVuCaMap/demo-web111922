@@ -5,6 +5,9 @@
     margin: auto;
     height: 4000px;
 }
+.backgr{
+    background: white;
+}
 @media screen and (max-width:1366px) {
     .container{
         width: 100%;

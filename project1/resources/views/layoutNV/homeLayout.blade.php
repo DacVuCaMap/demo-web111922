@@ -4,6 +4,7 @@
         $id=Auth::guard('customers')->id();
         $name=DB::select('SELECT fullname from customers where id=?',[$id]);
         $name=$name[0]->fullname;
+        
     }
 ?>
 <!DOCTYPE html>
@@ -17,9 +18,19 @@
     <script src="{{ asset('jsbyNamVu/homelayout.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="shortcut icon" href="{{ asset('adminkit/src/img/icons/icon-48x48.png') }}" />
-    
+    {{-- jquery --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <style>
+        .search::-webkit-search-cancel-button{
+            background:url({{ asset('storage/imgNV/cancelx.PNG') }});
+        }
+        .search::-webkit-search-cancel-button{
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 10%;
+        }
+    </style>
     
    {{-- swiper library --}}
    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -74,12 +85,14 @@
             </div>
         </a>
         @endif
-        <div class="layoutdisable">
+        <div id="layoutdisable" class="layoutdisable">
         </div>
-        <div class="searchdisplay">
+        <div id="searchdisplay" class="searchdisplay">
             <div class="upsearch">
-                <input type="text" placeholder="Looking for something?">
+                <input id="searchin" name="search" class="search" type="search" placeholder="Looking for something?">
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="datasearch">
             </div>
             
         </div>
