@@ -9,16 +9,19 @@ use Illuminate\Support\Str;
 use Session;
 use App\Models\Admin;
 use App\Models\Customers;
+use App\Models\Product;
 
 class UserController extends Controller
 {
     private $custom;
     private $admin;
     private $string;
+    private $pro;
     public function __construct(){
         $this->custom = new Customers();
         $this->admin  = new Admin();
         $this->string = "";
+        $this->pro    = new Product();
     }
 
     public function login(){
@@ -54,6 +57,19 @@ class UserController extends Controller
         if($admin==true && $customer==false){
             return redirect()->route('admin.home');
         }else if($admin==false && $customer==true){
+
+            //check nbr cart to show in icon
+            $cusid=Auth::guard('customers')->id();
+            $tot=$this->pro->nbrcart($cusid);
+            // phan if session link de get back ve link mua ban
+            if ($tot>0) {
+                session()->put('cart',$tot);
+            }
+            if (session('link')) {
+                return redirect(session('link'));
+            }
+
+
             return redirect()->route('user.home');
         }else{
             return redirect()->back()->with('msg', ('This Account not exists!'));

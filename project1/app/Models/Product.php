@@ -141,5 +141,12 @@ class Product extends Model
         DB::delete('DELETE FROM tblcart WHERE pro_id=? and cus_id=?',$data);
     }
 
+    public function search_pro($key){
+        $key=str_replace(' ','%',$key);
+        $data=DB::select("SELECT pr.id,pi.img_first,pr.pro_name,pr.pro_price,ca.name from product pr
+        inner join category ca on pr.cat_id=ca.id
+        inner join proimage pi on pi.pro_id=pr.id where pr.pro_name like '%{$key}%'");
+        return $data;
+    }
 
 }

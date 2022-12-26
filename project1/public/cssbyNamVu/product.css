@@ -90,13 +90,12 @@ ul{
     height: 50px;
 }
 .status{
-    
     background: green;
-    margin: 10px;
-    width: 70px;
+    padding:0px 10px;
     text-align: center;
     color: white;
     border-radius: 4px;
+    margin: 0px 20px;
 }
 .propertise>div:nth-child(2){
     
@@ -235,10 +234,6 @@ ul{
     font-size: 18px;
     padding:10px 20px 10px 20px
 }
-.comment-box{
-    height: 400px;
-    background: red; 
-}
 
 /* display cart */
 .display{
@@ -281,4 +276,150 @@ ul{
     width: 100%;
     z-index: 2;
     display: none;
+}
+/* comment box */
+.comment-box{
+    background: rgb(226, 226, 226);
+    display: flex;
+}
+.leftcmt{
+    width: 65%;
+    height: 1000px;
+    box-sizing: border-box;
+}
+
+.leftcmt:first-child{
+    box-sizing: border-box;
+    padding: 20px;
+    
+}
+.reviewdetail{
+    background: rgb(253, 253, 253);
+    height: 300px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+}
+.reviewdetail>div:first-child{
+    /* background: red; */
+    height: 70px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.reviewdetail>div:first-child p{
+    font-size: 18px;
+}
+.detailstar{
+    
+    height: 45px;
+    display: flex;
+    align-items: center;
+}
+.detailstar>div:first-child{
+    width: 70px;
+    text-align: center;
+    line-height: 45px;
+}
+.blackbar{
+    background: gray;
+    border-radius: 20px;
+    height: 20px;
+    width: 600px;
+    overflow: hidden;
+}
+.blackpoint{
+    background: black;
+    height: 100%;
+    width: 60%;
+    border-radius: 20px;
+}
+.detailstar>div:nth-child(3){
+    width: 150px;
+    text-align: center;
+    line-height: 45px;
+}
+.leftcmt>div:nth-child(2){
+    background: rgb(253, 253, 253);
+    margin-top: 50px;
+    padding:20px;
+}
+.upcmtdetail{
+    
+    height: 50px;
+    border-bottom: 1px solid rgb(110, 110, 110);
+}
+.cus_comment{
+    border-bottom: 1px solid rgb(180, 180, 180);
+    position: relative;
+}
+.avtcmt{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top:10px;
+    left: 0;
+}
+.namecmt{
+    min-width: 100px;
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 60px;
+}
+.textcmt{
+    
+    padding-top: 55px;
+    padding-left: 60px;
+    padding-bottom: 10px;
+
+}
+.rightcmt{
+    
+    width: 35%;
+    height: 1000px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.yourcmt{
+    background: rgb(129, 129, 129);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    height: 400px;
+    text-align: center;
+    padding-top: 5px;
+}
+.yourcmt>div{
+
+    height: 100px;
+}
+.yourcmt>div>i{
+    font-size: 30px;
+    margin: 20px 5px;
+}
+.cusinp{
+    width: 90%;
+    height: 200px;
+    resize: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 20px;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    box-sizing: border-box;
+    background: rgb(226, 226, 226);
+    color: rgb(44, 44, 44);
+}
+.yourcmt>button{
+    margin-top: 5px;
+    width: 90%;
+    font-size: 18px;
+    padding: 5px;
+    box-sizing: border-box;
+    background: black;
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.yourcmt>button:active{
+    background: gray;
+    color: black;
 }

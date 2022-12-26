@@ -26,6 +26,9 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('/delcart_{pro_id}_{cus_id}',[HomeController::class,'delcart'])->middleware('customer.login')->name('delcart');
     //test area
     Route::get('/test',[HomeController::class,'test']);
+    //search
+    Route::get('/search',[HomeController::class,'search'])->name('search');
+
 });
 //--Route shop
 

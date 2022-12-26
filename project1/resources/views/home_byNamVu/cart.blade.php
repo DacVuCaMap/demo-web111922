@@ -95,7 +95,7 @@
                     <div>
                         <h3>Total cost:</h3>
                         <h2> <span id="cost">0</span>$</h2>
-                        <button>Payment ></button>
+                        <button>CHECKOUT></button>
                     </div>
                 </div>
             </form>
