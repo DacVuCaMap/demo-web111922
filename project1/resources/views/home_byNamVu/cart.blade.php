@@ -30,12 +30,12 @@
                 </div> --}}
 
             </div>
-            <form action="{{ route('order.create') }}" method="post">
+            <form action="{{ route('user.createorder') }}" method="post">
                 @csrf
                 @if (!empty($data))
                 <input type="hidden" name="user_id" value="{{ $data[0]->cus_id }}">
                 @endif
-                
+
                 @foreach ($data as $i=>$item)
                 <input type="hidden" name="p{{ $i }}" value="{{ $item->pro_id }}">
                 <div class="cartitem bd">

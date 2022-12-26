@@ -19,15 +19,18 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('/register', [UserController::class, 'register'])->name('register');
     Route::post('/register', [UserController::class, 'postregis'])->name('register');
     Route::get('aboutus',[UserController::class,'aboutus'])->name('aboutus');
-    Route::get('/cart',[HomeController::class,'cart'])->name('cart');
-    Route::post('/cart',[HomeController::class,'postcart']);
-    Route::get('/order-info',[HomeController::class,'order'])->name('orderinfo');
-    Route::get('/delcart_{pro_id}_{cus_id}',[HomeController::class,'delcart'])->name('delcart');
+    Route::post('/create', [OrderController::class, 'createorder'])->middleware('customer.login')->name('createorder');
+    Route::get('/cart',[HomeController::class,'cart'])->middleware('customer.login')->name('cart');
+    Route::post('/cart',[HomeController::class,'postcart'])->middleware('customer.login');
+    Route::get('/order-info/{cus_id}',[HomeController::class,'order'])->middleware('customer.login')->name('orderinfo');
+    Route::get('/delcart_{pro_id}_{cus_id}',[HomeController::class,'delcart'])->middleware('customer.login')->name('delcart');
     //test area
     Route::get('/test',[HomeController::class,'test']);
-
 });
 //--Route shop
+
+
+
 Route::prefix('/shop')->name('shop.')->group(function(){
     Route::get('/',[HomeController::class,'shop'])->name('cat');
     Route::get('floppydisk',[HomeController::class,'floppydisk'])->name('floppydisk');
@@ -73,7 +76,6 @@ Route::prefix('admin/product')->middleware('admin.login')->name('product.')->gro
 
 // Route order
 Route::prefix('admin/order')->middleware('admin.login')->name('order.')->group(function(){
-    Route::post('/create', [OrderController::class, 'createorder'])->name('create');
     Route::get('/list', [OrderController::class, 'list'])->name('list');
     Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
     Route::get('/detail/export/{id}', [OrderController::class, 'exportPDF'])->name('exportPDF');

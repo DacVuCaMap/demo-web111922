@@ -5,6 +5,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use DB;
 class HomeController extends Controller
 {
     private $pro;
@@ -30,7 +31,7 @@ class HomeController extends Controller
         return view('home_byNamVu.test');
     }
     public function getProduct($id,Request $req){
-        
+
         if (Auth::guard('customers')->check()==0) {
             session()->put('link',url()->current());
         }
@@ -38,7 +39,7 @@ class HomeController extends Controller
         $data=$data[0];
         $cusid=Auth::guard('customers')->id();
         if($req->ajax()){
-            
+
             $rs=$this->pro->addtoCart($req->prod,$cusid);
             $tot=$this->pro->nbrcart($cusid);
             session()->put('cart',$tot);
@@ -49,27 +50,27 @@ class HomeController extends Controller
 
     }
    public function cart(){
-    
+
         $cusid=Auth::guard('customers')->id();
         $data=$this->pro->cartdata($cusid);
-        
+
         return view('home_byNamVu.cart',compact('data'));
    }
 
    public function postcart(Request $req){
         $data=$req->all();
         $user_id=$data['user_id'];
-        
+
         $updata=[];
         $pro_id=[];
         $count=(count($data)-2)/2;
-        for ($i=0; $i < $count ; $i++) { 
+        for ($i=0; $i < $count ; $i++) {
             array_push($updata,$data[$i]);
             array_push($pro_id,$data['p'.$i]);
         }
         $this->pro->upcartdata($updata,$pro_id,$user_id);
 
-        
+
         return redirect()->route('user.orderinfo');
    }
    //del cart
@@ -80,8 +81,10 @@ class HomeController extends Controller
         return redirect()->back();
    }
    //order
-   public function order(){
-        return view('home_byNamVu.orderinfo');
+   public function order($cus_id){
+        $orders = DB::select("SELECT * from orders Where cus_id = ?", [$cus_id]);
+        // dd($orders);
+        return view('home_byNamVu.orderinfo', compact('orders'));
    }
 
 

@@ -39,13 +39,14 @@ class AdminController extends Controller
     public function postadd(Request $req){
         $rules = [
             'fullname' => 'required|regex:/^[a-z A-Z]*$/'
-            ,'email'   => 'required|email'
+            ,'email'   => 'required|unique:admins,email|email'
             ,'password'=> 'required|regex:/(?=(.*[0-9]))(?=.*[a-z])(?=(.*)).{8,}/'
             ,'phone'   => 'required|regex:/^[0-9]{10,15}$/'
         ];
         $message = [
             'required'        => 'This field is required!'
             ,'fullname.regex' => 'Fullname cannot inlude number and special characters!'
+            ,'email.unique'   => 'This email already exists!'
             ,'email.email'    => 'Email is not in the correct format!'
             ,'password.regex' => 'Password must contain at least 8 characters including alphanumeric characters!'
             ,'Phone.regex'    => 'Incorrect phone number!'

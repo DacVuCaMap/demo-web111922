@@ -61,17 +61,17 @@ class OrderController extends Controller
 
     public function createorder(Request $req){
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $cus_id      = $req->user_id;
-        $orderID     = 'OD'.date('ymdHis', time()).'KH'.$cus_id;
-        $ord_date    = now();
-        $ord_status  = 2;
-        $address     = $req->address;
-        $methodpay   = $req->methodpay;
-        $data        = [$orderID, $cus_id ,$ord_date, $ord_status,  $address, $methodpay];
+            $cus_id      = $req->user_id;
+            $orderID     = 'OD'.date('ymdHis', time()).'KH'.$cus_id;
+            $ord_date    = now();
+            $ord_status  = 2;
+            $address     = $req->address;
+            $methodpay   = $req->methodpay;
+            $data        = [$orderID, $cus_id ,$ord_date, $ord_status,  $address, $methodpay];
         // insert vào orders
-        $this->order->createorders($data);
+            $this->order->createorders($data);
         //insert orders Detail
-        $Detail = DB::select("SELECT * from tblcart WHERE cus_id = ?", [$cus_id]);
+            $Detail = DB::select("SELECT * from tblcart WHERE cus_id = ?", [$cus_id]);
         foreach ($Detail as $item){
             $pro_id    = $item->pro_id;
             $pro_price = $item->pro_price;
@@ -81,7 +81,10 @@ class OrderController extends Controller
         }
         //xóa tblcart
         $this->order->delcart($cus_id);
-        return view('home_byNamVu.orderinfo');
+        return redirect()->route('user.orderinfo', $cus_id);
     }
+
+
+
 
 }
