@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Orders;
 use PDF;
 use DB;
+use App\Http\Resources\Order;
 class OrderController extends Controller
 {
     private $order;
@@ -18,6 +19,19 @@ class OrderController extends Controller
         $key_word = $req->key_word;
         $orders = $this->order->getorders($key_select, $key_word);
         return view('order.list', compact('orders'));
+    }
+
+    // public function edit($id){
+
+    // }
+
+    public function update(Request $req, $id){
+        $order = DB::select("SELECT * from orders where id = ?", [$id]);
+        return response()->json([
+            'data' => $order,
+            'status'=> 200,
+            'message'=>'ok',
+        ]);
     }
     // tạo order chi tiết
     public function detail($id){
@@ -61,27 +75,39 @@ class OrderController extends Controller
 
     public function createorder(Request $req){
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $cus_id      = $req->user_id;
-        $orderID     = 'OD'.date('ymdHis', time()).'KH'.$cus_id;
-        $ord_date    = now();
-        $ord_status  = 2;
-        $address     = $req->address;
-        $methodpay   = $req->methodpay;
-        $data        = [$orderID, $cus_id ,$ord_date, $ord_status,  $address, $methodpay];
+            $cus_id      = $req->user_id;
+            $orderID     = 'OD'.date('ymdHis', time()).'KH'.$cus_id;
+            $ord_date    = now();
+            $ord_status  = 2;
+            $address     = $req->address;
+            $methodpay   = $req->methodpay;
+            $data        = [$orderID, $cus_id ,$ord_date, $ord_status,  $address, $methodpay];
+
+            $Detail = DB::select("SELECT * from tblcart WHERE cus_id = ?", [$cus_id]);
+            // $pro_st = [];
+            foreach ($Detail as $item) {
+                $pro = $item->pro_id;
+                $status = DB::select('SELECT pro_status from product where id = ?', [$pro]);
+                $status = $status[0]->pro_status;
+                // array_push($pro_st,$status);
+                if($status=="Out of stock"){
+                    return redirect()->route('user.cart')->with('msg', 'Product '.$pro.' Out of stock');
+                }
+            }
         // insert vào orders
-        $this->order->createorders($data);
+            $this->order->createorders($data);
         //insert orders Detail
-        $Detail = DB::select("SELECT * from tblcart WHERE cus_id = ?", [$cus_id]);
-        foreach ($Detail as $item){
-            $pro_id    = $item->pro_id;
-            $pro_price = $item->pro_price;
-            $quantity  = $item->quantity;
-            $data = [$orderID, $pro_id,$pro_price,$quantity];
-            $this->order->createorderDetail($data);
-        }
-        //xóa tblcart
+            foreach ($Detail as $item){
+                $pro_id    = $item->pro_id;
+                $pro_price = $item->pro_price;
+                $quantity  = $item->quantity;
+                $data = [$orderID, $pro_id,$pro_price,$quantity];
+                $this->order->createorderDetail($data);
+            }
+        // xóa tblcart
         $this->order->delcart($cus_id);
-        return view('home_byNamVu.orderinfo');
+        return redirect()->route('user.orderinfo', $cus_id);
     }
+
 
 }

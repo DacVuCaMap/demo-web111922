@@ -21,7 +21,7 @@ class UserController extends Controller
         $this->custom = new Customers();
         $this->admin  = new Admin();
         $this->string = "";
-        $this->pro = new Product();
+        $this->pro    = new Product();
     }
 
     public function login(){
@@ -57,7 +57,7 @@ class UserController extends Controller
         if($admin==true && $customer==false){
             return redirect()->route('admin.home');
         }else if($admin==false && $customer==true){
-            
+
             //check nbr cart to show in icon
             $cusid=Auth::guard('customers')->id();
             $tot=$this->pro->nbrcart($cusid);
@@ -68,8 +68,8 @@ class UserController extends Controller
             if (session('link')) {
                 return redirect(session('link'));
             }
-            
-            
+
+
             return redirect()->route('user.home');
         }else{
             return redirect()->back()->with('msg', ('This Account not exists!'));
@@ -85,6 +85,9 @@ class UserController extends Controller
         //--end
         return redirect()->route('user.home');
     }
+
+
+
 
     public function register(){
         return view('admin.register');

@@ -30,12 +30,12 @@
                 </div> --}}
 
             </div>
-            <form action="{{ route('order.create') }}" method="post">
+            <form action="{{ route('user.createorder') }}" method="post">
                 @csrf
                 @if (!empty($data))
                 <input type="hidden" name="user_id" value="{{ $data[0]->cus_id }}">
                 @endif
-                
+
                 @foreach ($data as $i=>$item)
                 <input type="hidden" name="p{{ $i }}" value="{{ $item->pro_id }}">
                 <div class="cartitem bd">
@@ -83,7 +83,9 @@
 
                 </div>
                 @endforeach
-
+                @if (session('msg'))
+                    {{ session('msg') }}
+                @endif
                 <input type="text" name="address" id="">
                 <select name="methodpay" id="">
                     <option value="1">Chuyen khoan</option>
@@ -95,7 +97,7 @@
                     <div>
                         <h3>Total cost:</h3>
                         <h2> <span id="cost">0</span>$</h2>
-                        <button>CHECKOUT></button>
+                        <button id="btn-checkout">CHECKOUT></button>
                     </div>
                 </div>
             </form>
