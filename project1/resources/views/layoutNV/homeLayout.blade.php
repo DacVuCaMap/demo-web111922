@@ -45,10 +45,14 @@
                 <div class="rightsidemenu">
 
                     <div class="sign-in">
+                        
+                        
                         @if (Auth::guard('customers')->check()==true)
 
                         <a href="#">{{ $name }}</a> 
-                        <a href="{{ route('user.logout') }}" style="font-size: 20px"><i class="fa-solid fa-right-from-bracket"></i></a> 
+                        <a href="{{ route('user.logout') }}" style="font-size: 20px"><i class="fa-solid fa-right-from-bracket"></i></a>
+                        @elseif (Auth::guard('admins')->check()==true)
+                            <a href="{{ route('admin.home') }}">ADMIN HOME</a> 
                         @else
                         <a href="{{ route('user.login') }}">Sign in</a>
                         @endif

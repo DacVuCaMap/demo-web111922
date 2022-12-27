@@ -101,7 +101,8 @@
                                 <p>{{ $item->size }}</p>
                             </div>
                         </div>
-                        <span class="review">***** 5</span>
+                        <span style="color: rgb(88, 88, 88)" id="countstar" class="review">{{ $item->sum }}</span>
+                        <span id="starspan"></span>
                         <p>Price: {{ $item->pro_price }}$</p>
                         <br>
                         <a class="btn" href="{{ route('shop.getpro',['id'=>$item->pro_id]) }}" class="learn-more">Learn more</a>

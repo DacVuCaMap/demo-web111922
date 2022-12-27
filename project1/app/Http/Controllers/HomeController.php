@@ -19,7 +19,20 @@ class HomeController extends Controller
     public function shop(){
 
         $data=$this->pro->getAll();
-
+        
+        foreach ($data as $value) {
+            $sum=0;
+            $getstar=$this->pro->stardata($value->pro_id);
+            if (count($getstar)>0) {
+                for ($i=0; $i < count($getstar); $i++) { 
+                    $sum+=$getstar[$i]->star;
+                }
+                $sum=$sum/count($getstar);
+                $sum=round($sum,2);
+            }
+            $value->sum=$sum;// push to array data
+        }
+        
         return view('home_byNamVu.shop',compact('data'));
     }
     public function floppydisk(){
@@ -36,6 +49,7 @@ class HomeController extends Controller
         }
         $data=$this->pro->getP($id);
         $data=$data[0];
+        $reviewdata=$this->pro->getreview($id);
         $cusid=Auth::guard('customers')->id();
         if($req->ajax()){
             
@@ -45,7 +59,7 @@ class HomeController extends Controller
             return response()->json($tot);
         }
        //
-        return view('home_byNamVu.product',compact('data'));
+        return view('home_byNamVu.product',compact('data','reviewdata'));
 
     }
    public function cart(){
@@ -114,5 +128,19 @@ class HomeController extends Controller
             }
             
         }
-   }
+    }
+    //post review 
+    public function postreview($pro_id,$cus_id,Request $req){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $data=[
+            $pro_id,
+            $cus_id,
+            $req->vote,
+            $req->cusinp,
+            $date=date('Y-m-d H:i:s',time())
+        ];
+        $this->pro->updatacmt($data);
+        
+        return redirect()->back();
+    }
 }

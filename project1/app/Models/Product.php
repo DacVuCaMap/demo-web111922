@@ -148,5 +148,17 @@ class Product extends Model
         inner join proimage pi on pi.pro_id=pr.id where pr.pro_name like '%{$key}%'");
         return $data;
     }
-
+    // comment area
+    public function updatacmt($data){
+        DB::insert('INSERT INTO tblreview(pro_id,cus_id,star,cmt_text,post_at) VALUES (?,?,?,?,?)',$data);
+    }
+    public function getreview($cus_id){
+        return DB::select('SELECT cu.fullname,re.star,re.cmt_text,re.post_at FROM product pr 
+        inner join tblreview re on re.pro_id=pr.id
+        inner join customers cu on re.cus_id=cu.id
+        where pr.id=?',[$cus_id]);
+    }
+    public function stardata($id){
+        return DB::select('SELECT star from tblreview where pro_id=?',[$id]);
+    }
 }

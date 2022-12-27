@@ -9,7 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Middleware\Adminlogin;
-
+use FontLib\Table\Type\post;
 
 Route::prefix('/')->name('user.')->group(function(){
     Route::get('home',[HomeController::class,'homepage'])->name('home');
@@ -23,6 +23,7 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::post('/cart',[HomeController::class,'postcart']);
     Route::get('/order-info',[HomeController::class,'order'])->name('orderinfo');
     Route::get('/delcart_{pro_id}_{cus_id}',[HomeController::class,'delcart'])->name('delcart');
+    Route::post('/comment_{pro_id}_{cus_id}',[HomeController::class,'postreview'])->name('review');
     //test area
     Route::get('/test',[HomeController::class,'test']);
     //search
