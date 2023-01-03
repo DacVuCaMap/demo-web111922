@@ -19,6 +19,7 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('/register', [UserController::class, 'register'])->name('register');
     Route::post('/register', [UserController::class, 'postregis'])->name('register');
     Route::get('aboutus',[UserController::class,'aboutus'])->name('aboutus');
+    Route::post('create',[OrderController::class,'createorder'])->name('createorder');
     Route::get('/cart',[HomeController::class,'cart'])->name('cart');
     Route::post('/cart',[HomeController::class,'postcart']);
     Route::get('/order-info',[HomeController::class,'order'])->name('orderinfo');

@@ -1,10 +1,14 @@
 @extends('layoutNV.homeLayout')
 @section('tittle','Cart')
 @section('content')
-
+    <link rel="stylesheet" href="{{ asset('cssbyNamVu/orderlist.css') }}">   
 {{-- Hiển thị danh sách đã từng orders theo cus_id --}}
-    <div class="container" style="color: aliceblue">
-        <h1>Your order list</h1>
+<div class="bgorder">
+    <div class="container">
+        <div class="headtext">
+            <h1>Your order list</h1>
+        </div>
+        
         <table class="table table-success table-striped">
             <thead>
                 <tr>
@@ -18,10 +22,11 @@
                 </tr>
             </thead>
             <tbody>
+                {{-- order list --}}
                 @if(!empty($orders))
                 @foreach ($orders as $key=>$item)
-                   <tr>
-                        <td class="d-none d-xl-table-cell">{{ $key+1 }}</td>
+                   <tr class="bodytable">
+                        <td id="nbr" class="d-none d-xl-table-cell">{{ $key+1 }}</td>
                         <td class="d-none d-xl-table-cell">{{ $item->id}}</td>
                         <td class="d-none d-md-table-cell">{{ $item->ord_date}}</td>
                         <td class="d-none d-md-table-cell">{{ $item->ord_status }}</td>
@@ -36,6 +41,11 @@
                 @endif
             </tbody>
         </table>
+        <h5> You have <span id="shownbr"></span> Products</h5>
     </div>
-
+    <script>
+        var nbr = document.querySelectorAll('#nbr');
+        shownbr.innerText=nbr[nbr.length-1].innerText;
+    </script>
+</div>
 @endsection

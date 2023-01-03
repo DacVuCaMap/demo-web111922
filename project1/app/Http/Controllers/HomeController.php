@@ -64,10 +64,10 @@ class HomeController extends Controller
 
     }
    public function cart(){
-
+        
         $cusid=Auth::guard('customers')->id();
         $data=$this->pro->cartdata($cusid);
-
+        $checklogin=Auth::guard('customers')->check();
         return view('home_byNamVu.cart',compact('data'));
    }
 
@@ -83,8 +83,7 @@ class HomeController extends Controller
             array_push($pro_id,$data['p'.$i]);
         }
         $this->pro->upcartdata($updata,$pro_id,$user_id);
-
-
+        
         return redirect()->route('user.orderinfo');
    }
    //del cart

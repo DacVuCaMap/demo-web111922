@@ -106,6 +106,8 @@ class OrderController extends Controller
             }
         // xóa tblcart
         $this->order->delcart($cus_id);
+        //forget cart reset lai number trong gio hang
+        session()->forget('cart');
         return redirect()->route('user.orderinfo', $cus_id);
     }
 
