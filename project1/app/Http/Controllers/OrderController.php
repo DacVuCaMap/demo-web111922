@@ -6,11 +6,14 @@ use App\Models\Orders;
 use PDF;
 use DB;
 use App\Http\Resources\Order;
+use App\Models\Product;
 class OrderController extends Controller
 {
     private $order;
+    private $pro;
     public function __construct(){
         $this->order = new Orders();
+        $this->pro   = new Product();
     }
 
     // tạo danh sách order
@@ -87,6 +90,20 @@ class OrderController extends Controller
     }
 
     public function createorder(Request $req){
+        // dd($req->all());
+        $data_quan=$req->all();
+        // dd($data_quan);
+        $user_id=$data_quan['user_id'];
+        $updata=[];
+        $pro_id=[];
+        $count=(count($data_quan)-4)/2;
+        // dd($count);
+        for ($i=0; $i < $count ; $i++) {
+            array_push($updata,$data_quan[$i]);
+            array_push($pro_id,$data_quan['p'.$i]);
+        }
+        $this->pro->upcartdata($updata,$pro_id,$user_id);
+        // ------
         date_default_timezone_set('Asia/Ho_Chi_Minh');
             $cus_id      = $req->user_id;
             $orderID     = 'OD'.date('ymdHis', time()).'KH'.$cus_id;
@@ -97,6 +114,7 @@ class OrderController extends Controller
             $data        = [$orderID, $cus_id ,$ord_date, $ord_status,  $address, $methodpay];
 
             $Detail = DB::select("SELECT * from tblcart WHERE cus_id = ?", [$cus_id]);
+            // dd($Detail);
             // $pro_st = [];
             foreach ($Detail as $item) {
                 $pro = $item->pro_id;
@@ -107,6 +125,7 @@ class OrderController extends Controller
                     return redirect()->route('user.cart')->with('msg', 'Product '.$pro.' Out of stock');
                 }
             }
+
         // insert vào orders
             $this->order->createorders($data);
         //insert orders Detail
