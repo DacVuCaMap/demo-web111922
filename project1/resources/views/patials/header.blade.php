@@ -23,7 +23,7 @@
                  @if(!empty($name))
                  <span style="font-size: 20px; font-weight:600">{{ $name }}</span>
                  @endif
-                <a href="{{ route('user.logout') }}" class="btn btn-secondary">Logout</a>
+                <a href="{{ route('user.logoutadmin') }}" class="btn btn-secondary">Logout</a>
             </li>
         </ul>
     </div>

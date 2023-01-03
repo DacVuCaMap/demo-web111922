@@ -17,7 +17,7 @@
         <h1 class="h3 mb-3"><strong>Customers List</strong></h1>
             <div class="col-md-4">
                 <form class="d-flex" method="GET">
-                    <input class="form-control me-2" type="search" name="key_word" placeholder="" aria-label="Search">
+                    <input class="form-control me-2" type="search" name="key_word" placeholder="Enter Customer Name" aria-label="Search" >
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>

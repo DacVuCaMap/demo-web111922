@@ -35,7 +35,7 @@ class Product extends Model
     }
 
     public function getpro($id){
-        $pro = DB::select("SELECT P.id, P.pro_name, P.cat_id, P.pro_price, P.pro_quantity, D.size, D.brand, D.origin, D.type, D.diment, D.descrip
+        $pro = DB::select("SELECT P.id, P.pro_status, P.pro_name, P.cat_id, P.pro_price, P.pro_quantity, D.size, D.brand, D.origin, D.type, D.diment, D.descrip
         from product P
         inner join prodesc D on P.id = D.pro_id WHERE P.id = ?", [$id]);
         return $pro;
@@ -85,9 +85,9 @@ class Product extends Model
         $total=DB::select("SELECT SUM(quantity) as tot from tblcart where 1=1"); // total quantity
         //check id in tblcart if have then add more quantity
         for ($i=0; $i < count($all); $i++) {
-            
+
             if ($pro_id==$all[$i]->pro_id && $user_id==$all[$i]->cus_id) {
-                
+
                 $data=[
                     $all[$i]->quantity + 1
                     ,$pro_id
@@ -99,15 +99,15 @@ class Product extends Model
         }
         // add to tblcart
         $price=DB::select("SELECT pro_price FROM product where id=?",[$pro_id]);
-        
+
         $data=[
             $user_id,
             $pro_id,
             $price[0]->pro_price,
         ];
-        
+
         DB::insert("INSERT INTO tblcart(cus_id,pro_id,pro_price,quantity) values (?,?,?,1)",$data);
-        
+
         return true;
     }
     // number in cart icon
@@ -116,7 +116,7 @@ class Product extends Model
         return $total[0]->tot;
     }
     public function cartdata($id){
-        
+
         return DB::select("SELECT pi.img_first,pr.pro_name,ct.name,ca.pro_id,ca.pro_price,ca.quantity,ca.cus_id from tblcart ca
         inner join proimage pi on pi.pro_id=ca.pro_id
         inner join product pr on pr.id=ca.pro_id
@@ -124,8 +124,8 @@ class Product extends Model
 
     }
     public function upcartdata($updata,$pro_id,$user_id){
-        
-        for ($i=0; $i < count($updata) ; $i++) { 
+
+        for ($i=0; $i < count($updata) ; $i++) {
             $data=[
                 $updata[$i],
                 $pro_id[$i],

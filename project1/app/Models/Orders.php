@@ -57,8 +57,7 @@ class Orders extends Model
     }
 
     public function orderstoday(){
-        $today = date_format(now(), 'Y-m-d');
-        $ordertoday = DB::select("SELECT * from orders WHERE date_format(ord_date,'%Y-%m-%d') = $today");
+        $ordertoday = DB::select("SELECT * from orders WHERE date_format(ord_date,'%Y-%m-%d') = date_format(now(), '%Y-%m-%d')");
         return $ordertoday;
     }
 

@@ -26,10 +26,10 @@
                         <td class="d-none d-md-table-cell">{{ $item->ord_date}}</td>
                         <td class="d-none d-md-table-cell">{{ $item->ord_status }}</td>
                         <td class="d-none d-md-table-cell">{{ $item->methodpay}}</td>
-                        <td><a href="{{ route('order.detail', $item->id) }}" class="badge bg-primary">Detail</a></td>
+                        <td><a target="blank" href="{{ route('user.exportPDF', $item->id) }}" class="badge bg-primary">Detail</a></td>
                         @if($item->ord_status=="Pending")
-                        <td><button class="btn btn-success">Paid</button></td>
-                        <td><button class="btn btn-warning">Cancel Orders</button></td>
+                        <td><a href="#" class="btn btn-success">Paid</a></td>
+                        <td><a href="#" class="btn btn-warning">Cancel Orders</a></td>
                         @endif
                     </tr>
                 @endforeach

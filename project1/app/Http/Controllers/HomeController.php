@@ -14,8 +14,13 @@ class HomeController extends Controller
         $this->pro=new Product();
     }
     public function homepage(){
-
-        return view('home_byNamVu.home');
+        $products = DB::select("SELECT Pr.id, Pr.pro_name, C.name, P.diment, P.brand, P.size, Pi.img_first from prodesc P
+        inner join proimage Pi on Pi.pro_id = P.pro_id
+        inner join product Pr on Pr.id = P.pro_id
+        inner join category C on Pr.cat_id = C.id
+        WHERE Pr.id like '%SD%'");
+        // dd($products);
+        return view('home_byNamVu.home', compact('products'));
     }
     public function shop(){
 

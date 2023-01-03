@@ -33,7 +33,7 @@
                             <td class="d-none d-xl-table-cell">{{ $item->pro_name }}</td>
                             <td class="d-none d-xl-table-cell">{{ $item->category}}</td>
                             <td class="d-none d-md-table-cell">{{ $item->totalquantity }}</td>
-                            <td><a href="#" class="badge bg-primary"><i>Read more</i></a></td>
+                            <td><a href="{{ route('product.detail', $item->id) }}" class="badge bg-primary"><i>Read more</i></a></td>
                         </tr>
                         @endforeach
                         @endif

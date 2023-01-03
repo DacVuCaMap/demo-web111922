@@ -13,6 +13,7 @@
         font-weight: 600;
     }
 </style>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <main class="content">
     <div class="container-fluid p-0">
             <h1 class="h3 mb-3"><strong>Add Product</strong></h1>
@@ -118,7 +119,7 @@
                       </div>
                       <div class="mb-3">
                         <label class="form-label">Description</label>
-                        <textarea class="form-control" name="description" cols="30" rows="9"></textarea>
+                        <textarea class="form-control" id="editor1" name="description" cols="30" rows="9"></textarea>
                         @error('description')
                         <small style="color: red">{{ $message }}</small>
                         @enderror
@@ -131,5 +132,9 @@
             </form>
             </div>
     </div>
+
+    <script>
+        CKEDITOR.replace('editor1');
+    </script>
 </main>
 @endsection

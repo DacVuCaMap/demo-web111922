@@ -21,18 +21,7 @@ class OrderController extends Controller
         return view('order.list', compact('orders'));
     }
 
-    // public function edit($id){
 
-    // }
-
-    public function update(Request $req, $id){
-        $order = DB::select("SELECT * from orders where id = ?", [$id]);
-        return response()->json([
-            'data' => $order,
-            'status'=> 200,
-            'message'=>'ok',
-        ]);
-    }
     // tạo order chi tiết
     public function detail($id){
         $orderdetail = $this->order->getdetail($id);
@@ -42,22 +31,46 @@ class OrderController extends Controller
     }
 
     //update trạng thái thành complete
-    public function editcpl($id){
-        $data = [1, $id];
-        if($this->order->upstatus($data)==null){
-            return redirect()->route('order.list')->with('msg', 'Update Order success!');
-        }else{
-            return redirect()->route('order.list')->with('msg', 'Update Order failed!');
-        };
+    public function editcpl(Request $req){
+        if($req->ajax()){
+            $ord_id = $req->ord_id;
+            // return $ord_id;
+            $data = [1, $ord_id];
+            if($this->order->upstatus($data)==null){
+                return 1;
+            }else{
+                return 0;
+            };
+        }
+
+
+        // $data = [1, $id];
+        // if($this->order->upstatus($data)==null){
+        //     return redirect()->route('order.list')->with('msg', 'Update Order success!');
+        // }else{
+        //     return redirect()->route('order.list')->with('msg', 'Update Order failed!');
+        // };
     }
     // update trạng thái thành cancel
-    public function editcacel($id){
-        $data = [3, $id];
-        if($this->order->upstatus($data)==null){
-            return redirect()->route('order.list')->with('msg', 'Update Order success!');
-        }else{
-            return redirect()->route('order.list')->with('msg', 'Update Order failed!');
-        };
+    public function editcacel(Request $req){
+
+        if($req->ajax()){
+            $ord_id = $req->ord_id;
+            // return $ord_id;
+            $data = [3, $ord_id];
+            if($this->order->upstatus($data)==null){
+                return 1;
+            }else{
+                return 0;
+            };
+        }
+
+        // $data = [3, $id];
+        // if($this->order->upstatus($data)==null){
+        //     return redirect()->route('order.list')->with('msg', 'Update Order success!');
+        // }else{
+        //     return redirect()->route('order.list')->with('msg', 'Update Order failed!');
+        // };
     }
 
     public function print_order_convert($id){
@@ -108,6 +121,5 @@ class OrderController extends Controller
         $this->order->delcart($cus_id);
         return redirect()->route('user.orderinfo', $cus_id);
     }
-
 
 }

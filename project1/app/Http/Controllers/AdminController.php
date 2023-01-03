@@ -23,6 +23,7 @@ class AdminController extends Controller
         $tongorder = DB::select("SELECT count(id) as tong from orders");
         $tongpro   = DB::select("SELECT count(id) as tong from product");
         $ordertoday= $this->order->orderstoday();
+        // dd($ordertoday);
         return view('admin.home', compact('tongcus', 'tongorder', 'tongpro', 'ordertoday'));
     }
 
@@ -55,7 +56,7 @@ class AdminController extends Controller
         $req->validate($rules, $message);
 
         $data = [
-            $req->fullname
+            ucwords($req->fullname)
             ,$req->email
             ,bcrypt($req->password)
             ,$req->phone

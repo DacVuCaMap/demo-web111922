@@ -78,7 +78,7 @@ class ProductController extends Controller
             ,'max'                  => ':attribute is no larger than :max characters!'
        ];
        $req->validate($rules, $message);
-       $pro_id      = $req->pro_id;
+       $pro_id      = strtoupper($req->pro_id);
        $pro_name    = $req->pro_name;
        $pro_price   = $req->pro_price;
        $cat_id      = $req->cat_id;
