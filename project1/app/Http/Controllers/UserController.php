@@ -79,7 +79,7 @@ class UserController extends Controller
     public function logout(){
         Auth::guard('customers')->logout();
         //--muc xoa cac session by NAMVU
-        Session::flush();
+        Session::forget('cat');
         //--end
         return redirect()->route('user.home');
     }

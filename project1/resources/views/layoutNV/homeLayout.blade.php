@@ -4,7 +4,7 @@
         $id=Auth::guard('customers')->id();
         $name=DB::select('SELECT fullname from customers where id=?',[$id]);
         $name=$name[0]->fullname;
-        
+
     }
 ?>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
             background-position: 10%;
         }
     </style>
-    
+
    {{-- swiper library --}}
    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -45,16 +45,21 @@
                 <div class="rightsidemenu">
 
                     <div class="sign-in">
+
+
                         @if (Auth::guard('customers')->check()==true)
 
-                        <a href="#">{{ $name }}</a> 
-                        <a href="{{ route('user.logout') }}" style="font-size: 20px"><i class="fa-solid fa-right-from-bracket"></i></a> 
+                        <a href="{{ route('user.orderinfo') }}">{{ $name }}</a>
+                        <a href="{{ route('user.logout') }}" style="font-size: 20px"><i class="fa-solid fa-right-from-bracket"></i></a>
+                        {{-- @elseif (Auth::guard('admins')->check()==true)
+                            <a href="{{ route('admin.home') }}">ADMIN HOME</a>
+                            <a href="{{ route('user.logout') }}" style="font-size: 20px"><i class="fa-solid fa-right-from-bracket"></i></a> --}}
                         @else
                         <a href="{{ route('user.login') }}">Sign in</a>
                         @endif
-                        
+
                         <i class="fa-sharp fa-solid fa-circle-user"></i>
-                        
+
                     </div>
 
                     <div onclick="searchclick()" id="search" class="search-icon">
@@ -94,7 +99,7 @@
             </div>
             <div class="datasearch">
             </div>
-            
+
         </div>
     </section>
 

@@ -1,5 +1,5 @@
 .container{
-    height: 1600px;
+    /* height: 1600px; */
     background: white;
     width: 1366px;
     margin: auto;
@@ -21,7 +21,7 @@
     box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 .headshop>div{
-    
+
     width: 330px;
     height: 400px;
     position: relative;
@@ -29,7 +29,7 @@
 }
 .headshop>div>a{
     text-decoration: none;
-    
+
 }
 .imga1{
     position: absolute;
@@ -43,11 +43,11 @@
     z-index: 4;
     top: 150px;
     left: 50%;
-    
+
     color: white;
     font-size: 45px;
-    transform:translate(-50%, 0%); 
-    
+    transform:translate(-50%, 0%);
+
 }
 .titlehead>h2{
     text-align: center;
@@ -65,7 +65,7 @@
     width: 100%;
     left: 0;
     text-align: center;
-    
+
 }
 .titleimg>h3{
     font-family:monospace;
@@ -122,7 +122,7 @@
 }
 .bodyshop{
     padding-top: 30px;
-    
+
     display: flex;
     justify-content: space-around;
 }
@@ -193,7 +193,7 @@
 .compare{
     text-decoration: none;
     color: blue;
-    
+
 }
 .compare:hover{
     text-decoration: underline;
@@ -213,11 +213,11 @@
 }
 .btn:hover{
     background: rgb(75, 75, 75);
-    
+
 }
 .btn:active{
     background: white;
-    
+
     color: black;
 }
 .card>p{
@@ -246,7 +246,7 @@
 }
 option{
     border: none;
-    
+
 }
 .filter>div{
     margin-top: 80px;

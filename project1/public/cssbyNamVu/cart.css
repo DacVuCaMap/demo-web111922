@@ -199,7 +199,7 @@
     font-size: 25px;
     width: 130px;
 }
-.footcart button{
+.checkout{
     cursor: pointer;
     background: white;
     font-size: 20px;
@@ -209,7 +209,109 @@
     transition: 0.2s ease-in;
          
 }
-.footcart button:hover{
+.checkout:hover{
     background: gray;
 
+}
+/* after checkout */
+.bgstep2{
+    display: none;
+    background: rgba(0, 0, 0, 0.863);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.step2cart{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgb(255, 255, 255);
+    height: 300px;
+    width: 700px;
+    z-index: 2;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+.step2cart>div:first-child{
+    background: rgb(15, 15, 15);
+    margin-left: -20px;
+    text-align: center;
+}
+.step2cart>div>h2{
+    color: rgb(212, 212, 212);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 20px;
+}
+.step2cart p{
+    font-size: 14px;
+    font-weight: bolder;
+}
+.address{
+    height: 40px;
+    border: 2px solid rgb(0, 0, 0);
+    width: 660px;
+    font-size: 18px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-left: 20px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.address:focus{
+    outline: none;
+}
+.payment{
+    margin-top: 5px;
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0;
+    border-radius: 5px;
+    height: 34px;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #ddd;
+    -webkit-appearance: none;
+    background-position-x: 244px;
+    outline: none;
+    border: 2px solid black;
+}
+.confirm{
+    background: black;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 18px;
+    margin-top: 50px;
+    width: 640px;
+    text-align: center;
+    transition: 0.05s;
+}
+.confirm:active{
+    background: gray;
+    color: black;
+}
+
+.cartitem2{
+    margin-top: 50px;
+    height: 150px;
+    background: white;
+    text-align: center;
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+.notifymsg{
+    background: rgb(248, 38, 38);
+    padding: 20px;
+    animation-name: showing;
+    animation-duration: 0.5s;
+    font-size: 18px;
+}
+@keyframes showing{
+        from {margin-left: -400px;}
+        to {margin-left: 0px;}
 }

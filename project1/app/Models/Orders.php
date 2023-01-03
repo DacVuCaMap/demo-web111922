@@ -30,10 +30,11 @@ class Orders extends Model
     }
 
     public function getdetail($id){
-        $ordetail = DB::select("SELECT P.pro_name, Od.pro_price, Od.quantity, (Od.pro_price*Od.quantity) as total
+        $ordetail = DB::select("SELECT P.pro_name, Pi.img_first, Od.pro_price, Od.quantity, (Od.pro_price*Od.quantity) as total
         from orderDetail Od
         inner join orders O on O.id = Od.ord_id
         inner join product P on P.id = Od.pro_id
+        inner join proimage Pi on P.id = Pi.pro_id
         where O.id = ?", [$id]);
         return $ordetail;
     }

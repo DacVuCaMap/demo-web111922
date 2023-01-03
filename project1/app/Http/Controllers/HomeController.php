@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Orders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -9,9 +10,11 @@ use DB;
 class HomeController extends Controller
 {
     private $pro;
+    private $order;
     public function __construct()
     {
-        $this->pro=new Product();
+        $this->pro   = new Product();
+        $this->order = new Orders();
     }
     public function homepage(){
         $products = DB::select("SELECT Pr.id, Pr.pro_name, C.name, P.diment, P.brand, P.size, Pi.img_first from prodesc P
@@ -25,6 +28,19 @@ class HomeController extends Controller
     public function shop(){
 
         $data=$this->pro->getAll();
+
+        foreach ($data as $value) {
+            $sum=0;
+            $getstar=$this->pro->stardata($value->pro_id);
+            if (count($getstar)>0) {
+                for ($i=0; $i < count($getstar); $i++) {
+                    $sum+=$getstar[$i]->star;
+                }
+                $sum=$sum/count($getstar);
+                $sum=round($sum,2);
+            }
+            $value->sum=$sum;// push to array data
+        }
 
         return view('home_byNamVu.shop',compact('data'));
     }
@@ -42,6 +58,7 @@ class HomeController extends Controller
         }
         $data=$this->pro->getP($id);
         $data=$data[0];
+        $reviewdata=$this->pro->getreview($id);
         $cusid=Auth::guard('customers')->id();
         if($req->ajax()){
 
@@ -51,14 +68,14 @@ class HomeController extends Controller
             return response()->json($tot);
         }
        //
-        return view('home_byNamVu.product',compact('data'));
+        return view('home_byNamVu.product',compact('data','reviewdata'));
 
     }
    public function cart(){
 
         $cusid=Auth::guard('customers')->id();
         $data=$this->pro->cartdata($cusid);
-
+        $checklogin=Auth::guard('customers')->check();
         return view('home_byNamVu.cart',compact('data'));
    }
 
@@ -74,7 +91,6 @@ class HomeController extends Controller
             array_push($pro_id,$data['p'.$i]);
         }
         $this->pro->upcartdata($updata,$pro_id,$user_id);
-
 
         return redirect()->route('user.orderinfo');
    }
@@ -100,7 +116,6 @@ class HomeController extends Controller
 
    //search
    public function search(Request $req){
-
         if ($req->ajax()) {
             $key=$req->search;
             if (strlen($key)>1) {
@@ -128,7 +143,44 @@ class HomeController extends Controller
             }
 
         }
-   }
+    }
+    //post review
+    public function postreview($pro_id,$cus_id,Request $req){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $data=[
+            $pro_id,
+            $cus_id,
+            $req->vote,
+            $req->cusinp,
+            $date=date('Y-m-d H:i:s',time())
+        ];
+        $this->pro->updatacmt($data);
 
+        return redirect()->back();
+    }
 
+    public function confirmdone($id){
+        $data = [1, $id];
+        if($this->order->upstatus($data)){
+            return redirect()->back()->with('mesconfirm', 'Confirm your order success!');
+        }else{
+            return redirect()->back()->with('mesconfirm', 'Confirm your order failed!');
+        };
+    }
+
+    public function confirmcan($id){
+        $data = [3, $id];
+        if($this->order->upstatus($data)){
+            return redirect()->back()->with('mesconfirm', 'Confirm your order success!');
+        }else{
+            return redirect()->back()->with('mesconfirm', 'Confirm your order failed!');
+        };
+    }
+
+    public function detailofcus($id){
+        $orderdetail = $this->order->getdetail($id);
+        $order       = $this->order->getorder($id);
+        $total       = $this->order->totalorder($id);
+        return view('home_byNamVu.oddetail', compact('orderdetail', 'order', 'total'));
+    }
 }

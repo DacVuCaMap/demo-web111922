@@ -1,10 +1,14 @@
 @extends('layoutNV.homeLayout')
 @section('tittle','Cart')
 @section('content')
-
+    <link rel="stylesheet" href="{{ asset('cssbyNamVu/orderlist.css') }}">
 {{-- Hiển thị danh sách đã từng orders theo cus_id --}}
-    <div class="container" style="color: aliceblue">
-        <h1>Your order list</h1>
+<div class="bgorder">
+    <div class="container">
+        <div class="headtext">
+            <h1>Your orders list</h1>
+        </div>
+
         <table class="table table-success table-striped">
             <thead>
                 <tr>
@@ -18,24 +22,33 @@
                 </tr>
             </thead>
             <tbody>
+                {{-- order list --}}
                 @if(!empty($orders))
                 @foreach ($orders as $key=>$item)
-                   <tr>
-                        <td class="d-none d-xl-table-cell">{{ $key+1 }}</td>
+                   <tr class="bodytable">
+                        <td id="nbr" class="d-none d-xl-table-cell">{{ $key+1 }}</td>
                         <td class="d-none d-xl-table-cell">{{ $item->id}}</td>
                         <td class="d-none d-md-table-cell">{{ $item->ord_date}}</td>
                         <td class="d-none d-md-table-cell">{{ $item->ord_status }}</td>
                         <td class="d-none d-md-table-cell">{{ $item->methodpay}}</td>
-                        <td><a target="blank" href="{{ route('user.exportPDF', $item->id) }}" class="badge bg-primary">Detail</a></td>
+                        <td><a href="{{ route('user.detailofcus', $item->id) }}" class="badge bg-primary">Detail</a></td>
                         @if($item->ord_status=="Pending")
-                        <td><a href="#" class="btn btn-success">Paid</a></td>
-                        <td><a href="#" class="btn btn-warning">Cancel Orders</a></td>
+                        <td><a href="{{ route('user.confirmdone', $item->id) }}" class="btn btn-success">Done</a>
+                            <a href="{{ route('user.confirmcan', $item->id) }}" class="btn btn-warning">Cancel Orders</a></td>
+                        {{-- <td></td> --}}
+                        @else
+                        <td>You have responded</td>
                         @endif
                     </tr>
                 @endforeach
                 @endif
             </tbody>
         </table>
+        <h5> You have <span id="shownbr"></span> Orders</h5>
     </div>
-
+    <script>
+        var nbr = document.querySelectorAll('#nbr');
+        shownbr.innerText=nbr[nbr.length-1].innerText;
+    </script>
+</div>
 @endsection
