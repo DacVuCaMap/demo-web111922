@@ -45,7 +45,13 @@
     </div>
     <script>
         var nbr = document.querySelectorAll('#nbr');
-        shownbr.innerText=nbr[nbr.length-1].innerText;
+        if (nbr.length>0) {
+            shownbr.innerText=nbr[nbr.length-1].innerText;
+        }
+        else{
+            shownbr.innerText=0;
+        }
+        
     </script>
 </div>
 @endsection
