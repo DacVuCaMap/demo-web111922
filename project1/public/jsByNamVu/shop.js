@@ -7,6 +7,7 @@ window.onload=()=>{
     }
     select[1].classList.add('active');
     checkstarcmt();
+    selectoption();
     
     
 
@@ -28,4 +29,7 @@ checkstarcmt=()=>{
         }
         
     }
+}
+selectoption=()=>{
+    console.log('hello');
 }

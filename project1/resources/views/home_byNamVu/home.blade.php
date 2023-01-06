@@ -3,7 +3,7 @@
 @section('content')
    <link rel="stylesheet" href="{{ asset('cssbyNamVu/home.css') }}">
    <script src="{{ asset('jsbyNamVu/home.js') }}"></script>
-    
+
     <style>
         .ad-home{
             background: url('storage/imgNV/floppydisk/menu2copy.jpg');
@@ -24,121 +24,36 @@
             <div class="what-new" id="whatnew">
                 <p class="menu-cat" id="menu-cat">New's product!!!</p>
                 <div class="newcards">
-                    
-                    <div class="insidenewcards">
-                        
-                        {{-- img product --}}
-                        <a href="">
-                            <img src="{{ asset('storage/imgNV/product/samsung1ssd1.jpg') }}" alt="anh" height="200px">
-                        </a>
-                        
-                        {{-- name product --}}
-                        <h4>SSD Samsung 870 EVO</h4>
-                        
-                        {{-- description --}}
-                        <div class="des-menu">
-                            <div>
-                                <p>Type:</p>
-                                <p>Brand:</p>
-                                <p>Dimensions:</p>
-                                <p>Size:</p>
-                            </div>
-                            <div>
-                                <p>SSD</p>
-                                <p>Samsung</p>
-                                <p>2.5 Inch</p>
-                                <p>500gb</p>
-                            </div>
-                        </div>
-                        <button class="button-50" role="button">Buy</button>
-                        <a href="" class="learn-more">Learn more></a>
-                    </div>
-                    
-                    <div class="insidenewcards">
-                        {{-- img product --}}
-                        <a href="">
-                            <img src="{{ asset('storage/imgNV/product/samsung1ssd1.jpg') }}" alt="anh" height="200px">
-                        </a>
-                        
-                        {{-- name product --}}
-                        <h4>SSD Samsung 870 EVO</h4>
-                        
-                        {{-- description --}}
-                        <div class="des-menu">
-                            <div>
-                                <p>Type:</p>
-                                <p>Brand:</p>
-                                <p>Dimensions:</p>
-                                <p>Size:</p>
-                            </div>
-                            <div>
-                                <p>SSD</p>
-                                <p>Samsung</p>
-                                <p>2.5 Inch</p>
-                                <p>500gb</p>
-                            </div>
-                        </div>
-                        <button class="button-50" role="button">Buy</button>
-                        <a href="" class="learn-more">Learn more></a>
-                    </div>
 
-                    <div class="insidenewcards">
-                        {{-- img product --}}
-                        <a href="">
-                            <img src="{{ asset('storage/imgNV/product/samsung1ssd1.jpg') }}" alt="anh" height="200px">
-                        </a>
-                        
-                        {{-- name product --}}
-                        <h4>SSD Samsung 870 EVO</h4>
-                        
-                        {{-- description --}}
-                        <div class="des-menu">
-                            <div>
-                                <p>Type:</p>
-                                <p>Brand:</p>
-                                <p>Dimensions:</p>
-                                <p>Size:</p>
+                    @foreach ($newpro as $item)
+                        <div class="insidenewcards">
+                            {{-- img product --}}
+                            <a href="{{ route('shop.getpro',['id'=>$item->pro_id]) }}">
+                                <img src="{{ asset($item->img_first) }}" alt="anh" height="180px" width="180px" width="180px">
+                            </a>
+                            {{-- name product --}}
+                            <h4>{{ $item->pro_name }}</h4>
+                            {{-- description --}}
+                            <div class="des-menu">
+                                <div>
+                                    <p>Store:</p>
+                                    <p>Brand:</p>
+                                    <p>Dimensions:</p>
+                                    <p>Size:</p>
+                                </div>
+                                <div>
+                                    <p>{{ $item->name }}</p>
+                                    <p>{{ $item->brand }}</p>
+                                    <p>{{ $item->diment }}</p>
+                                    <p>{{ $item->size }}</p>
+                                </div>
                             </div>
-                            <div>
-                                <p>SSD</p>
-                                <p>Samsung</p>
-                                <p>2.5 Inch</p>
-                                <p>500gb</p>
-                            </div>
+                            {{-- <button href="{{ route('shop.getpro', $item->id) }}" class="button-50" role="button">Buy</button> --}}
+                            <a class="button-50" href="{{ route('shop.getpro', $item->pro_id) }}" class="learn-more">Learn more></a>
                         </div>
-                        <button class="button-50" role="button">Buy</button>
-                        <a href="" class="learn-more">Learn more></a>
-                    </div>
-
-                    <div class="insidenewcards">
-                        {{-- img product --}}
-                        <a href="">
-                            <img src="{{ asset('storage/imgNV/product/samsung1ssd1.jpg') }}" alt="anh" height="200px">
-                        </a>
-                        
-                        {{-- name product --}}
-                        <h4>SSD Samsung 870 EVO</h4>
-                        
-                        {{-- description --}}
-                        <div class="des-menu">
-                            <div>
-                                <p>Type:</p>
-                                <p>Brand:</p>
-                                <p>Dimensions:</p>
-                                <p>Size:</p>
-                            </div>
-                            <div>
-                                <p>SSD</p>
-                                <p>Samsung</p>
-                                <p>2.5 Inch</p>
-                                <p>500gb</p>
-                            </div>
-                        </div>
-                        <button class="button-50" role="button">Buy</button>
-                        <a href="" class="learn-more">Learn more></a>
-                    </div>
+                    @endforeach
+                    
                 </div>
-                  
             </div>
         </div>
         <div class="downcard">
@@ -153,46 +68,46 @@
                                 <h3>Hard disk for 2023 </h3>
                                 <p>Comming soon</p>
                             </div>
-                            
+
                         </a>
                     </div>
                     <div class="ch2 c2">
                         <div>
-                            <a href="{{ route('shop.floppydisk') }}">
+                            <a href="{{ route('user.filterlink',['cat_id'=>4]) }}">
                                 <img class="imgfeatured" src="{{ asset('storage/imgNV/menu1.jpg') }}" height="320px" alt="anh">
                                 <div class="childc2">
                                     <h4>Floppy disk</h4>
-                                    <p>All we have for your collections</p>    
+                                    <p>All we have for your collections</p>
                                 </div>
-                            </a>      
+                            </a>
                         </div>
                         <div>
-                            <a href="">
+                            <a href="{{ route('user.filterlink',['cat_id'=>3]) }}">
                                 <img class="imgfeatured" src="{{ asset('storage/imgNV/opticaldisk/od1.jpg') }}" height="320px" alt="anh">
                                 <div class="childc2 whitecard">
                                     <h4>Optical disk</h4>
-                                    <p>Learn more></p>    
+                                    <p>Learn more></p>
                                 </div>
-                            </a>    
+                            </a>
                         </div>
-                        
+
                         <div>
-                            <a href="">
+                            <a href="{{ route('user.filterlink',['cat_id'=>2]) }}">
                                 <img class="imgfeatured" src="{{ asset('storage/imgNV/ssd/samsung2ssd1.jpg') }}" height="320px" alt="anh">
                                 <div class="childc2 whitecard">
                                     <h4>SSD card</h4>
-                                    <p>Leading technology</p>    
+                                    <p>Leading technology</p>
                                 </div>
-                            </a>  
+                            </a>
                         </div>
                         <div>
-                            <a href="">
+                            <a href="{{ route('user.filterlink',['cat_id'=>1]) }}">
                                 <img class="imgfeatured" src="{{ asset('storage/imgNV/hdd/hdd1.jpg') }}" height="320px" alt="anh">
                                 <div class="childc2">
                                     <h4>HDD card</h4>
-                                    <p>Learn more></p>    
+                                    <p>Learn more></p>
                                 </div>
-                            </a> 
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -203,7 +118,7 @@
             <div class="headf">
                 <p class="menu-cat" id="menu-cat">Featured</p>
             </div>
-            
+
                 <div class="featured-swiper">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
@@ -222,15 +137,15 @@
                         <div class="swiper-slide">
                             <img src="{{ asset('storage/imgNV/swiperimg/swiper5.jpg') }}" alt="">
                         </div>
-                          
+
                         </div>
                         <button class="swiper-button-next"></button>
                         <button class="swiper-button-prev"></button>
                         <div class="swiper-pagination"></div>
                       </div>
                 </div>
-           
-            
+
+
         </div>
         <div class="maps">
             <div class="upmap">
@@ -251,11 +166,11 @@
             <div>
                 <div class="headermap">
                     <p class="menu-cat" id="menu-cat">Map</p>
-                    
+
                 </div>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2214.257275885464!2d105.81888638778487!3d21.03580629529516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab0d6e603741%3A0x208a848932ac2109!2sAptech%20Computer%20Education!5e0!3m2!1sen!2s!4v1669967574316!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-            
+
         </div>
     </div>
 

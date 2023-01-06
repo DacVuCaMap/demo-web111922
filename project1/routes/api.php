@@ -20,5 +20,5 @@ use App\Http\Controllers\OrderController;
 //     return $request->user();
 // });
 
-Route::get('/list/{id}', [OrderController::class, 'update']);
+
 

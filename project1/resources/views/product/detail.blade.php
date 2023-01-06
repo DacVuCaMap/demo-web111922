@@ -62,7 +62,10 @@
                                     <td>Price: </td>
                                     <td>{{  $product[0]->pro_price }}$</td>
                                 </tr>
-
+                                <tr>
+                                    <td>Product Status: </td>
+                                    <td>{{  $product[0]->pro_status }}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

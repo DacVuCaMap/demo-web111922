@@ -30,12 +30,11 @@
                 $sum=$sum/count($reviewdata);
                 $sum=round($sum,2);
             }
-            
         ?>
 <div class="backgrpro">
     <div class="container">
         <div class="headpr">
-            <a href="{{ route('shop.cat') }}">Shop</a> > <a href="">{{ $data->name }}</a> > <p>{{ $data->pro_name }}</p>
+            <a href="{{ route('shop.cat') }}">Shop</a> > <a href="{{ route('user.filterlink',['cat_id'=>$data->cat_id]) }}">{{ $data->name }}</a> > <p>{{ $data->pro_name }}</p>
         </div>
         <div class="bodypr">
                 <div class="imgpr">

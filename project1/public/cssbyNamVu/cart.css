@@ -305,13 +305,36 @@
     box-sizing: border-box;
 }
 .notifymsg{
+    left: 0px;
+    bottom: 20px;
+    position: fixed;
     background: rgb(248, 38, 38);
     padding: 20px;
     animation-name: showing;
     animation-duration: 0.5s;
     font-size: 18px;
+    overflow: auto;
+    max-height: 50px;  
 }
 @keyframes showing{
         from {margin-left: -400px;}
         to {margin-left: 0px;}
 }
+.notifymsg::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .notifymsg::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  .notifymsg::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  .notifymsg::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

@@ -49,7 +49,7 @@ class CategoryController extends Controller
             ,'cat_name.unique' => 'Category already exists!'
         ];
         $req->validate($rules, $message);
-        $catname   = $req->cat_name;
+        $catname   = strtoupper($req->cat_name);
         $parent_id = $req->parent_id;
         $create_at = now();
         $data = [$catname, $parent_id, $create_at];
@@ -76,7 +76,7 @@ class CategoryController extends Controller
         ];
         $req->validate($rules, $message);
         $id         = $req->id;
-        $catname    = $req->cat_name;
+        $catname    = strtoupper($req->cat_name);
         $parent_id  = $req->parent_id;
         $data = [$catname, $parent_id, $id];
         if(($this->cat->editCat($data))==null){

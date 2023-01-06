@@ -90,8 +90,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(!empty($orders))
-                                @foreach ($orders as $key=>$item)
+                                @if(!empty($ordertoday))
+                                @foreach ($ordertoday as $key=>$item)
                                    <tr>
                                         <td class="d-none d-xl-table-cell">{{ $key+1 }}</td>
                                         <td class="d-none d-xl-table-cell">{{ $item->id}}</td>
@@ -99,8 +99,6 @@
                                         <td class="d-none d-md-table-cell">{{ $item->ord_date }}</td>
                                         @if($item->ord_status=='Pending')
                                         <td ><span class="btn btn-secondary">{{ $item->ord_status }}</span>
-                                        <a href="{{route('order.complete', $item->id)}}" style="color: rgb(0, 255, 4)"><i class="icon fa-solid fa-circle-check"></i></a>
-                                        <a href="{{route('order.cancel', $item->id)}}" style="color: rgb(255, 179, 0)"><i class="icon fa-solid fa-trash"></i></a></td>
                                         @elseif($item->ord_status=='Complete')
                                         <td ><span class="btn btn-success">{{ $item->ord_status }}</span></td>
                                         @elseif($item->ord_status=='Cancel')

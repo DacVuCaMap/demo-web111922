@@ -118,7 +118,7 @@
                       </div>
                       <div class="mb-3">
                         <label class="form-label">Description</label>
-                        <textarea class="form-control" name="description" cols="30" rows="9">{{ $pro[0]->descrip}}</textarea>
+                        <textarea class="form-control" id="editor1" name="description" cols="30" rows="9">{{ $pro[0]->descrip}}</textarea>
                         @error('description')
                         <small style="color: red">{{ $message }}</small>
                         @enderror
@@ -132,4 +132,8 @@
             </div>
     </div>
 </main>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+     CKEDITOR.replace('editor1');
+</script>
 @endsection

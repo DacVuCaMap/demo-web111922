@@ -6,11 +6,14 @@ use App\Models\Orders;
 use PDF;
 use DB;
 use App\Http\Resources\Order;
+use App\Models\Product;
 class OrderController extends Controller
 {
     private $order;
+    private $pro;
     public function __construct(){
         $this->order = new Orders();
+        $this->pro   = new Product();
     }
 
     // tạo danh sách order
@@ -21,18 +24,7 @@ class OrderController extends Controller
         return view('order.list', compact('orders'));
     }
 
-    // public function edit($id){
 
-    // }
-
-    public function update(Request $req, $id){
-        $order = DB::select("SELECT * from orders where id = ?", [$id]);
-        return response()->json([
-            'data' => $order,
-            'status'=> 200,
-            'message'=>'ok',
-        ]);
-    }
     // tạo order chi tiết
     public function detail($id){
         $orderdetail = $this->order->getdetail($id);
@@ -42,22 +34,46 @@ class OrderController extends Controller
     }
 
     //update trạng thái thành complete
-    public function editcpl($id){
-        $data = [1, $id];
-        if($this->order->upstatus($data)==null){
-            return redirect()->route('order.list')->with('msg', 'Update Order success!');
-        }else{
-            return redirect()->route('order.list')->with('msg', 'Update Order failed!');
-        };
+    public function editcpl(Request $req){
+        if($req->ajax()){
+            $ord_id = $req->ord_id;
+            // return $ord_id;
+            $data = [1, $ord_id];
+            if($this->order->upstatus($data)==null){
+                return 1;
+            }else{
+                return 0;
+            };
+        }
+
+
+        // $data = [1, $id];
+        // if($this->order->upstatus($data)==null){
+        //     return redirect()->route('order.list')->with('msg', 'Update Order success!');
+        // }else{
+        //     return redirect()->route('order.list')->with('msg', 'Update Order failed!');
+        // };
     }
     // update trạng thái thành cancel
-    public function editcacel($id){
-        $data = [3, $id];
-        if($this->order->upstatus($data)==null){
-            return redirect()->route('order.list')->with('msg', 'Update Order success!');
-        }else{
-            return redirect()->route('order.list')->with('msg', 'Update Order failed!');
-        };
+    public function editcacel(Request $req){
+
+        if($req->ajax()){
+            $ord_id = $req->ord_id;
+            // return $ord_id;
+            $data = [3, $ord_id];
+            if($this->order->upstatus($data)==null){
+                return 1;
+            }else{
+                return 0;
+            };
+        }
+
+        // $data = [3, $id];
+        // if($this->order->upstatus($data)==null){
+        //     return redirect()->route('order.list')->with('msg', 'Update Order success!');
+        // }else{
+        //     return redirect()->route('order.list')->with('msg', 'Update Order failed!');
+        // };
     }
 
     public function print_order_convert($id){
@@ -74,6 +90,20 @@ class OrderController extends Controller
     }
 
     public function createorder(Request $req){
+        // dd($req->all());
+        $data_quan=$req->all();
+        // dd($data_quan);
+        $user_id=$data_quan['user_id'];
+        $updata=[];
+        $pro_id=[];
+        $count=(count($data_quan)-4)/2;
+        // dd($count);
+        for ($i=0; $i < $count ; $i++) {
+            array_push($updata,$data_quan[$i]);
+            array_push($pro_id,$data_quan['p'.$i]);
+        }
+        $this->pro->upcartdata($updata,$pro_id,$user_id);
+        // ------
         date_default_timezone_set('Asia/Ho_Chi_Minh');
             $cus_id      = $req->user_id;
             $orderID     = 'OD'.date('ymdHis', time()).'KH'.$cus_id;
@@ -84,15 +114,21 @@ class OrderController extends Controller
             $data        = [$orderID, $cus_id ,$ord_date, $ord_status,  $address, $methodpay];
 
             $Detail = DB::select("SELECT * from tblcart WHERE cus_id = ?", [$cus_id]);
-            // $pro_st = [];
+            // dd($Detail);
+            $checkout=0;
+            $arrout=[];
             foreach ($Detail as $item) {
                 $pro = $item->pro_id;
                 $status = DB::select('SELECT pro_status from product where id = ?', [$pro]);
                 $status = $status[0]->pro_status;
-                // array_push($pro_st,$status);
+                
                 if($status=="Out of stock"){
-                    return redirect()->route('user.cart')->with('msg', 'Product '.$pro.' Out of stock');
+                    $checkout=1;
+                    array_push($arrout,$pro);
                 }
+            }   
+            if ($checkout==1) {
+                return redirect()->route('user.cart')->with(['arrout'=>$arrout]);
             }
         // insert vào orders
             $this->order->createorders($data);
@@ -110,6 +146,5 @@ class OrderController extends Controller
         session()->forget('cart');
         return redirect()->route('user.orderinfo', $cus_id);
     }
-
 
 }

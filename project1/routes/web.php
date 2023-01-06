@@ -16,20 +16,31 @@ Route::prefix('/')->name('user.')->group(function(){
     Route::get('/login', [UserController::class, 'login'])->name('login');
     Route::post('/login', [UserController::class, 'postlogin'])->name('postlogin');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('/logout/admin', [UserController::class, 'logoutadmin'])->name('logoutadmin');
     Route::get('/register', [UserController::class, 'register'])->name('register');
     Route::post('/register', [UserController::class, 'postregis'])->name('register');
     Route::get('aboutus',[UserController::class,'aboutus'])->name('aboutus');
-    Route::post('create',[OrderController::class,'createorder'])->name('createorder');
-    Route::get('/cart',[HomeController::class,'cart'])->name('cart');
-    Route::post('/cart',[HomeController::class,'postcart']);
-    Route::get('/order-info',[HomeController::class,'order'])->name('orderinfo');
-    Route::get('/delcart_{pro_id}_{cus_id}',[HomeController::class,'delcart'])->name('delcart');
+    Route::post('/create', [OrderController::class, 'createorder'])->middleware('customer.login')->name('createorder');
+    Route::get('/detail/{id}', [HomeController::class, 'detailofcus'])->middleware('customer.login')->name('detailofcus');
+    Route::get('/cart',[HomeController::class,'cart'])->middleware('customer.login')->name('cart');
+    Route::post('/cart',[HomeController::class,'postcart'])->middleware('customer.login');
+    Route::get('/order-info',[HomeController::class,'order'])->middleware('customer.login')->name('orderinfo');
+    Route::get('/delcart_{pro_id}_{cus_id}',[HomeController::class,'delcart'])->middleware('customer.login')->name('delcart');
+    Route::get('/confirm/done/{id}', [HomeController::class, 'confirmdone'])->middleware('customer.login')->name('confirmdone');
+    Route::get('/confirm/can/{id}', [HomeController::class, 'confirmcan'])->middleware('customer.login')->name('confirmcan');
+    // Route::post('create',[OrderController::class,'createorder'])->name('createorder');
+    // Route::get('/cart',[HomeController::class,'cart'])->name('cart');
+    // Route::post('/cart',[HomeController::class,'postcart']);
+    // Route::get('/order-info',[HomeController::class,'order'])->name('orderinfo');
+    // Route::get('/delcart_{pro_id}_{cus_id}',[HomeController::class,'delcart'])->name('delcart');
     Route::post('/comment_{pro_id}_{cus_id}',[HomeController::class,'postreview'])->name('review');
     //test area
-    Route::get('/test',[HomeController::class,'test']);
+    // Route::get('/test',[HomeController::class,'test']);
     //search
     Route::get('/search',[HomeController::class,'search'])->name('search');
-
+    //filter
+    Route::get('/filter',[HomeController::class,'getfilter'])->name('filter');
+    Route::get('/filterlink_{cat_id}',[HomeController::class,'filterlink'])->name('filterlink');
 });
 //--Route shop
 
@@ -40,7 +51,6 @@ Route::prefix('/shop')->name('shop.')->group(function(){
     Route::get('floppydisk',[HomeController::class,'floppydisk'])->name('floppydisk');
     //get propertise san pham
     Route::get('/product/{id}',[HomeController::class,'getProduct'])->name('getpro');
-
 });
 
 
@@ -83,8 +93,8 @@ Route::prefix('admin/order')->middleware('admin.login')->name('order.')->group(f
     Route::get('/list', [OrderController::class, 'list'])->name('list');
     Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
     Route::get('/detail/export/{id}', [OrderController::class, 'exportPDF'])->name('exportPDF');
-    Route::get('/complete/{id}', [OrderController::class, 'editcpl'])->name('complete');
-    Route::get('/cancel/{id}', [OrderController::class, 'editcacel'])->name('cancel');
+    Route::get('/complete', [OrderController::class, 'editcpl'])->name('complete');
+    Route::get('/cancel', [OrderController::class, 'editcacel'])->name('cancel');
 });
 
 // Route list cutomers
@@ -100,7 +110,3 @@ Route::prefix('admin/statistic')->middleware('admin.login')->name('statistic.')-
     Route::get('/list/orderday', [StatisticController::class, 'listday'])->name('saleday');
     Route::get('/list/ordermonth', [StatisticController::class, 'listmonth'])->name('salemonth');
 });
-
-
-Route::get('/listpro/{id}', [OrderController::class, 'getpro']);
-

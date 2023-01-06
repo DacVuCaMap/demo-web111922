@@ -126,8 +126,17 @@
             {{-- // items --}}
 
         </div>
-        @if (session('msg'))
-            <span class="notifymsg">{{ session('msg') }}</span>
+        @if (!empty(session('arrout')))
+        <?php
+            $arrout=[];
+            $arrout=session('arrout');
+        ?>
+        <span class="notifymsg">
+        @foreach ($arrout as $item)
+            <p style="margin-bottom:20px;border-bottom:white;"> The product with '{{ $item }}' ID is out of stock</p>
+        @endforeach
+        </span>
+            
         @endif
     </div>
 

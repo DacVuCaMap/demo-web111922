@@ -77,17 +77,17 @@ class UserController extends Controller
     }
 
     public function logout(){
-        Auth::guard('admins')->logout();
         Auth::guard('customers')->logout();
-
         //--muc xoa cac session by NAMVU
-        Session::flush();
+        Session::forget('cat');
         //--end
         return redirect()->route('user.home');
     }
 
-
-
+    public function logoutadmin(){
+        Auth::guard('admins')->logout();
+        return redirect()->route('user.home');
+    }
 
     public function register(){
         return view('admin.register');
@@ -113,7 +113,7 @@ class UserController extends Controller
         ];
         $req->validate($rules, $mesage);
 
-        $fullname = $req->userName;
+        $fullname = ucwords($req->userName);
         $email    = $req->userMail;
         $phone    = $req->userphone;
         $pass     = $req->userPass;
@@ -134,8 +134,15 @@ class UserController extends Controller
     }
 
     //customer list trong admin
-    public function listcustomers(){
-        $customers = DB::select("SELECT * from customers");
+    public function listcustomers(Request $req){
+        $condition = "1=1";
+        $key       = $req->key_word;
+        // dd($key);
+        if($key != null){
+            $new_key   = str_replace(' ', '%', $key);
+            $condition .= " AND C.fullname LIKE '%{$new_key}%'";
+        };
+        $customers = DB::select("SELECT * from customers C WHERE $condition");
         return view('customer.list', compact('customers'));
     }
 }
